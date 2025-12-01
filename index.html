@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>JOLT – Future of Random Chat</title>
+   <!-- Place script definitions here if they need to be available globally early -->
+        <script>
+            function loadGiftHistory() {
+                // ... function implementation ...
+            }
+        </script>
+    </head>
+    <body>
+        <!-- This call will now find the function -->
+        <body onload="loadGiftHistory()"> 
+            <!-- Your content -->
+        </body>
   <link rel="icon" href="branding/image.png" type="image/png">
   <style>
     body { font-family: Arial, sans-serif; background: #f5f5f5; text-align: center; margin: 0; padding: 0; }
@@ -456,59 +468,111 @@
       ]
     };
 
-    // ========================================
-    // INITIALIZATION & SESSION RESTORE
-    // ========================================
-    window.onload = async function() {
-      let session = localStorage.getItem('joltUser');
-      if (session) {
-        const user = JSON.parse(session);
-        try {
-          const res = await fetch(`${API_BASE}/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: user.username, password: user.password || '' })
-          });
-          const data = await res.json();
-          if (data.message && data.message.startsWith('Login successful')) {
-            showProfile(data.username, data.age, data.bio, data.image);
-            localStorage.setItem('joltUser', JSON.stringify({
-              username: data.username, age: data.age, bio: data.bio, image: data.image, password: user.password || ''
-            }));
-          }
-        } catch {
-          showProfile(user.username, user.age, user.bio, user.image);
-        }
-      }
-    };
+   // ========================================
+// INITIALIZATION & SESSION RESTORE
+// ========================================
+window.onload = async function() {
+const sessionStr = localStorage.getItem('joltUser');
+if (!sessionStr) return;
 
-   function showProfile(username, age, bio, image, gender, interests, coins, isPremium) {
-  document.getElementById('loginForm').style.display = 'none';
-  document.getElementById('signupForm').style.display = 'none';
-  document.getElementById('profileSection').style.display = 'block';
-  document.getElementById('chatSection').style.display = 'none';
-  document.getElementById('profileUsername').innerText = username;
-  document.getElementById('profileAge').innerText = age || '';
-  document.getElementById('profileBio').innerText = bio || '';
-  document.getElementById('profileGender').innerText = gender || '';
-  document.getElementById('profileInterests').innerText = (interests || []).join(', ');
-  document.getElementById('profileCoins').innerText = coins || 0;
-  document.getElementById('profilePremium').innerText = isPremium ? 'Yes' : 'No';
-  myUsername = username;
-  myAge = age || '';
-  myBio = bio || '';
-  myImage = image || 'branding/image.png';
-  document.getElementById('profileImgPreview').src = myImage;
-  document.getElementById('profileImgPreview').style.display = 'inline-block';
-  document.getElementById('chatUserName').innerText = username;
-  document.getElementById('chatUserImg').src = myImage;
-  document.getElementById('editArea').style.display = 'none';
+const session = JSON.parse(sessionStr);
+if (!session.username || !session.password) {
+return;
+}
+
+try {
+const res = await fetch(${API_BASE}/login, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+username: session.username,
+password: session.password
+})
+});
+const data = await res.json();
+         if (data.message && data.message.startsWith('Login successful')) {
+  const premiumFlag = data.isPremium || (data.paidFeatures && data.paidFeatures.filtersUnlocked);
+
+  showProfile(
+    data.username,
+    data.age,
+    data.bio,
+    data.image,
+    data.gender,
+    data.interests,
+    data.coins,
+    premiumFlag
+  );
+
+  // store everything + password for auto-login
   localStorage.setItem('joltUser', JSON.stringify({
-    username, age, bio, image: myImage, gender, interests, coins, isPremium
-      // Load recent gifts for this user
-  loadGiftHistory(username);
-
+    username: data.username,
+    password: session.password,
+    age: data.age,
+    bio: data.bio,
+    image: data.image,
+    gender: data.gender,
+    interests: data.interests,
+    coins: data.coins,
+    isPremium: premiumFlag
   }));
+}
+} catch (e) {
+// fallback: show last known profile data (no new coins/premium refresh)
+showProfile(
+session.username,
+session.age,
+session.bio,
+session.image,
+session.gender,
+session.interests,
+session.coins,
+session.isPremium
+);
+}
+};
+
+function showProfile(username, age, bio, image, gender, interests, coins, isPremium) {
+document.getElementById('loginForm').style.display = 'none';
+document.getElementById('signupForm').style.display = 'none';
+document.getElementById('profileSection').style.display = 'block';
+document.getElementById('chatSection').style.display = 'none';
+
+document.getElementById('profileUsername').innerText = username;
+document.getElementById('profileAge').innerText = age || '';
+document.getElementById('profileBio').innerText = bio || '';
+document.getElementById('profileGender').innerText = gender || '';
+document.getElementById('profileInterests').innerText = (interests || []).join(', ');
+document.getElementById('profileCoins').innerText = coins || 0;
+document.getElementById('profilePremium').innerText = isPremium ? 'Yes' : 'No';
+
+myUsername = username;
+myAge = age || '';
+myBio = bio || '';
+myImage = image || 'branding/image.png';
+
+document.getElementById('profileImgPreview').src = myImage;
+document.getElementById('profileImgPreview').style.display = 'inline-block';
+document.getElementById('chatUserName').innerText = username;
+document.getElementById('chatUserImg').src = myImage;
+document.getElementById('editArea').style.display = 'none';
+
+// Save all user info locally (except password, handled where we have it)
+const existing = JSON.parse(localStorage.getItem('joltUser') || '{}');
+localStorage.setItem('joltUser', JSON.stringify({
+username,
+password: existing.password || '',
+age,
+bio,
+image: myImage,
+gender,
+interests,
+coins,
+isPremium
+}));
+
+// Load recent gifts for this user
+loadGiftHistory(username);
 }
 
     // ========================================
@@ -837,9 +901,17 @@
         const data = await res.json();
         document.getElementById('loginResult').innerText = data.message;
         if (data.message && data.message.startsWith('Login successful')) {
-          localStorage.setItem('joltUser', JSON.stringify({ username, password, age: data.age, bio: data.bio, image: data.image }));
-          showProfile(data.username, data.age, data.bio, data.image);
-        }
+showProfile(
+data.username,
+data.age,
+data.bio,
+data.image,
+data.gender,
+data.interests,
+data.coins,
+data.isPremium || (data.paidFeatures && data.paidFeatures.filtersUnlocked)
+);
+}
       } catch {
         document.getElementById('loginResult').innerText = 'Could not reach backend. Try again.';
       }
