@@ -3,20 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>JOLT – Future of Random Chat</title>
-   <!-- Place script definitions here if they need to be available globally early -->
-        <script>
-            function loadGiftHistory() {
-                // ... function implementation ...
-            }
-        </script>
-    </head>
-    <body>
-        <!-- This call will now find the function -->
-        <body onload="loadGiftHistory()"> 
-            <!-- Your content -->
-        </body>
   <link rel="icon" href="branding/image.png" type="image/png">
   <style>
+
     body { font-family: Arial, sans-serif; background: #f5f5f5; text-align: center; margin: 0; padding: 0; }
     .container { margin-block-start: 50px; padding: 28px; background: #fff; max-inline-size: 420px; margin-inline-start: auto; margin-inline-end: auto; border-radius: 14px; box-shadow: 0 2px 18px rgba(41,121,255,0.07);}
     h1 { color: #2979ff; margin-block-end: 10px; }
@@ -481,7 +470,7 @@ return;
 }
 
 try {
-const res = await fetch(${API_BASE}/login, {
+const res = await fetch(`${API_BASE}/login`, {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify({
@@ -900,18 +889,38 @@ loadGiftHistory(username);
         });
         const data = await res.json();
         document.getElementById('loginResult').innerText = data.message;
-        if (data.message && data.message.startsWith('Login successful')) {
-showProfile(
-data.username,
-data.age,
-data.bio,
-data.image,
-data.gender,
-data.interests,
-data.coins,
-data.isPremium || (data.paidFeatures && data.paidFeatures.filtersUnlocked)
-);
-}
+            if (data.message && data.message.startsWith('Login successful')) {
+      const premiumFlag =
+        data.isPremium || (data.paidFeatures && data.paidFeatures.filtersUnlocked);
+
+      // Save creds for auto-login
+      localStorage.setItem(
+        'joltUser',
+        JSON.stringify({
+          username: data.username,
+          password,
+          age: data.age,
+          bio: data.bio,
+          image: data.image,
+          gender: data.gender,
+          interests: data.interests,
+          coins: data.coins,
+          isPremium: premiumFlag
+        })
+      );
+
+      showProfile(
+        data.username,
+        data.age,
+        data.bio,
+        data.image,
+        data.gender,
+        data.interests,
+        data.coins,
+        premiumFlag
+      );
+    }
+
       } catch {
         document.getElementById('loginResult').innerText = 'Could not reach backend. Try again.';
       }
