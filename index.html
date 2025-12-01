@@ -272,14 +272,6 @@
       <span class="link" onclick="switchToSignup()">No account? Signup!</span>
     </form>
 
-    <select id="signupGender">
-  <option value="">Select Gender</option>
-  <option value="male">Male</option>
-  <option value="female">Female</option>
-  <option value="other">Other</option>
-</select>
-<input type="text" id="filterInterests" placeholder="Comma separated interests (e.g. tech, gaming)">
-
     <!-- Signup Form -->
     <form class="form-card" id="signupForm" autocomplete="off" style="display:none;">
       <h2 style="color:#2979ff;">Signup</h2>
@@ -300,7 +292,6 @@
       <div>Gender: <span id="profileGender"></span></div>
 <div>Interests: <span id="profileInterests"></span></div>
 <div>Coins: <span id="profileCoins"></span></div> <div>Premium: <span id="profilePremium"></span></div> <div style="margin-top:8px;"> <button id="buyCoinsBtn" style="background:#2979ff;color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:14px;cursor:pointer;"> Buy Coins </button> </div> <button id="editProfileBtn" class="edit-btn">Edit Profile</button>
-      <button id="editProfileBtn" class="edit-btn">Edit Profile</button>
       <div id="editArea">
         <input type="number" id="editAge" placeholder="Edit Age">
         <textarea id="editBio" placeholder="Edit Bio"></textarea>
@@ -309,12 +300,28 @@
       </div>
       <input type="file" id="profileImgInput" accept="image/*"><br>
       <img id="profileImgPreview" src="branding/image.png" alt="Profile Pic">
-      <div>
+            <div>
         <button id="logoutBtn">Logout</button>
       </div>
+
+      <div id="filterBlock" style="margin:16px 0;">
+        <label style="font-weight:600;">Advanced Filters (Premium Only):</label><br>
+        <select id="filterGender">
+          <option value="">Any Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <input type="text" id="filterInterests" placeholder="Interests (e.g. gaming,tech)">
+        <span id="filterLockMsg" style="color:#e35d5b;font-style:italic;margin-left:6px;display:none;">
+          Upgrade to premium to use filters!
+        </span>
+      </div>
+
       <div style="margin-block-start:18px;">
         <button id="joinChatBtn">Join Random Chat</button>
       </div>
+
       <div id="buyCoinsPopup" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:5000; align-items:center; justify-content:center;"> <div style="background:#ffffff; padding:16px 18px 18px; border-radius:12px; max-width:320px; width:90%; text-align:left; box-shadow:0 4px 18px rgba(0,0,0,0.25);"> <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;"> <h3 style="margin:0; font-size:18px; color:#2979ff;">Buy Coins</h3> <button id="buyCoinsCloseBtn" style="background:none;border:none;font-size:18px;cursor:pointer;">✖</button> </div> <p style="margin:0 0 10px;font-size:14px;color:#555;"> Choose a package to add coins (test mode, no real payment yet). </p> <div style="display:flex; flex-direction:column; gap:8px;"> <button class="buy-coins-option" data-amount="50" style="background:#e3f2fd;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;"> ➕ 50 coins </button> <button class="buy-coins-option" data-amount="100" style="background:#bbdefb;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;"> ➕ 100 coins </button> <button class="buy-coins-option" data-amount="200" style="background:#90caf9;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;"> ➕ 200 coins </button> </div> <div id="buyCoinsError" style="margin-top:8px;color:#d32f2f;font-size:13px;"></div> </div> </div>
     </div>
 
@@ -981,20 +988,6 @@ document.getElementById('profileImgInput').addEventListener('change', function(e
   };
   reader.readAsDataURL(file);
 });
-<div id="filterBlock" style="margin:16px 0;">
-  <label style="font-weight:600;">Advanced Filters (Premium Only):</label><br>
-  <select id="filterGender">
-    <option value="">Any Gender</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="other">Other</option>
-  </select>
-  <input type="text" id="filterInterests" placeholder="Interests (e.g. gaming,tech)">
-  <span id="filterLockMsg" style="color:#e35d5b;font-style:italic;margin-left:6px;display:none;">
-    Upgrade to premium to use filters!
-  </span>
-</div>
-
 
     // ========================================
 // ✅ JOIN CHAT - with Premium Filters
@@ -1075,7 +1068,7 @@ socket.on('gift-received', function (data) {
 const div = document.createElement('div');
 div.style.color = '#ff69b4';
 div.style.fontWeight = 'bold';
-div.innerText = ${data.from} sent you a ${data.giftType} (worth ${data.cost} coins)!;
+ div.innerText = `${data.from} sent you a ${data.giftType} (worth ${data.cost} coins)!`;
 document.getElementById('chatMessages').appendChild(div);
 });
 
