@@ -1,0 +1,22 @@
+{
+  "name": "JOLT – Random Video Chat",
+  "short_name": "JOLT",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2979ff",
+  {
+  "icons": [
+    {
+      "src": "branding/image.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "branding/image.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
