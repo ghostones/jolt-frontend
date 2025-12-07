@@ -4,8 +4,17 @@
   <meta charset="UTF-8">
   <title>JOLT – Future of Random Chat</title>
   <link rel="icon" href="branding/image.png" type="image/png">
-  <style>
+  <!-- PWA / app manifest -->
+  <link rel="manifest" href="manifest.webmanifest">
 
+  <!-- iOS / iPadOS meta -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="JOLT">
+  <link rel="apple-touch-icon" href="branding/image.png">
+  <meta name="theme-color" content="#2979ff">
+  <style>
     body { font-family: Arial, sans-serif; background: #f5f5f5; text-align: center; margin: 0; padding: 0; }
     .container { margin-block-start: 50px; padding: 28px; background: #fff; max-inline-size: 420px; margin-inline-start: auto; margin-inline-end: auto; border-radius: 14px; box-shadow: 0 2px 18px rgba(41,121,255,0.07);}
     h1 { color: #2979ff; margin-block-end: 10px; }
@@ -29,113 +38,116 @@
     }
     #editProfileBtn, #saveProfileBtn, #cancelEditBtn { margin: 8px 4px 0 0; font-size: 15px; background: #ffba08; color: #222; border-radius: 8px; padding: 8px 16px; border: none; }
     #cancelEditBtn { background: #eee; color: #555;}
-    
+
     /* ✅ CHAT SECTION */
     #chatSection { display:none; margin-block-start: 28px; background: #f2f8ff; border-radius: 12px; padding:20px; max-inline-size:900px; margin-inline-start:auto; margin-inline-end:auto;}
     #chatHeader {margin-block-end:13px;}
     #chatUserBox { display:flex; align-items:center; justify-content:center; gap:10px; margin-block-end:8px;}
     #chatUserBox img {inline-size:32px; block-size:32px; border-radius:50%; border:2px solid #2979ff;}
-    
+
     /* ✅ VIDEO CONTAINER - NORMAL MODE */
-    #videoContainer { 
-      position:relative; 
-      background:#000; 
-      border-radius:12px; 
-      margin-block-end:10px; 
+    #videoContainer {
+      position:relative;
+      background:#000;
+      border-radius:12px;
+      margin-block-end:10px;
       overflow:hidden;
     }
-    
-    #videosWrapper { 
-      display:flex; 
-      gap:5px; 
-      block-size:400px; 
+
+    #videosWrapper {
+      display:flex;
+      gap:5px;
+      block-size:400px;
       padding:5px;
     }
-    
-    .video-box { 
-      flex:1; 
-      position:relative; 
-      background:#222; 
-      border-radius:8px; 
+
+    .video-box {
+      flex:1;
+      position:relative;
+      background:#222;
+      border-radius:8px;
       overflow:hidden;
     }
-    
-    #localVideo, #remoteVideo { 
-      inline-size:100%; 
-      block-size:100%; 
+
+    #localVideo, #remoteVideo {
+      inline-size:100%;
+      block-size:100%;
       object-fit:cover;
     }
-    
-    .video-label { 
-      position:absolute; 
-      inset-block-end:8px; 
-      inset-inline-start:8px; 
-      background:rgba(0,0,0,0.7); 
-      color:#fff; 
-      padding:4px 8px; 
-      border-radius:4px; 
-      font-size:12px; 
+
+    .video-label {
+      position:absolute;
+      inset-block-end:8px;
+      inset-inline-start:8px;
+      background:rgba(0,0,0,0.7);
+      color:#fff;
+      padding:4px 8px;
+      border-radius:4px;
+      font-size:12px;
       z-index:10;
     }
-    
-    #fullscreenBtn { 
-      position:absolute; 
-      inset-block-start:15px; 
-      inset-inline-end:15px; 
-      background:rgba(0,0,0,0.7); 
-      color:#fff; 
-      border:none; 
-      padding:10px 15px; 
-      border-radius:6px; 
-      cursor:pointer; 
-      font-size:14px; 
-      z-index:1000; 
+
+    #fullscreenBtn {
+      position:absolute;
+      inset-block-start:15px;
+      inset-inline-end:15px;
+      background:rgba(0,0,0,0.7);
+      color:#fff;
+      border:none;
+      padding:10px 15px;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:14px;
+      z-index:1000;
       transition:background 0.3s;
     }
     #fullscreenBtn:hover { background:rgba(0,0,0,0.9);}
-    
+
     /* ✅ CHAT MESSAGES - NORMAL MODE */
-    #chatMessages { 
-      border:1px solid #ccc; 
-      border-radius:9px; 
-      block-size:100px; 
-      padding:10px; 
-      margin-block-end:10px; 
-      background:#fff; 
-      overflow-y:auto; 
+    #chatMessages {
+      border:1px solid #ccc;
+      border-radius:9px;
+      block-size:100px;
+      padding:10px;
+      margin-block-end:10px;
+      background:#fff;
+      overflow-y:auto;
       text-align: left;
     }
     #chatInput { inline-size: 70%; padding:7px; border-radius:5px; border:1px solid #bbb; }
     #chatPartner { color:#1976d2; font-weight:bold; }
-    
+
     /* ✅ CHAT ACTIONS */
-    #chatActions { 
+    #chatActions {
       margin-top: 8px;
-      display:flex; 
-      flex-wrap:wrap; 
+      display:flex;
+      flex-wrap:wrap;
       gap:5px;
     }
-    
+
     #reportBtn { background:#f44336; color:#fff; }
     #blockBtn { background:#616161; color:#fff;}
     #skipChatBtn { background: #ffba08; color: #222;}
     #homeBtn { background:#fff; color:#2979ff; border:1px solid #2979ff;}
     #logoutBtn, #logoutBtnChat { background:#d32f2f; color:#fff;}
-    
+
+    /* Audio controls */
+    .audio-controls { }
+    #unmuteBtn { display:none; }
+
     /* ✅✅✅ FULLSCREEN MODE - FINAL OPTIMIZED VERSION ✅✅✅ */
-    
     #videoContainer:fullscreen,
     #videoContainer:-webkit-full-screen,
     #videoContainer:-moz-full-screen {
-      inline-size:100vw !important; 
-      block-size:100vh !important; 
-      max-block-size:100vh !important; 
-      margin:0 !important; 
-      padding:0 !important; 
+      inline-size:100vw !important;
+      block-size:100vh !important;
+      max-block-size:100vh !important;
+      margin:0 !important;
+      padding:0 !important;
       border-radius:0 !important;
       position:relative !important;
     }
-    
+
     /* Videos at top - 80% of screen */
     #videoContainer:fullscreen #videosWrapper,
     #videoContainer:-webkit-full-screen #videosWrapper,
@@ -151,27 +163,27 @@
       margin:0 !important;
       display:flex !important;
     }
-    
+
     #videoContainer:fullscreen .video-box,
     #videoContainer:-webkit-full-screen .video-box,
-    #videoContainer:-moz-full-screen .video-box { 
+    #videoContainer:-moz-full-screen .video-box {
       flex:1 !important;
       border-radius:0 !important;
       block-size:100% !important;
     }
-    
+
     #videoContainer:fullscreen #localVideo,
     #videoContainer:fullscreen #remoteVideo,
     #videoContainer:-webkit-full-screen #localVideo,
     #videoContainer:-webkit-full-screen #remoteVideo,
     #videoContainer:-moz-full-screen #localVideo,
     #videoContainer:-moz-full-screen #remoteVideo {
-      inline-size:100% !important; 
-      block-size:100% !important; 
+      inline-size:100% !important;
+      block-size:100% !important;
       object-fit:contain !important;
       border-radius:0 !important;
     }
-    
+
     /* Chat messages - middle section, 12% of screen */
     #videoContainer:fullscreen #chatMessages,
     #videoContainer:-webkit-full-screen #chatMessages,
@@ -184,16 +196,16 @@
       block-size:auto !important;
       max-block-size:none !important;
       inline-size:100vw !important;
-      background:rgba(20,20,20,0.95) !important; 
-      color:#fff !important; 
-      border:none !important; 
-      border-radius:0 !important; 
-      margin:0 !important; 
-      padding:10px 20px !important; 
+      background:rgba(20,20,20,0.95) !important;
+      color:#fff !important;
+      border:none !important;
+      border-radius:0 !important;
+      margin:0 !important;
+      padding:10px 20px !important;
       overflow-y:auto !important;
       box-sizing:border-box !important;
     }
-    
+
     /* Chat form at bottom - 80px fixed */
     #videoContainer:fullscreen #chatForm,
     #videoContainer:-webkit-full-screen #chatForm,
@@ -204,45 +216,45 @@
       inset-inline-end:0 !important;
       block-size:80px !important;
       inline-size:100vw !important;
-      background:rgba(10,10,10,0.98) !important; 
-      margin:0 !important; 
-      padding:15px 20px !important; 
-      border-radius:0 !important; 
-      display:flex !important; 
+      background:rgba(10,10,10,0.98) !important;
+      margin:0 !important;
+      padding:15px 20px !important;
+      border-radius:0 !important;
+      display:flex !important;
       gap:10px !important;
       align-items:center !important;
       box-sizing:border-box !important;
     }
-    
+
     #videoContainer:fullscreen #chatInput,
     #videoContainer:-webkit-full-screen #chatInput,
     #videoContainer:-moz-full-screen #chatInput {
-      flex:1 !important; 
-      background:rgba(255,255,255,0.15) !important; 
-      color:#fff !important; 
-      border:1px solid rgba(255,255,255,0.3) !important; 
+      flex:1 !important;
+      background:rgba(255,255,255,0.15) !important;
+      color:#fff !important;
+      border:1px solid rgba(255,255,255,0.3) !important;
       inline-size:auto !important;
       block-size:45px !important;
       padding:10px 15px !important;
       font-size:16px !important;
     }
-    
+
     #videoContainer:fullscreen #chatForm button,
     #videoContainer:-webkit-full-screen #chatForm button,
-    #videoContainer:-moz-full-screen #chatForm button { 
-      flex:0 0 auto !important; 
+    #videoContainer:-moz-full-screen #chatForm button {
+      flex:0 0 auto !important;
       margin:0 !important;
       block-size:45px !important;
       padding:0 20px !important;
     }
-    
+
     #videoContainer:fullscreen #chatMessages div,
     #videoContainer:-webkit-full-screen #chatMessages div,
-    #videoContainer:-moz-full-screen #chatMessages div { 
-      color:#fff !important; 
+    #videoContainer:-moz-full-screen #chatMessages div {
+      color:#fff !important;
       margin-block-end:6px !important;
     }
-    
+
     @media (max-inline-size: 440px) {
       .container {max-inline-size:98vw;}
       button {font-size:15px; min-inline-size:90px; padding:9px;}
@@ -253,6 +265,10 @@
   </style>
 </head>
 <body>
+  <p style="margin-top:16px;font-size:13px;">
+    By using JOLT you agree to our
+    <a href="community-rules.html" target="_blank">Community Rules</a>.
+  </p>
   <div class="container">
     <img class="logo" src="branding/image.png" alt="JOLT Logo">
     <h1>JOLT</h1>
@@ -274,10 +290,21 @@
     <!-- Signup Form -->
     <form class="form-card" id="signupForm" autocomplete="off" style="display:none;">
       <h2 style="color:#2979ff;">Signup</h2>
+
       <input type="text" id="signupUsername" placeholder="Choose Username" required><br>
       <input type="password" id="signupPassword" placeholder="Choose Password" required><br>
       <input type="number" id="signupAge" placeholder="Your Age"><br>
+
+      <select id="signupGender">
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select><br>
+
+      <input type="text" id="signupInterests" placeholder="Comma separated interests (e.g. tech, gaming)"><br>
       <textarea id="signupBio" placeholder="A short bio (optional)"></textarea><br>
+
       <button type="submit">Signup</button>
       <div id="signupResult"></div>
       <span class="link" onclick="switchToLogin()">Already have an account? Login!</span>
@@ -289,8 +316,19 @@
       <div>Age: <span id="profileAge"></span></div>
       <div>Bio: <span id="profileBio"></span></div>
       <div>Gender: <span id="profileGender"></span></div>
-<div>Interests: <span id="profileInterests"></span></div>
-<div>Coins: <span id="profileCoins"></span></div> <div>Premium: <span id="profilePremium"></span></div> <div style="margin-top:8px;"> <button id="buyCoinsBtn" style="background:#2979ff;color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:14px;cursor:pointer;"> Buy Coins </button> </div> <button id="editProfileBtn" class="edit-btn">Edit Profile</button>
+      <div>Interests: <span id="profileInterests"></span></div>
+      <div>Coins: <span id="profileCoins"></span></div>
+      <div>Premium: <span id="profilePremium"></span></div>
+
+      <div style="margin-top:8px;">
+        <button
+          id="buyCoinsBtn"
+          style="background:#2979ff;color:#fff;border:none;padding:6px 16px;border-radius:8px;font-size:14px;cursor:pointer;"
+        >
+          Buy Coins
+        </button>
+      </div>
+      <button id="editProfileBtn" class="edit-btn">Edit Profile</button>
       <div id="editArea">
         <input type="number" id="editAge" placeholder="Edit Age">
         <textarea id="editBio" placeholder="Edit Bio"></textarea>
@@ -299,7 +337,8 @@
       </div>
       <input type="file" id="profileImgInput" accept="image/*"><br>
       <img id="profileImgPreview" src="branding/image.png" alt="Profile Pic">
-            <div>
+
+      <div>
         <button id="logoutBtn">Logout</button>
       </div>
 
@@ -312,88 +351,124 @@
           <option value="other">Other</option>
         </select>
         <input type="text" id="filterInterests" placeholder="Interests (e.g. gaming,tech)">
-        <span id="filterLockMsg" style="color:#e35d5b;font-style:italic;margin-left:6px;display:none;">
+        <span
+          id="filterLockMsg"
+          style="color:#e35d5b;font-style:italic;margin-left:6px;display:none;"
+        >
           Upgrade to premium to use filters!
         </span>
       </div>
 
-      <div style="margin-block-start:18px;">
-        <button id="joinChatBtn">Join Random Chat</button>
+      <!-- Gift history list -->
+      <ul id="giftHistoryList" style="margin-top:8px;padding-left:18px;text-align:left;font-size:13px;"></ul>
+    </div>
+
+    <div style="margin-block-start:18px;">
+      <button id="joinChatBtn">Join Random Chat (login first)</button>
+    </div>
+
+    <div id="buyCoinsPopup" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:5000; align-items:center; justify-content:center;">
+      <div style="background:#ffffff; padding:16px 18px 18px; border-radius:12px; max-width:320px; width:90%; text-align:left; box-shadow:0 4px 18px rgba(0,0,0,0.25);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <h3 style="margin:0; font-size:18px; color:#2979ff;">Buy Coins</h3>
+          <button id="buyCoinsCloseBtn" style="background:none;border:none;font-size:18px;cursor:pointer;">✖</button>
+        </div>
+        <p style="margin:0 0 10px;font-size:14px;color:#555;">
+          Choose a package to add coins (test mode, no real payment yet).
+        </p>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <button class="buy-coins-option" data-amount="50" style="background:#e3f2fd;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;">➕ 50 coins</button>
+          <button class="buy-coins-option" data-amount="100" style="background:#bbdefb;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;">➕ 100 coins</button>
+          <button class="buy-coins-option" data-amount="200" style="background:#90caf9;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;">➕ 200 coins</button>
+        </div>
+        <div id="buyCoinsError" style="margin-top:8px;color:#d32f2f;font-size:13px;"></div>
       </div>
-
-      <div id="buyCoinsPopup" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:5000; align-items:center; justify-content:center;"> <div style="background:#ffffff; padding:16px 18px 18px; border-radius:12px; max-width:320px; width:90%; text-align:left; box-shadow:0 4px 18px rgba(0,0,0,0.25);"> <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;"> <h3 style="margin:0; font-size:18px; color:#2979ff;">Buy Coins</h3> <button id="buyCoinsCloseBtn" style="background:none;border:none;font-size:18px;cursor:pointer;">✖</button> </div> <p style="margin:0 0 10px;font-size:14px;color:#555;"> Choose a package to add coins (test mode, no real payment yet). </p> <div style="display:flex; flex-direction:column; gap:8px;"> <button class="buy-coins-option" data-amount="50" style="background:#e3f2fd;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;"> ➕ 50 coins </button> <button class="buy-coins-option" data-amount="100" style="background:#bbdefb;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;"> ➕ 100 coins </button> <button class="buy-coins-option" data-amount="200" style="background:#90caf9;border:none;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;text-align:left;"> ➕ 200 coins </button> </div> <div id="buyCoinsError" style="margin-top:8px;color:#d32f2f;font-size:13px;"></div> </div> </div>
-    </div>
-
-    <!-- ✅ MODERATION WARNING BANNER -->
-    <div id="moderationBanner" aria-live="polite"
-         style="display:none;
-                background:#fff4e5;
-                color:#b71c1c;
-                border:1.5px solid #f44336;
-                box-shadow:0 3px 12px #ed313123;
-                padding:14px 16px 14px 38px;
-                font-size:16px;
-                font-weight:600;
-                text-align: left;
-                border-radius:9px;
-                margin:0 0 22px 0;
-                position:relative;
-                min-inline-size:200px;max-inline-size:95%;">
-      <span style="position:absolute;inset-inline-start:10px;inset-block-start:15px;font-size:19px;">⚠️</span>
-      <span id="moderationBannerText"></span>
-      <button id="bannerCloseBtn"
-              style="position:absolute;inset-inline-end:8px;inset-block-start:13px;background:none;border:none;color:#b71c1c;font-size:17px;cursor:pointer;">✖</button>
-      <!-- ✅ Fix 2 - STRIKE COUNTER HTML ADDED -->
-      <div id="strikeCounter" style="position:absolute;inset-inline-end:38px;inset-block-start:15px;display:none;color:#b71c1c;font-weight:bold;">
-        Strikes: <span id="strikeCount">0</span>/3
-      </div>
-    </div>
-
-    <!-- Chat Section -->
-    <div id="chatSection">
-  <div id="chatHeader">
-    <div id="chatUserBox">
-      <img id="chatUserImg" src="" alt="You" title="You">
-      <b id="chatUserName"></b>
-      <span style="font-size:13px;color:#999;">(You)</span>
-    </div>
-    <div>
-      Chatting with: <span id="chatPartner">Unknown</span>
     </div>
   </div>
 
-  <div id="videoContainer">
-    <div id="videosWrapper">
-      <div class="video-box">
-        <video id="localVideo" autoplay playsinline muted></video>
-        <div class="video-label">You</div>
+  <!-- ✅ MODERATION WARNING BANNER -->
+  <div id="moderationBanner" aria-live="polite"
+       style="display:none;
+              background:#fff4e5;
+              color:#b71c1c;
+              border:1.5px solid #f44336;
+              box-shadow:0 3px 12px #ed313123;
+              padding:14px 16px 14px 38px;
+              font-size:16px;
+              font-weight:600;
+              text-align: left;
+              border-radius:9px;
+              margin:0 0 22px 0;
+              position:relative;
+              min-inline-size:200px;max-inline-size:95%;">
+    <span style="position:absolute;inset-inline-start:10px;inset-block-start:15px;font-size:19px;">⚠️</span>
+    <span id="moderationBannerText"></span>
+    <button id="bannerCloseBtn"
+            style="position:absolute;inset-inline-end:8px;inset-block-start:13px;background:none;border:none;color:#b71c1c;font-size:17px;cursor:pointer;">✖</button>
+    <div id="strikeCounter" style="position:absolute;inset-inline-end:38px;inset-block-start:15px;display:none;color:#b71c1c;font-weight:bold;">
+      Strikes: <span id="strikeCount">0</span>/3
+    </div>
+  </div>
+
+  <!-- Chat Section -->
+  <div id="chatSection">
+    <div id="chatHeader">
+      <div id="chatUserBox">
+        <img id="chatUserImg" src="" alt="You" title="You">
+        <b id="chatUserName"></b>
+        <span style="font-size:13px;color:#999;">(You)</span>
       </div>
-      <div class="video-box">
-        <video id="remoteVideo" autoplay playsinline></video>
-        <div class="video-label"><span id="remoteVideoLabel">Partner</span></div>
+      <div>
+        Chatting with: <span id="chatPartner">Unknown</span>
       </div>
     </div>
-    <button id="fullscreenBtn">⛶ Fullscreen</button>
-    <div id="chatMessages"></div>
-    <form id="chatForm" autocomplete="off">
-      <input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off" required>
-      <button type="submit">Send</button>
-      <button type="button" id="endChatBtn">End Chat</button>
-    </form>
+
+    <div id="videoContainer">
+      <div id="videosWrapper">
+        <div class="video-box">
+          <video id="localVideo" autoplay playsinline muted></video>
+          <div class="video-label">You</div>
+        </div>
+        <div class="video-box">
+          <video id="remoteVideo" autoplay playsinline></video>
+          <div class="video-label"><span id="remoteVideoLabel">Partner</span></div>
+        </div>
+      </div>
+      <button id="fullscreenBtn">⛶ Fullscreen</button>
+
+      <div class="audio-controls" style="position:absolute; inset-block-start:60px; inset-inline-end:15px; display:flex; gap:5px; z-index:1000;">
+        <button id="muteBtn" style="background:rgba(0,0,0,0.7); color:#fff; border:none; padding:8px 12px; border-radius:6px; font-size:14px;">🔇</button>
+        <button id="unmuteBtn" style="background:rgba(0,0,0,0.7); color:#fff; border:none; padding:8px 12px; border-radius:6px; font-size:14px;">🔊</button>
+      </div>
+
+      <div id="chatMessages"></div>
+
+      <form id="chatForm" autocomplete="off">
+        <input
+          type="text"
+          id="chatInput"
+          placeholder="Type a message..."
+          autocomplete="off"
+          required
+        >
+        <button type="submit">Send</button>
+        <button type="button" id="endChatBtn">End Chat</button>
+      </form>
+    </div>
+
+    <div id="chatActions">
+      <button type="button" id="reportBtn">Report User</button>
+      <button type="button" id="blockBtn">Block User</button>
+      <button type="button" id="skipChatBtn">Skip Chat</button>
+      <button type="button" id="sendGiftBtn" style="background:#ff69b4;color:#fff;">Send Gift</button>
+      <button type="button" id="homeBtn">Home</button>
+      <button type="button" id="logoutBtnChat">Logout</button>
+    </div>
+
+    <div id="chatStatus"></div>
   </div>
 
-  <div id="chatActions">
-    <button type="button" id="reportBtn">Report User</button>
-    <button type="button" id="blockBtn">Block User</button>
-    <button type="button" id="skipChatBtn">Skip Chat</button>
-    <button type="button" id="sendGiftBtn" style="background:#ff69b4;color:#fff;">Send Gift</button>
-    <button type="button" id="homeBtn">Home</button>
-    <button type="button" id="logoutBtnChat">Logout</button>
-  </div>
-
-  <div id="chatStatus"></div>
-
-  <!-- Gift Popup (new, but only for gifts) -->
+  <!-- Gift Popup -->
   <div id="giftPopup" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:5000; align-items:center; justify-content:center;">
     <div style="background:#ffffff; padding:16px 18px 18px; border-radius:12px; max-width:320px; width:90%; text-align:left; box-shadow:0 4px 18px rgba(0,0,0,0.25);">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
@@ -421,27 +496,32 @@
       <div id="giftError" style="margin-top:8px;color:#d32f2f;font-size:13px;"></div>
     </div>
   </div>
-</div>
-    <!-- GOOGLE ADSENSE BANNER AD -->
-    <div id="adsContainer" style="margin:22px 0;">
-      <ins class="adsbygoogle"
-           style="display:block; text-align:center;"
-           data-ad-client="ca-pub-3289856543483173"
-           data-ad-slot="REPLACE_WITH_YOUR_SLOT_ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
+
+  <!-- GOOGLE ADSENSE BANNER AD -->
+  <div id="adsContainer" style="margin:22px 0;">
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-client="ca-pub-3289856543483173"
+         data-ad-slot="REPLACE_WITH_YOUR_SLOT_ID"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
   </div>
 
-  <!-- COOKIE/CONSENT POPUP for privacy/ad compliance -->
+  <!-- COOKIE/CONSENT POPUP -->
   <div id="cookieConsent" style="display:none; position:fixed;inset-block-end:0;inset-inline-start:0;inline-size:100%;background:#222;color:#fff;text-align:center;padding:12px 0;z-index:9000;font-size:15px;">
     We use cookies and Google ad services to show ads and improve your experience.
     <button style="margin-inline-start:25px;padding:6px 20px;border-radius:7px;font-size:14px;" onclick="acceptCookies()">Accept</button>
   </div>
 
+  <!-- ✅ AdSense JS -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3289856543483173"
+    crossorigin="anonymous"></script>
+
   <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-  <script>
-    // ✅ API BASE DETECTION (Production vs Local)
+
+  <!-- MAIN APP SCRIPT AS MODULE -->
+  <script type="module">
     const API_BASE ='https://jolt-backend-ck3c.onrender.com';
     let socket = null;
     let myUsername = '';
@@ -453,7 +533,6 @@
     let skipLock = false;
     let peerConnection = null;
 
-    // ✅ STRIKE SYSTEM VAR
     let userStrikes = 0;
 
     const iceServers = {
@@ -463,117 +542,74 @@
       ]
     };
 
-   // ========================================
-// INITIALIZATION & SESSION RESTORE
-// ========================================
-window.onload = async function() {
-const sessionStr = localStorage.getItem('joltUser');
-if (!sessionStr) return;
+    // ========================================
+    // INITIALIZATION & SESSION RESTORE (no password reuse)
+    // ========================================
+    window.onload = async function() {
+      const sessionStr = localStorage.getItem('joltUser');
+      if (!sessionStr) return;
 
-const session = JSON.parse(sessionStr);
-if (!session.username || !session.password) {
-return;
-}
+      const session = JSON.parse(sessionStr);
+      if (!session.username) return;
 
-try {
-const res = await fetch(`${API_BASE}/login`, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({
-username: session.username,
-password: session.password
-})
-});
-const data = await res.json();
-         if (data.message && data.message.startsWith('Login successful')) {
-  const premiumFlag = data.isPremium || (data.paidFeatures && data.paidFeatures.filtersUnlocked);
+      // Just restore last known profile locally (no auto-login with password)
+      showProfile(
+        session.username,
+        session.age,
+        session.bio,
+        session.image,
+        session.gender,
+        session.interests,
+        session.coins,
+        session.isPremium
+      );
+    };
 
-  showProfile(
-    data.username,
-    data.age,
-    data.bio,
-    data.image,
-    data.gender,
-    data.interests,
-    data.coins,
-    premiumFlag
-  );
+    async function showProfile(username, age, bio, image, gender, interests, coins, isPremium) {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('signupForm').style.display = 'none';
+      document.getElementById('profileSection').style.display = 'block';
+      document.getElementById('chatSection').style.display = 'none';
 
-  // store everything + password for auto-login
-  localStorage.setItem('joltUser', JSON.stringify({
-    username: data.username,
-    password: session.password,
-    age: data.age,
-    bio: data.bio,
-    image: data.image,
-    gender: data.gender,
-    interests: data.interests,
-    coins: data.coins,
-    isPremium: premiumFlag
-  }));
-}
-} catch (e) {
-// fallback: show last known profile data (no new coins/premium refresh)
-showProfile(
-session.username,
-session.age,
-session.bio,
-session.image,
-session.gender,
-session.interests,
-session.coins,
-session.isPremium
-);
-}
-};
+      document.getElementById('profileUsername').innerText = username;
+      document.getElementById('profileAge').innerText = age || '';
+      document.getElementById('profileBio').innerText = bio || '';
+      document.getElementById('profileGender').innerText = gender || '';
+      document.getElementById('profileInterests').innerText = (interests || []).join(', ');
+      document.getElementById('profileCoins').innerText = coins || 0;
+      document.getElementById('profilePremium').innerText = isPremium ? 'Yes' : 'No';
 
-function showProfile(username, age, bio, image, gender, interests, coins, isPremium) {
-document.getElementById('loginForm').style.display = 'none';
-document.getElementById('signupForm').style.display = 'none';
-document.getElementById('profileSection').style.display = 'block';
-document.getElementById('chatSection').style.display = 'none';
+      myUsername = username;
+      myAge = age || '';
+      myBio = bio || '';
+      myImage = image || 'branding/image.png';
 
-document.getElementById('profileUsername').innerText = username;
-document.getElementById('profileAge').innerText = age || '';
-document.getElementById('profileBio').innerText = bio || '';
-document.getElementById('profileGender').innerText = gender || '';
-document.getElementById('profileInterests').innerText = (interests || []).join(', ');
-document.getElementById('profileCoins').innerText = coins || 0;
-document.getElementById('profilePremium').innerText = isPremium ? 'Yes' : 'No';
+      document.getElementById('profileImgPreview').src = myImage;
+      document.getElementById('profileImgPreview').style.display = 'inline-block';
+      document.getElementById('chatUserName').innerText = username;
+      document.getElementById('chatUserImg').src = myImage;
+      document.getElementById('editArea').style.display = 'none';
 
-myUsername = username;
-myAge = age || '';
-myBio = bio || '';
-myImage = image || 'branding/image.png';
+      // Save info locally (no password)
+      localStorage.setItem('joltUser', JSON.stringify({
+        username,
+        age,
+        bio,
+        image: myImage,
+        gender,
+        interests,
+        coins,
+        isPremium
+      }));
 
-document.getElementById('profileImgPreview').src = myImage;
-document.getElementById('profileImgPreview').style.display = 'inline-block';
-document.getElementById('chatUserName').innerText = username;
-document.getElementById('chatUserImg').src = myImage;
-document.getElementById('editArea').style.display = 'none';
-
-// Save all user info locally (except password, handled where we have it)
-const existing = JSON.parse(localStorage.getItem('joltUser') || '{}');
-localStorage.setItem('joltUser', JSON.stringify({
-username,
-password: existing.password || '',
-age,
-bio,
-image: myImage,
-gender,
-interests,
-coins,
-isPremium
-}));
-
-// Load recent gifts for this user
-loadGiftHistory(username);
-}
+      // Load gift history
+      loadGiftHistory(username);
+    }
 
     // ========================================
     // PROFILE EDITING
     // ========================================
-    document.getElementById('editProfileBtn').onclick = function() {
+    document.getElementById('editProfileBtn').onclick = async function() {
       document.getElementById('editArea').style.display = 'block';
       document.getElementById('editAge').value = myAge;
       document.getElementById('editBio').value = myBio;
@@ -584,27 +620,45 @@ loadGiftHistory(username);
       myBio = document.getElementById('editBio').value;
       let updateData = { username: myUsername, age: myAge, bio: myBio, image: myImage };
       try {
-        // ✅ Fix 1 - API_BASE usage (FIXED: was hardcoded localhost)
         const res = await fetch(`${API_BASE}/profile/update`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updateData)
         });
         const data = await res.json();
-        showProfile(myUsername, data.age, data.bio, data.image);
+        showProfile(
+          myUsername,
+          data.age,
+          data.bio,
+          data.image,
+          data.gender,
+          data.interests,
+          data.coins,
+          data.isPremium
+        );
       } catch {
-        showProfile(myUsername, myAge, myBio, myImage);
+        const existing = JSON.parse(localStorage.getItem('joltUser') || '{}');
+        showProfile(
+          myUsername,
+          myAge,
+          myBio,
+          myImage,
+          existing.gender,
+          existing.interests,
+          existing.coins,
+          existing.isPremium
+        );
       }
     };
 
-    document.getElementById('cancelEditBtn').onclick = function() {
+    document.getElementById('cancelEditBtn').onclick = async function() {
       document.getElementById('editArea').style.display = 'none';
     };
 
     // ========================================
     // AUTH FORM SWITCHING
     // ========================================
-    function switchToSignup() {
+    async function switchToSignup() {
       document.getElementById('loginForm').style.display = 'none';
       document.getElementById('signupForm').style.display = 'block';
       document.getElementById('signupResult').innerText = '';
@@ -616,7 +670,7 @@ loadGiftHistory(username);
       document.getElementById('loginResult').innerText = '';
     }
 
-    function logout() {
+    async function logout() {
       stopWebcamModeration();
       if (socket) { socket.disconnect(); socket = null; }
       document.getElementById('profileSection').style.display = 'none';
@@ -632,9 +686,9 @@ loadGiftHistory(username);
     }
 
     // ========================================
-    // ✅ MODERATION BANNER - Fix 3
+    // MODERATION BANNER
     // ========================================
-    function showModerationBanner(msg, strike = null, level = null) {
+    async function showModerationBanner(msg, strike = null, level = null) {
       const banner = document.getElementById('moderationBanner');
       const text = document.getElementById('moderationBannerText');
       const counterDiv = document.getElementById('strikeCounter');
@@ -643,13 +697,11 @@ loadGiftHistory(username);
       if (!banner || !text) return;
       text.innerText = msg;
 
-      // ✅ Strike Tracking Logic
       if (strike !== null) {
         userStrikes += strike ? 1 : 0;
         countSpan.innerText = userStrikes;
         counterDiv.style.display = 'inline-block';
 
-        // ✅ Banner Color by Severity Level
         if (level === 'warning' || userStrikes === 1) {
           banner.style.background = '#fffde7';
           banner.style.color = '#bfa710';
@@ -683,11 +735,10 @@ loadGiftHistory(username);
       }, 4000);
     }
 
-    // Banner manual close
     document.addEventListener('DOMContentLoaded', () => {
       const closeBtn = document.getElementById('bannerCloseBtn');
       if (closeBtn) {
-        closeBtn.onclick = function() {
+        closeBtn.onclick = async function() {
           const banner = document.getElementById('moderationBanner');
           banner.style.opacity = 0;
           setTimeout(() => {
@@ -699,90 +750,121 @@ loadGiftHistory(username);
       }
     });
 
-    // ========================================
-    // WEBRTC PEER CONNECTION
-    // ========================================
+    // ===== ENHANCED WEBRTC PEER CONNECTION =====
     function createPeerConnection() {
+      console.log("🔷 Creating peer connection...");
       peerConnection = new RTCPeerConnection(iceServers);
-      
+
       if (webcamStream) {
-        console.log('📹 Adding local tracks to peer connection');
+        console.log("✅ Adding local tracks to peer connection");
         webcamStream.getTracks().forEach(track => {
           peerConnection.addTrack(track, webcamStream);
-          console.log(`  ✅ Added ${track.kind} track:`, track.id);
+          console.log(`📹 Added ${track.kind} track:`, track.id);
         });
       } else {
-        console.error('❌ No webcam stream available!');
+        console.error("❌ No webcam stream available!");
       }
-      
+
       peerConnection.ontrack = (event) => {
-        console.log('✅ Received remote stream');
+        console.log("🎥 Received remote stream!");
         const remoteVideo = document.getElementById('remoteVideo');
-        if (remoteVideo && event.streams[0]) {
-          remoteVideo.srcObject = event.streams[0];
-          event.streams[0].getTracks().forEach(track => {
-            console.log(`  ✅ Received ${track.kind} track:`, track.id);
-          });
+        if (remoteVideo) {
+          if (event.streams && event.streams[0]) {
+            console.log("✅ Setting remote video srcObject");
+            remoteVideo.srcObject = event.streams[0];
+            remoteVideo.play().catch(e => {
+              console.error("❌ Failed to play remote video:", e);
+            });
+          } else {
+            console.error("❌ No streams in event!");
+          }
+        } else {
+          console.error("❌ Remote video element not found!");
         }
       };
-      
+
       peerConnection.onicecandidate = (event) => {
         if (event.candidate && socket) {
-          console.log('📤 Sending ICE candidate');
+          console.log("🧊 Sending ICE candidate");
           socket.emit('webrtc-ice-candidate', {
             candidate: event.candidate,
             from: myUsername
           });
+        } else if (!event.candidate) {
+          console.log("✅ All ICE candidates have been sent");
         }
       };
-      
+
       peerConnection.onconnectionstatechange = () => {
-        console.log('🔌 WebRTC connection state:', peerConnection.connectionState);
-        if (peerConnection.connectionState === 'connected') {
-          console.log('🎉 WEBRTC CONNECTED!');
-        }
+        console.log(`🔗 WebRTC connection state: ${peerConnection.connectionState}`);
       };
-      
+
+      peerConnection.oniceconnectionstatechange = () => {
+        console.log(`🧊 ICE connection state: ${peerConnection.iceConnectionState}`);
+      };
+
       return peerConnection;
     }
 
     async function createOffer() {
       try {
+        console.log("📤 Creating offer...");
         const offer = await peerConnection.createOffer();
         await peerConnection.setLocalDescription(offer);
-        socket.emit('webrtc-offer', {
-          offer: offer,
-          from: myUsername
-        });
-        console.log('📤 Offer sent');
+        socket.emit('webrtc-offer', { offer: offer, from: myUsername });
+        console.log("✅ Offer sent");
       } catch (error) {
-        console.error('❌ Error creating offer:', error);
+        console.error("❌ Error creating offer:", error);
       }
     }
 
     async function handleOffer(offer, from) {
       try {
-        if (!peerConnection) createPeerConnection();
+        console.log("📥 Handling offer from:", from);
+        if (!peerConnection) {
+          createPeerConnection();
+        }
         await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
         const answer = await peerConnection.createAnswer();
         await peerConnection.setLocalDescription(answer);
-        socket.emit('webrtc-answer', {
-          answer: answer,
-          from: myUsername,
-          to: from
-        });
-        console.log('📤 Answer sent');
+        socket.emit('webrtc-answer', { answer: answer, from: myUsername, to: from });
+        console.log("✅ Answer sent");
       } catch (error) {
-        console.error('❌ Error handling offer:', error);
+        console.error("❌ Error handling offer:", error);
       }
     }
 
+    let isMuted = false;
+
+    document.getElementById('muteBtn').onclick = () => {
+      if (webcamStream) {
+        const tracks = webcamStream.getAudioTracks();
+        if (!tracks.length) return;
+        tracks.forEach(t => t.enabled = false);
+        isMuted = true;
+        document.getElementById('muteBtn').style.display = 'none';
+        document.getElementById('unmuteBtn').style.display = 'block';
+      }
+    };
+
+    document.getElementById('unmuteBtn').onclick = () => {
+      if (webcamStream) {
+        const tracks = webcamStream.getAudioTracks();
+        if (!tracks.length) return;
+        tracks.forEach(t => t.enabled = true);
+        isMuted = false;
+        document.getElementById('muteBtn').style.display = 'block';
+        document.getElementById('unmuteBtn').style.display = 'none';
+      }
+    };
+
     async function handleAnswer(answer) {
       try {
+        console.log("📥 Handling answer");
         await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
-        console.log('✅ Answer received and set');
+        console.log("✅ Answer received and set");
       } catch (error) {
-        console.error('❌ Error handling answer:', error);
+        console.error("❌ Error handling answer:", error);
       }
     }
 
@@ -790,80 +872,152 @@ loadGiftHistory(username);
       try {
         if (peerConnection) {
           await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
-          console.log('✅ ICE candidate added');
+          console.log("✅ ICE candidate added");
+        } else {
+          console.warn("⚠️ Received ICE candidate but no peer connection exists");
         }
       } catch (error) {
-        console.error('❌ Error adding ICE candidate:', error);
+        console.error("❌ Error adding ICE candidate:", error);
       }
     }
 
     function closePeerConnection() {
       if (peerConnection) {
+        console.log("🔴 Closing peer connection");
         peerConnection.close();
         peerConnection = null;
-        console.log('❌ Peer connection closed');
-      }
-      const remoteVideo = document.getElementById('remoteVideo');
-      if (remoteVideo) {
-        remoteVideo.srcObject = null;
+        const remoteVideo = document.getElementById('remoteVideo');
+        if (remoteVideo) {
+          remoteVideo.srcObject = null;
+        }
       }
     }
 
     // ========================================
     // WEBCAM & AUDIO STREAMING
     // ========================================
-    function startWebcamModeration() {
+    async function startWebcamModeration() {
       const video = document.getElementById('localVideo');
-      
-      return navigator.mediaDevices.getUserMedia({ 
-        video: true, 
-        audio: true
-      })
-        .then((stream) => {
-          webcamStream = stream;
-          video.srcObject = stream;
-          console.log('✅ Webcam + Audio started');
-          console.log('📹 Video tracks:', stream.getVideoTracks().length);
-          console.log('🎤 Audio tracks:', stream.getAudioTracks().length);
-          return stream;
-        })
-        .catch((err) => {
-          alert("Could not access webcam/microphone: " + err);
-          throw err;
-        });
+      const chatStatus = document.getElementById('chatStatus');
+
+      try {
+        console.log('🎥 Requesting webcam + microphone access...');
+
+        if (chatStatus) {
+          chatStatus.innerText = 'Requesting camera and microphone permission...';
+        }
+
+        let stream = null;
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+              width: { ideal: 1280, min: 640 },
+              height: { ideal: 720, min: 480 },
+              facingMode: "user"
+            },
+            audio: {
+              echoCancellation: true,
+              noiseSuppression: true,
+              autoGainControl: true
+            }
+          });
+        } catch (constraintError) {
+          console.warn('⚠️ Optimal settings failed, trying basic settings...', constraintError);
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+          });
+        }
+
+        webcamStream = stream;
+        video.srcObject = stream;
+        await video.play();
+
+        if (chatStatus) {
+          chatStatus.innerText = 'Camera active. Searching for partner...';
+        }
+
+        return stream;
+      } catch (err) {
+        console.error('❌ Webcam/Microphone error:', err.name, '-', err.message);
+
+        let userMessage = '';
+        let alertMessage = '';
+
+        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+          userMessage = 'Camera permission denied. Please allow access and refresh.';
+          alertMessage = '🚫 Camera Permission Denied\n\nTo use video chat, allow camera/mic in your browser and refresh.';
+        } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+          userMessage = 'No camera/microphone detected. Please connect a device and refresh.';
+          alertMessage = '📷 No Camera Found\n\nPlease connect a camera/mic and refresh.';
+        } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+          userMessage = 'Camera is busy. Close other apps using the camera and refresh.';
+          alertMessage = '⚠️ Camera In Use\n\nClose other apps using the camera (Zoom, etc.) and refresh.';
+        } else if (err.name === 'OverconstrainedError' || err.name === 'ConstraintNotSatisfiedError') {
+          userMessage = 'Camera settings incompatible. Trying basic settings...';
+          alertMessage = '⚙️ Camera Settings Issue\n\nYour camera does not support requested settings.';
+        } else if (err.name === 'TypeError') {
+          userMessage = 'Browser doesn\'t support camera access. Please use Chrome, Firefox, or Safari.';
+          alertMessage = '🌐 Browser Not Supported\n\nUse a modern browser with WebRTC support.';
+        } else {
+          userMessage = `Webcam error: ${err.message}. Please refresh.`;
+          alertMessage = `❌ Webcam Error\n\n${err.message}\n\nPlease refresh and try again.`;
+        }
+
+        if (chatStatus) {
+          chatStatus.innerText = userMessage;
+          chatStatus.style.color = '#d32f2f';
+        }
+
+        alert(alertMessage);
+        throw err;
+      }
     }
 
-    function stopWebcamModeration() {
+    async function stopWebcamModeration() {
       const video = document.getElementById('localVideo');
       if (webcamStream) {
+        console.log('🛑 Stopping webcam and audio...');
         webcamStream.getTracks().forEach(track => {
-          console.log(`🛑 Stopping ${track.kind} track`);
           track.stop();
         });
+        if (video) {
+          video.srcObject = null;
+        }
         webcamStream = null;
       }
+
       if (window.webcamInterval) {
         clearInterval(window.webcamInterval);
         window.webcamInterval = null;
       }
     }
 
-    // ✅ Fix 5 - Frame Moderation Function
-    function startFrameModeration() {
-      if (window.webcamInterval) clearInterval(window.webcamInterval);
+    async function startFrameModeration() {
+      if (window.webcamInterval) {
+        clearInterval(window.webcamInterval);
+      }
+
       window.webcamInterval = setInterval(() => {
         try {
           const video = document.getElementById('localVideo');
-          if (video && webcamStream && socket) {
-            const canvas = document.createElement('canvas');
-            canvas.width = video.videoWidth || 320;
-            canvas.height = video.videoHeight || 240;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const frameData = canvas.toDataURL('image/jpeg', 0.4);
-            socket.emit('moderate-frame', { username: myUsername, frame: frameData });
-          }
-        } catch (err) { /* fail silently */ }
+          if (!video || !webcamStream || !socket || !myUsername) return;
+          if (video.readyState < 2 || !video.videoWidth || !video.videoHeight) return;
+
+          const canvas = document.createElement('canvas');
+          canvas.width = video.videoWidth || 320;
+          canvas.height = video.videoHeight || 240;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const frameData = canvas.toDataURL('image/jpeg', 0.4);
+
+          socket.emit('moderate-frame', {
+            username: myUsername,
+            frame: frameData
+          });
+        } catch (err) {
+          console.error('❌ Frame moderation error:', err.message);
+        }
       }, 2000);
     }
 
@@ -895,248 +1049,280 @@ loadGiftHistory(username);
         });
         const data = await res.json();
         document.getElementById('loginResult').innerText = data.message;
-            if (data.message && data.message.startsWith('Login successful')) {
-      const premiumFlag =
-        data.isPremium || (data.paidFeatures && data.paidFeatures.filtersUnlocked);
+        if (data.message && data.message.startsWith('Login successful')) {
+          const premiumFlag =
+            data.isPremium || (data.paidFeatures && data.paidFeatures.filtersUnlocked);
 
-      // Save creds for auto-login
-      localStorage.setItem(
-        'joltUser',
-        JSON.stringify({
-          username: data.username,
-          password,
-          age: data.age,
-          bio: data.bio,
-          image: data.image,
-          gender: data.gender,
-          interests: data.interests,
-          coins: data.coins,
-          isPremium: premiumFlag
-        })
-      );
+          localStorage.setItem(
+            'joltUser',
+            JSON.stringify({
+              username: data.username,
+              age: data.age,
+              bio: data.bio,
+              image: data.image,
+              gender: data.gender,
+              interests: data.interests,
+              coins: data.coins,
+              isPremium: premiumFlag
+            })
+          );
 
-      showProfile(
-        data.username,
-        data.age,
-        data.bio,
-        data.image,
-        data.gender,
-        data.interests,
-        data.coins,
-        premiumFlag
-      );
-    }
-
+          showProfile(
+            data.username,
+            data.age,
+            data.bio,
+            data.image,
+            data.gender,
+            data.interests,
+            data.coins,
+            premiumFlag
+          );
+        }
       } catch {
         document.getElementById('loginResult').innerText = 'Could not reach backend. Try again.';
       }
     };
 
     document.getElementById('signupForm').onsubmit = async function(e) {
-  e.preventDefault();
-  const username = document.getElementById('signupUsername').value;
-  const password = document.getElementById('signupPassword').value;
-  const age = document.getElementById('signupAge').value;
-  const bio = document.getElementById('signupBio').value;
-  const gender = document.getElementById('signupGender').value;
-  const interests = document.getElementById('signupInterests').value.split(',').map(x => x.trim()).filter(x => x);
-  try {
-    const res = await fetch(`${API_BASE}/signup`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password, age, bio, gender, interests })
-    });
-    const data = await res.json();
-    document.getElementById('signupResult').innerText = data.message;
-    if (data.message && data.message.startsWith('Signup successful')) setTimeout(() => switchToLogin(), 1300);
-  } catch {
-    document.getElementById('signupResult').innerText = 'Could not reach backend. Try again.';
-  }
-};
-
+      e.preventDefault();
+      const username = document.getElementById('signupUsername').value;
+      const password = document.getElementById('signupPassword').value;
+      const age = document.getElementById('signupAge').value;
+      const bio = document.getElementById('signupBio').value;
+      const gender = document.getElementById('signupGender').value;
+      const interestsInput = document.getElementById('signupInterests');
+      const interests = interestsInput
+        ? interestsInput.value.split(',').map(x => x.trim()).filter(x => x)
+        : [];
+      try {
+        const res = await fetch(`${API_BASE}/signup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password, age, bio, gender, interests })
+        });
+        const data = await res.json();
+        document.getElementById('signupResult').innerText = data.message;
+        if (data.message && data.message.startsWith('Signup successful')) {
+          setTimeout(() => switchToLogin(), 1300);
+        }
+      } catch {
+        document.getElementById('signupResult').innerText = 'Could not reach backend. Try again.';
+      }
+    };
 
     // ========================================
-// PROFILE IMAGE UPLOAD (no change to core logic, but now preserves ALL user fields)
-// ========================================
-document.getElementById('profileImgInput').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = async function(evt) {
-    myImage = evt.target.result;
-    document.getElementById('profileImgPreview').src = myImage;
-    document.getElementById('profileImgPreview').style.display = 'inline-block';
-    document.getElementById('chatUserImg').src = myImage;
+    // PROFILE IMAGE UPLOAD
+    // ========================================
+    document.getElementById('profileImgInput').addEventListener('change', async function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async function(evt) {
+        myImage = evt.target.result;
+        document.getElementById('profileImgPreview').src = myImage;
+        document.getElementById('profileImgPreview').style.display = 'inline-block';
+        document.getElementById('chatUserImg').src = myImage;
 
-    // Update localStorage for all user fields, not just image
-    const userData = JSON.parse(localStorage.getItem('joltUser') || '{}');
-    userData.image = myImage;
-    localStorage.setItem('joltUser', JSON.stringify(userData));
+        const userData = JSON.parse(localStorage.getItem('joltUser') || '{}');
+        userData.image = myImage;
+        localStorage.setItem('joltUser', JSON.stringify(userData));
 
-    // Save all important profile fields on backend as well
-    try {
-      await fetch(`${API_BASE}/profile/update`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: myUsername,
-          image: myImage // send other fields if needed
-        })
+        try {
+          await fetch(`${API_BASE}/profile/update`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              username: myUsername,
+              image: myImage
+            })
+          });
+        } catch {}
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // ========================================
+    // JOIN CHAT - with Premium Filters
+    // ========================================
+    document.getElementById('joinChatBtn').onclick = async function () {
+      if (!myUsername) {
+        alert('Please login first.');
+        return;
+      }
+
+      if (!socket) socket = io(API_BASE);
+
+      let user = localStorage.getItem('joltUser')
+        ? JSON.parse(localStorage.getItem('joltUser'))
+        : {};
+      const premium =
+        user.isPremium || (user.paidFeatures && user.paidFeatures.filtersUnlocked);
+
+      document.getElementById('filterGender').disabled = !premium;
+      document.getElementById('filterInterests').disabled = !premium;
+      document.getElementById('filterLockMsg').style.display = premium
+        ? 'none'
+        : 'inline-block';
+
+      const genderFilter = premium
+        ? document.getElementById('filterGender').value
+        : '';
+      const interestFilter = premium
+        ? document
+            .getElementById('filterInterests')
+            .value.split(',')
+            .map(x => x.trim())
+            .filter(x => x)
+        : [];
+
+      socket.removeAllListeners();
+
+      socket.on('imageRejected', function (data) {
+        showModerationBanner(data.message || 'Unsafe image!', data.strike, data.level);
       });
-    } catch {}
-  };
-  reader.readAsDataURL(file);
-});
 
-    // ========================================
-// ✅ JOIN CHAT - with Premium Filters
-// ========================================
-document.getElementById('joinChatBtn').onclick = async function() {
-if (!socket) socket = io(API_BASE);
+      socket.on('audioRejected', function (data) {
+        showModerationBanner(
+          data.message || 'Unsafe audio!',
+          data.strike,
+          'warning'
+        );
+      });
 
-// Lock/Unlock filters UI
-let user = localStorage.getItem('joltUser') ? JSON.parse(localStorage.getItem('joltUser')) : {};
-const premium = user.isPremium || (user.paidFeatures && user.paidFeatures.filtersUnlocked);
+      socket.on('content-warning', function (data) {
+        showModerationBanner(
+          data.message || 'Content warning issued.',
+          0,
+          'warning'
+        );
+      });
 
-document.getElementById('filterGender').disabled = !premium;
-document.getElementById('filterInterests').disabled = !premium;
-document.getElementById('filterLockMsg').style.display = premium ? "none" : "inline-block";
+      socket.on('kicked', function (data) {
+        showModerationBanner(
+          data.message || 'You have been kicked.',
+          1,
+          'kick'
+        );
+        userStrikes = 0;
+        document.getElementById('strikeCount').innerText = userStrikes;
+        document.getElementById('strikeCounter').style.display = 'none';
+        stopWebcamModeration();
+        closePeerConnection();
+        if (socket) {
+          socket.disconnect();
+          socket = null;
+        }
+      });
 
-// Read filters (send only if premium, empty if not)
-const genderFilter = premium ? document.getElementById('filterGender').value : "";
-const interestFilter = premium
-? document.getElementById('filterInterests').value.split(',').map(x => x.trim()).filter(x => x)
-: [];
+      socket.on('ai-banned', function (data) {
+        showModerationBanner(data.message || 'You were banned.', 3, 'ban');
+        alert(data.reason || data.message || 'Account banned due to unsafe content.');
+        stopWebcamModeration();
+        closePeerConnection();
+        document.getElementById('chatStatus').innerText = 'Account banned due to unsafe content.';
+        document.getElementById('chatMessages').innerHTML += '<div style="color:#f44336;font-weight:bold;">You have been banned due to unsafe content.</div>';
+        if (socket) {
+          socket.disconnect();
+          socket = null;
+        }
+      });
 
-// Clear existing listeners for this socket to avoid duplicates
-socket.removeAllListeners();
+      socket.on('waiting', function () {
+        document.getElementById('chatStatus').innerText = 'Waiting for someone to join...';
+      });
 
-// Moderation handlers
-socket.on('imageRejected', function(data) {
-showModerationBanner(data.message || "Unsafe image!", data.strike, data.level);
-});
-socket.on('audioRejected', function(data) {
-showModerationBanner(data.message || "Unsafe audio!", data.strike, 'warning');
-});
-socket.on('content-warning', function(data) {
-showModerationBanner(data.message || "Content warning issued.", 0, 'warning');
-});
-socket.on('kicked', function(data) {
-showModerationBanner(data.message || "You have been kicked.", 1, 'kick');
-userStrikes = 0;
-document.getElementById('strikeCount').innerText = userStrikes;
-document.getElementById('strikeCounter').style.display = 'none';
-stopWebcamModeration();
-closePeerConnection();
-if (socket) { socket.disconnect(); socket = null; }
-});
-socket.on('ai-banned', (data) => {
-showModerationBanner(data.message || "You were banned.", 3, 'ban');
-alert(data.reason || data.message || "Account banned due to unsafe content.");
-stopWebcamModeration();
-closePeerConnection();
-document.getElementById('chatStatus').innerText = 'Account banned due to unsafe content.';
-document.getElementById('chatMessages').innerHTML += '<div style="color:#f44336;font-weight:bold;">You have been banned due to unsafe content.</div>';
-if (socket) { socket.disconnect(); socket = null; }
-});
+      socket.on('matched', function (partnerName) {
+        document.getElementById('chatPartner').innerText = partnerName;
+        document.getElementById('chatStatus').innerText = 'Chat started! Say hi or Skip.';
+        lastPartner = partnerName;
+      });
 
-// Matchmaking and chat
-socket.on('waiting', () => {
-document.getElementById('chatStatus').innerText = 'Waiting for someone to join...';
-});
-socket.on('matched', partnerName => {
-document.getElementById('chatPartner').innerText = partnerName;
-document.getElementById('chatStatus').innerText = 'Chat started! Say hi or Skip.';
-lastPartner = partnerName;
-});
-socket.on('chatMsg', msg => {
-const div = document.createElement('div');
-div.innerText = msg;
-document.getElementById('chatMessages').appendChild(div);
-});
-socket.on('chatEnded', () => {
-document.getElementById('chatStatus').innerText = 'Chat ended by partner.';
-document.getElementById('chatMessages').innerHTML += '<div><em>Your partner ended the chat.</em></div>';
-stopWebcamModeration();
-closePeerConnection();
-if (socket) { socket.disconnect(); socket = null; }
-});
+      socket.on('chatMsg', function (msg) {
+        const div = document.createElement('div');
+        div.innerText = msg;
+        document.getElementById('chatMessages').appendChild(div);
+      });
 
-// Gifts
-socket.on('gift-received', function (data) {
-const div = document.createElement('div');
-div.style.color = '#ff69b4';
-div.style.fontWeight = 'bold';
- div.innerText = `${data.from} sent you a ${data.giftType} (worth ${data.cost} coins)!`;
-document.getElementById('chatMessages').appendChild(div);
-});
+      socket.on('chatEnded', function () {
+        document.getElementById('chatStatus').innerText = 'Chat ended by partner.';
+        document.getElementById('chatMessages').innerHTML += '<div><em>Your partner ended the chat.</em></div>';
+        stopWebcamModeration();
+        closePeerConnection();
+        if (socket) {
+          socket.disconnect();
+          socket = null;
+        }
+      });
 
-// WebRTC signaling
-socket.on('start-webrtc', (data) => {
-console.log('🎬 Starting WebRTC as', data.initiator ? 'INITIATOR' : 'RECEIVER');
-if (webcamStream) {
-createPeerConnection();
-if (data.initiator) {
-setTimeout(() => createOffer(), 1500);
-}
-} else {
-console.error('❌ Webcam not ready for WebRTC!');
-}
-});
-socket.on('webrtc-offer', (data) => {
-console.log('📥 Received WebRTC offer');
-handleOffer(data.offer, data.from);
-});
-socket.on('webrtc-answer', (data) => {
-console.log('📥 Received WebRTC answer');
-handleAnswer(data.answer);
-});
-socket.on('webrtc-ice-candidate', (data) => {
-console.log('📥 Received ICE candidate');
-handleIceCandidate(data.candidate);
-});
+      socket.on('gift-received', function (data) {
+        const div = document.createElement('div');
+        div.style.color = '#ff69b4';
+        div.style.fontWeight = 'bold';
+        div.innerText = `${data.from} sent you a ${data.giftType} (worth ${data.cost} coins)!`;
+        document.getElementById('chatMessages').appendChild(div);
+      });
 
-// Premium: handle filter-locked message from backend
-socket.on('filter-locked', function(data) {
-alert(data.message || 'Unlock premium to use advanced filters!');
-});
+      socket.on('start-webrtc', function (data) {
+        console.log('🎬 Starting WebRTC as', data.initiator ? 'INITIATOR' : 'RECEIVER');
+        if (webcamStream) {
+          createPeerConnection();
+          if (data.initiator) {
+            setTimeout(() => createOffer(), 1500);
+          }
+        } else {
+          console.error('❌ Webcam not ready for WebRTC!');
+        }
+      });
 
-// Now show chat UI and start webcam + joinChat emit (this part should already exist below in your file)
-// Make sure your existing code does:
-// - hide profileSection, show chatSection
-// - reset messages/status
-// - call startWebcamModeration()
-// - emit joinChat with { username: myUsername, genderFilter, interestFilter }
-}
+      socket.on('webrtc-offer', function (data) {
+        console.log('📥 Received WebRTC offer from', data.from);
+        handleOffer(data.offer, data.from);
+      });
 
-  document.getElementById('profileSection').style.display = 'none';
-  document.getElementById('chatSection').style.display = 'block';
-  document.getElementById('chatMessages').innerHTML = '';
-  document.getElementById('chatPartner').innerText = 'Waiting...';
-  document.getElementById('chatStatus').innerText = 'Starting webcam...';
+      socket.on('webrtc-answer', function (data) {
+        console.log('📥 Received WebRTC answer from', data.from);
+        handleAnswer(data.answer);
+      });
 
-  userStrikes = 0;
-  document.getElementById('strikeCount').innerText = userStrikes;
-  document.getElementById('strikeCounter').style.display = 'none';
+      socket.on('webrtc-ice-candidate', function (data) {
+        console.log('📥 Received ICE candidate from', data.from);
+        handleIceCandidate(data.candidate);
+      });
 
-  try {
-    await startWebcamModeration();
-    document.getElementById('chatStatus').innerText = 'Connecting...';
-    // Send filters if premium, else empty (must match backend logic)
-    socket.emit('joinChat', {
-      username: myUsername,
-      genderFilter: genderFilter,
-      interestFilter: interestFilter
-    });
-    startFrameModeration(); // ✅ Fix 5
-  } catch (error) {
-    document.getElementById('chatStatus').innerText = 'Webcam error. Please refresh.';
-    console.error('Webcam error:', error);
-  }
+      socket.on('filter-locked', function (data) {
+        alert(data.message || 'Unlock premium to use advanced filters!');
+      });
+
+      document.getElementById('profileSection').style.display = 'none';
+      document.getElementById('chatSection').style.display = 'block';
+      document.getElementById('chatMessages').innerHTML = '';
+      document.getElementById('chatPartner').innerText = 'Waiting...';
+      document.getElementById('chatStatus').innerText = 'Starting webcam...';
+
+      userStrikes = 0;
+      document.getElementById('strikeCount').innerText = userStrikes;
+      document.getElementById('strikeCounter').style.display = 'none';
+
+      try {
+        await startWebcamModeration();
+        document.getElementById('chatStatus').innerText = 'Connecting...';
+
+        socket.emit('joinChat', {
+          username: myUsername,
+          genderFilter,
+          interestFilter
+        });
+
+        startFrameModeration();
+      } catch (error) {
+        document.getElementById('chatStatus').innerText = 'Webcam error. Please refresh.';
+      }
+    };
+
     // ========================================
     // CHAT MESSAGING
     // ========================================
-    document.getElementById('chatForm').onsubmit = function(e) {
+    document.getElementById('chatForm').onsubmit = async function(e) {
       e.preventDefault();
       if (!socket) return;
       const msg = document.getElementById('chatInput').value;
@@ -1146,94 +1332,159 @@ alert(data.message || 'Unlock premium to use advanced filters!');
     };
 
     // ========================================
-    // ✅ CHAT ACTIONS - All with Strike Reset (Fix 6)
+    // CHAT ACTIONS
     // ========================================
-    document.getElementById('endChatBtn').onclick = function() {
-      userStrikes = 0; // ✅ Fix 6
+    document.getElementById('endChatBtn').onclick = async function () {
+      userStrikes = 0;
       document.getElementById('strikeCount').innerText = userStrikes;
       document.getElementById('strikeCounter').style.display = 'none';
+
       if (socket) socket.emit('endChat');
       document.getElementById('chatMessages').innerHTML += '<div><em>You ended the chat.</em></div>';
       document.getElementById('chatStatus').innerText = 'Chat ended.';
+
       stopWebcamModeration();
       closePeerConnection();
-      if (socket) { socket.disconnect(); socket = null; }
+      if (socket) {
+        socket.disconnect();
+        socket = null;
+      }
     };
-    document.getElementById('sendGiftBtn').onclick = async function () {
-if (!myUsername) {
-alert('Please login first.');
-return;
-}
-if (!lastPartner) {
-alert('No active partner to send a gift to.');
-return;
-}
 
-const giftType = prompt('Enter gift type (e.g. heart, rose, super-like):');
-if (!giftType) return;
-const costStr = prompt('How many coins should this gift cost?');
-if (!costStr) return;
-const cost = Number(costStr);
-if (!cost || cost <= 0) {
-alert('Enter a valid coin amount.');
-return;
-}
+    // New gift button: open popup
+    document.getElementById('sendGiftBtn').onclick = function () {
+      if (!myUsername) {
+        alert('Please login first.');
+        return;
+      }
+      if (!lastPartner) {
+        alert('No active partner to send a gift to.');
+        return;
+      }
+      document.getElementById('giftError').innerText = '';
+      document.getElementById('giftPopup').style.display = 'flex';
+    };
 
-try {
-const res = await fetch(`${API_BASE}/gift`, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ from: myUsername, to: lastPartner, giftType, cost })
-});
-const data = await res.json();
-if (data.remainingCoins !== undefined) {
-document.getElementById('profileCoins').innerText = data.remainingCoins;
-const userData = JSON.parse(localStorage.getItem('joltUser') || '{}');
-userData.coins = data.remainingCoins;
-localStorage.setItem('joltUser', JSON.stringify(userData));
+    // Gift popup confirm
+    document.getElementById('giftSendConfirmBtn').onclick = async function () {
+      const selected = document.querySelector('input[name="giftOption"]:checked');
+      if (!selected) {
+        document.getElementById('giftError').innerText = 'Please select a gift.';
+        return;
+      }
 
-  const div = document.createElement('div');
-  div.style.color = '#ff69b4';
-  div.style.fontWeight = 'bold';
-  div.innerText = `You sent a ${giftType} to ${lastPartner} (-${cost} coins)`;
-  document.getElementById('chatMessages').appendChild(div);
-} else {
-  alert(data.message || 'Could not send gift.');
-}
-} catch (e) {
-alert('Error reaching server. Try again.');
-}
-};
+      const [giftType, costStr] = selected.value.split('|');
+      const cost = Number(costStr) || 0;
 
-    document.getElementById('homeBtn').onclick = function() {
-      userStrikes = 0; // ✅ Fix 6
+      if (!lastPartner) {
+        document.getElementById('giftError').innerText = 'No partner to send gift to.';
+        return;
+      }
+
+      if (!myUsername) {
+        document.getElementById('giftError').innerText = 'Please login first.';
+        return;
+      }
+
+      const userData = JSON.parse(localStorage.getItem('joltUser') || '{}');
+      const coins = userData.coins || 0;
+
+      if (coins < cost) {
+        document.getElementById('giftError').innerText = 'Not enough coins.';
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/gift`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ from: myUsername, to: lastPartner, giftType, cost })
+        });
+        const data = await res.json();
+
+        if (data.remainingCoins !== undefined) {
+          document.getElementById('profileCoins').innerText = data.remainingCoins;
+          const updatedUserData = JSON.parse(localStorage.getItem('joltUser') || '{}');
+          updatedUserData.coins = data.remainingCoins;
+          localStorage.setItem('joltUser', JSON.stringify(updatedUserData));
+
+          const div = document.createElement('div');
+          div.style.color = '#ff69b4';
+          div.style.fontWeight = 'bold';
+          div.innerText = `You sent a ${giftType} to ${lastPartner} (-${cost} coins)`;
+          document.getElementById('chatMessages').appendChild(div);
+          document.getElementById('giftPopup').style.display = 'none';
+          document.getElementById('giftError').innerText = '';
+        } else {
+          document.getElementById('giftError').innerText = data.message || 'Could not send gift.';
+        }
+      } catch (e) {
+        document.getElementById('giftError').innerText = 'Error reaching server. Try again.';
+      }
+    };
+
+    document.getElementById('homeBtn').onclick = async function () {
+      userStrikes = 0;
       document.getElementById('strikeCount').innerText = userStrikes;
       document.getElementById('strikeCounter').style.display = 'none';
+
       stopWebcamModeration();
       closePeerConnection();
-      if (socket) { socket.disconnect(); socket = null; }
+      if (socket) {
+        socket.disconnect();
+        socket = null;
+      }
+
       document.getElementById('chatSection').style.display = 'none';
       document.getElementById('profileSection').style.display = 'block';
       document.getElementById('chatStatus').innerText = '';
       document.getElementById('chatMessages').innerHTML = '';
     };
 
-    document.getElementById('skipChatBtn').onclick = function() {
-      userStrikes = 0; // ✅ Fix 6
+    document.getElementById('skipChatBtn').onclick = async function () {
+      userStrikes = 0;
       document.getElementById('strikeCount').innerText = userStrikes;
       document.getElementById('strikeCounter').style.display = 'none';
+
       if (skipLock) return;
       skipLock = true;
+
       stopWebcamModeration();
       closePeerConnection();
       if (socket) socket.emit('endChat');
+
       document.getElementById('chatStatus').innerText = 'Skipping chat...';
       document.getElementById('chatMessages').innerHTML += '<div><em>You skipped this chat.</em></div>';
-      setTimeout(() => {
+
+      setTimeout(async () => {
         skipLock = false;
         if (!socket) socket = io(API_BASE);
-        socket.emit('joinChat', myUsername);
-        startWebcamModeration();
+
+        // recompute filters here too
+        let user = localStorage.getItem('joltUser')
+          ? JSON.parse(localStorage.getItem('joltUser'))
+          : {};
+        const premium =
+          user.isPremium || (user.paidFeatures && user.paidFeatures.filtersUnlocked);
+
+        const genderFilter = premium
+          ? document.getElementById('filterGender').value
+          : '';
+        const interestFilter = premium
+          ? document
+              .getElementById('filterInterests')
+              .value.split(',')
+              .map(x => x.trim())
+              .filter(x => x)
+          : [];
+
+        socket.emit('joinChat', {
+          username: myUsername,
+          genderFilter,
+          interestFilter
+        });
+
+        await startWebcamModeration();
         startFrameModeration();
         document.getElementById('chatStatus').innerText = 'Looking for new partner...';
         document.getElementById('chatMessages').innerHTML += '<div><em>Finding new partner...</em></div>';
@@ -1241,76 +1492,72 @@ alert('Error reaching server. Try again.');
     };
 
     document.getElementById('logoutBtn').onclick = logout;
-   // Open Buy Coins popup
-document.getElementById('buyCoinsBtn').onclick = function () {
-  if (!myUsername) {
-    alert('Please login first.');
-    return;
-  }
-  const popup = document.getElementById('buyCoinsPopup');
-  if (popup) {
-    document.getElementById('buyCoinsError').innerText = '';
-    popup.style.display = 'flex';
-  }
-};
 
-// Close popup by X button
-document.getElementById('buyCoinsCloseBtn').onclick = function () {
-  const popup = document.getElementById('buyCoinsPopup');
-  if (popup) popup.style.display = 'none';
-};
-
-// Close popup by clicking backdrop
-document.getElementById('buyCoinsPopup').onclick = function (e) {
-  if (e.target.id === 'buyCoinsPopup') {
-    document.getElementById('buyCoinsPopup').style.display = 'none';
-  }
-};
-
-// Package buttons: 50, 100, 200 coins
-document.querySelectorAll('.buy-coins-option').forEach(btn => {
-  btn.onclick = async function () {
-    const errorDiv = document.getElementById('buyCoinsError');
-    errorDiv.innerText = '';
-
-    if (!myUsername) {
-      errorDiv.innerText = 'Please login first.';
-      return;
-    }
-
-    const amount = Number(this.getAttribute('data-amount')) || 0;
-    if (!amount || amount <= 0) {
-      errorDiv.innerText = 'Invalid package.';
-      return;
-    }
-
-    try {
-      const res = await fetch(`${API_BASE}/buy-coins`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: myUsername, amount })
-      });
-      const data = await res.json();
-      if (data.coins !== undefined) {
-        document.getElementById('profileCoins').innerText = data.coins;
-        const userData = JSON.parse(localStorage.getItem('joltUser') || '{}');
-        userData.coins = data.coins;
-        localStorage.setItem('joltUser', JSON.stringify(userData));
-        document.getElementById('buyCoinsPopup').style.display = 'none';
-        alert(data.message || 'Coins added.');
-      } else {
-        errorDiv.innerText = data.message || 'Could not add coins.';
+    // Buy coins popup
+    document.getElementById('buyCoinsBtn').onclick = async function () {
+      if (!myUsername) {
+        alert('Please login first.');
+        return;
       }
-    } catch (e) {
-      errorDiv.innerText = 'Error reaching server. Try again.';
-    }
-  };
-});
+      const popup = document.getElementById('buyCoinsPopup');
+      if (popup) {
+        document.getElementById('buyCoinsError').innerText = '';
+        popup.style.display = 'flex';
+      }
+    };
 
-    // ========================================
-    // ✅ Fix 7 - logoutBtnChat Handler
-    // ========================================
-    document.getElementById('logoutBtnChat').onclick = function() {
+    document.getElementById('buyCoinsCloseBtn').onclick = async function () {
+      const popup = document.getElementById('buyCoinsPopup');
+      if (popup) popup.style.display = 'none';
+    };
+
+    document.getElementById('buyCoinsPopup').onclick = function (e) {
+      if (e.target.id === 'buyCoinsPopup') {
+        document.getElementById('buyCoinsPopup').style.display = 'none';
+      }
+    };
+
+    document.querySelectorAll('.buy-coins-option').forEach(btn => {
+      btn.onclick = async function () {
+        const errorDiv = document.getElementById('buyCoinsError');
+        errorDiv.innerText = '';
+
+        if (!myUsername) {
+          errorDiv.innerText = 'Please login first.';
+          return;
+        }
+
+        const amount = Number(this.getAttribute('data-amount')) || 0;
+        if (!amount || amount <= 0) {
+          errorDiv.innerText = 'Invalid package.';
+          return;
+        }
+
+        try {
+          const res = await fetch(`${API_BASE}/buy-coins`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: myUsername, amount })
+          });
+          const data = await res.json();
+          if (data.coins !== undefined) {
+            document.getElementById('profileCoins').innerText = data.coins;
+            const userData = JSON.parse(localStorage.getItem('joltUser') || '{}');
+            userData.coins = data.coins;
+            localStorage.setItem('joltUser', JSON.stringify(userData));
+            document.getElementById('buyCoinsPopup').style.display = 'none';
+            alert(data.message || 'Coins added.');
+          } else {
+            errorDiv.innerText = data.message || 'Could not add coins.';
+          }
+        } catch (e) {
+          errorDiv.innerText = 'Error reaching server. Try again.';
+        }
+      };
+    });
+
+    // Logout from chat section
+    document.getElementById('logoutBtnChat').onclick = async function() {
       logout();
       document.getElementById('chatSection').style.display = 'none';
       document.getElementById('profileSection').style.display = 'none';
@@ -1323,9 +1570,7 @@ document.querySelectorAll('.buy-coins-option').forEach(btn => {
       if (socket) { socket.disconnect(); socket = null; }
     };
 
-    // ========================================
     // REPORT & BLOCK
-    // ========================================
     document.getElementById('reportBtn').onclick = async function() {
       if (!lastPartner) return alert('No user to report.');
       if (!confirm('Are you sure you want to report this user?')) return;
@@ -1357,39 +1602,37 @@ document.querySelectorAll('.buy-coins-option').forEach(btn => {
         alert('Could not block user. Try again later.');
       }
     };
+
     async function loadGiftHistory(username) {
-  const list = document.getElementById('giftHistoryList');
-  if (!list) return;
-  list.innerHTML = '<li style="color:#777;">Loading...</li>';
+      const list = document.getElementById('giftHistoryList');
+      if (!list) return;
+      list.innerHTML = '<li style="color:#777;">Loading...</li>';
 
-  try {
-    const res = await fetch(`${API_BASE}/gifts-history?username=${encodeURIComponent(username)}`);
-    const data = await res.json();
-    list.innerHTML = '';
+      try {
+        const res = await fetch(`${API_BASE}/gifts-history?username=${encodeURIComponent(username)}`);
+        const data = await res.json();
+        list.innerHTML = '';
 
-    if (!data.gifts || data.gifts.length === 0) {
-      list.innerHTML = '<li style="color:#777;">No gifts yet.</li>';
-      return;
+        if (!data.gifts || data.gifts.length === 0) {
+          list.innerHTML = '<li style="color:#777;">No gifts yet.</li>';
+          return;
+        }
+
+        data.gifts.forEach(g => {
+          const li = document.createElement('li');
+          li.style.marginBottom = '3px';
+          const direction = g.from === username ? 'Sent' : 'Received';
+          const other = g.from === username ? g.to : g.from;
+          li.textContent = `${direction} ${g.giftType} (${g.cost} coins) ${direction === 'Sent' ? 'to' : 'from'} ${other}`;
+          list.appendChild(li);
+        });
+      } catch (e) {
+        list.innerHTML = '<li style="color:#d32f2f;">Could not load gifts.</li>';
+      }
     }
 
-    data.gifts.forEach(g => {
-      const li = document.createElement('li');
-      li.style.marginBottom = '3px';
-      const direction = g.from === username ? 'Sent' : 'Received';
-      const other = g.from === username ? g.to : g.from;
-      li.textContent = `${direction} ${g.giftType} (${g.cost} coins) ${direction === 'Sent' ? 'to' : 'from'} ${other}`;
-      list.appendChild(li);
-    });
-  } catch (e) {
-    list.innerHTML = '<li style="color:#d32f2f;">Could not load gifts.</li>';
-  }
-}
-
-
-    // ========================================
     // FULLSCREEN VIDEO
-    // ========================================
-    document.getElementById('fullscreenBtn').onclick = function() {
+    document.getElementById('fullscreenBtn').onclick = async function() {
       const container = document.getElementById('videoContainer');
       if (!document.fullscreenElement) {
         if (container.requestFullscreen) {
@@ -1410,10 +1653,8 @@ document.querySelectorAll('.buy-coins-option').forEach(btn => {
       }
     };
 
-    // ========================================
     // COOKIE CONSENT
-    // ========================================
-    function acceptCookies() {
+    async function acceptCookies() {
       localStorage.setItem('cookieConsent', 'true');
       document.getElementById('cookieConsent').style.display = 'none';
     }
@@ -1422,8 +1663,35 @@ document.querySelectorAll('.buy-coins-option').forEach(btn => {
       document.getElementById('cookieConsent').style.display = 'block';
     }
 
-    // Google AdSense
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    // AdSense init
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+
+    // Gift popup close logic
+    document.getElementById('giftCloseBtn').onclick = function () {
+      document.getElementById('giftPopup').style.display = 'none';
+    };
+
+    document.getElementById('giftPopup').onclick = function (e) {
+      if (e.target.id === 'giftPopup') {
+        document.getElementById('giftPopup').style.display = 'none';
+      }
+    };
+
+    // PWA: register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker
+          .register('service-worker.js')
+          .catch(function (err) {
+            console.log('Service worker registration failed:', err);
+          });
+      });
+    }
+
+    // expose functions for inline HTML handlers
+    window.switchToSignup = switchToSignup;
+    window.switchToLogin = switchToLogin;
+    window.acceptCookies = acceptCookies;
   </script>
 </body>
 </html>
