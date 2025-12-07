@@ -765,23 +765,37 @@
         console.error("❌ No webcam stream available!");
       }
 
-      peerConnection.ontrack = (event) => {
-        console.log("🎥 Received remote stream!");
-        const remoteVideo = document.getElementById('remoteVideo');
-        if (remoteVideo) {
-          if (event.streams && event.streams[0]) {
-            console.log("✅ Setting remote video srcObject");
-            remoteVideo.srcObject = event.streams[0];
-            remoteVideo.play().catch(e => {
-              console.error("❌ Failed to play remote video:", e);
-            });
-          } else {
-            console.error("❌ No streams in event!");
-          }
-        } else {
-          console.error("❌ Remote video element not found!");
-        }
-      };
+     peerConnection.ontrack = (event) => {
+  console.log("🎥 Received remote stream!");
+  const remoteVideo = document.getElementById('remoteVideo');
+  if (!remoteVideo) {
+    console.error("❌ Remote video element not found!");
+    return;
+  }
+
+  // Use a single MediaStream and add tracks to it
+  if (!remoteStream) {
+    remoteStream = new MediaStream();
+    remoteVideo.srcObject = remoteStream;
+  }
+
+  // Add incoming tracks to the remote stream
+  event.streams[0].getTracks().forEach(track => {
+    if (!remoteStream.getTracks().includes(track)) {
+      remoteStream.addTrack(track);
+    }
+  });
+
+  // Try playing once; ignore AbortError noise
+  remoteVideo.play().catch(e => {
+    if (e.name === 'AbortError') {
+      console.log("ℹ️ Remote video play was aborted (likely due to a new track) – safe to ignore.");
+    } else {
+      console.error("❌ Failed to play remote video:", e);
+    }
+  });
+};
+
 
       peerConnection.onicecandidate = (event) => {
         if (event.candidate && socket) {
