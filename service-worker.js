@@ -1,15 +1,14 @@
 // Minimal service worker for JOLT
-self.addEventListener('install', () => {
-  self.skipWaiting(); // Activate immediately
+
+self.addEventListener('install', event => {
+  // Activate this SW as soon as it’s finished installing
+  self.skipWaiting();
 });
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim()); // Take control without reload
+self.addEventListener('activate', event => {
+  // Take control of any open JOLT tabs immediately
+  event.waitUntil(self.clients.claim());
 });
 
-// ⚠️ IMPORTANT:
-// Do NOT include a fetch handler unless you actually intercept and return responses.
-// A no-op handler causes browser warnings.
-// Removing it entirely avoids "no-op fetch handler" errors.
-
-// If you add caching later, add a REAL fetch handler with event.respondWith(...)
+// No fetch handler for now – avoids "no-op" warning.
+// You can add caching logic later if needed.
