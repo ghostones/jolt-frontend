@@ -1,15 +1,15 @@
-// Minimal no-op service worker for JOLT
-self.addEventListener('install', (event) => {
-  // Skip waiting so this SW becomes active immediately
-  self.skipWaiting();
+// Minimal service worker for JOLT
+self.addEventListener('install', () => {
+  self.skipWaiting(); // Activate immediately
 });
 
 self.addEventListener('activate', (event) => {
-  // Claim clients so it starts controlling pages
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(self.clients.claim()); // Take control without reload
 });
 
-// You can extend this later with caching logic if you want
-self.addEventListener('fetch', (event) => {
-  // For now, just pass everything through
-});
+// ⚠️ IMPORTANT:
+// Do NOT include a fetch handler unless you actually intercept and return responses.
+// A no-op handler causes browser warnings.
+// Removing it entirely avoids "no-op fetch handler" errors.
+
+// If you add caching later, add a REAL fetch handler with event.respondWith(...)
