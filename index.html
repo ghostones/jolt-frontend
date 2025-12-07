@@ -523,16 +523,16 @@
   <!-- MAIN APP SCRIPT AS MODULE -->
   <script type="module">
     const API_BASE ='https://jolt-backend-ck3c.onrender.com';
-    let socket = null;
-    let myUsername = '';
-    let myAge = '';
-    let myBio = '';
-    let myImage = 'branding/image.png';
-    let lastPartner = '';
-    let webcamStream = null;
-    let skipLock = false;
-    let peerConnection = null;
-
+let socket = null;
+let myUsername = '';
+let myAge = '';
+let myBio = '';
+let myImage = 'branding/image.png';
+let lastPartner = '';
+let webcamStream = null;
+let skipLock = false;
+let peerConnection = null;
+let remoteStream = null; 
     let userStrikes = 0;
 
     const iceServers = {
@@ -765,7 +765,7 @@
         console.error("❌ No webcam stream available!");
       }
 
-     peerConnection.ontrack = (event) => {
+peerConnection.ontrack = (event) => {
   console.log("🎥 Received remote stream!");
   const remoteVideo = document.getElementById('remoteVideo');
   if (!remoteVideo) {
@@ -773,28 +773,32 @@
     return;
   }
 
-  // Use a single MediaStream and add tracks to it
+  // Create one MediaStream and keep reusing it
   if (!remoteStream) {
     remoteStream = new MediaStream();
     remoteVideo.srcObject = remoteStream;
   }
 
-  // Add incoming tracks to the remote stream
-  event.streams[0].getTracks().forEach(track => {
-    if (!remoteStream.getTracks().includes(track)) {
-      remoteStream.addTrack(track);
-    }
-  });
+  // Add any new tracks from the incoming stream
+  if (event.streams && event.streams[0]) {
+    event.streams[0].getTracks().forEach(track => {
+      const hasTrack = remoteStream.getTracks().some(t => t.id === track.id);
+      if (!hasTrack) {
+        remoteStream.addTrack(track);
+      }
+    });
+  }
 
-  // Try playing once; ignore AbortError noise
+  // Try to play; ignore harmless AbortError
   remoteVideo.play().catch(e => {
     if (e.name === 'AbortError') {
-      console.log("ℹ️ Remote video play was aborted (likely due to a new track) – safe to ignore.");
+      console.log("ℹ️ Remote video play aborted (likely due to new track) – safe to ignore.");
     } else {
       console.error("❌ Failed to play remote video:", e);
     }
   });
 };
+
 
 
       peerConnection.onicecandidate = (event) => {
@@ -895,17 +899,25 @@
       }
     }
 
-    function closePeerConnection() {
-      if (peerConnection) {
-        console.log("🔴 Closing peer connection");
-        peerConnection.close();
-        peerConnection = null;
-        const remoteVideo = document.getElementById('remoteVideo');
-        if (remoteVideo) {
-          remoteVideo.srcObject = null;
-        }
-      }
-    }
+function closePeerConnection() {
+  if (peerConnection) {
+    console.log("🔴 Closing peer connection");
+    peerConnection.close();
+    peerConnection = null;
+  }
+
+  const remoteVideo = document.getElementById('remoteVideo');
+  if (remoteVideo) {
+    remoteVideo.srcObject = null;
+  }
+
+  // Reset global remote stream
+  if (remoteStream) {
+    remoteStream.getTracks().forEach(t => t.stop());
+    remoteStream = null;
+  }
+}
+
 
     // ========================================
     // WEBCAM & AUDIO STREAMING
