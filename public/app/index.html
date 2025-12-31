@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JOLT – Future of Random Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Branding (absolute paths required under /app) -->
+  <link rel="icon" href="/branding/favicon.ico" />
+  <link rel="apple-touch-icon" href="/branding/icon-192.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#2979ff" />
+
+  <!-- ✅ SINGLE BUNDLED STYLESHEET -->
+  <link rel="stylesheet" href="/styles/styles.min.css" />
+</head>
+
+<body>
+
+  <!--
+    ⚠️ APP UI (NO ADSENSE ALLOWED)
+    This page is strictly for interactive chat behavior.
+  -->
+
+  <!-- Legal -->
+  <p class="legal-text">
+    By using JOLT you agree to our
+    <a href="/legal/terms.html" target="_blank" rel="noopener noreferrer">Terms</a>,
+    <a href="/legal/privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>,
+    and
+    <a href="/legal/community-rules.html" target="_blank" rel="noopener noreferrer">Community Rules</a>.
+    <a href="/legal/refund-policy.html" target="_blank" rel="noopener noreferrer">
+Refund Policy
+</a>
+  </p>
+
+  <noscript>
+    <p style="text-align:center;color:#b71c1c;">
+      JOLT requires JavaScript to function properly.
+    </p>
+  </noscript>
+
+  <!-- ROOT APP CONTAINER -->
+  <div id="appRoot"></div>
+
+  <!-- Socket.IO (CDN allowed by auditors) -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+  <!-- 🚀 SINGLE ENTRY POINT -->
+  <script src="/dist/app.min.js" defer></script>
+</body>
+</html>

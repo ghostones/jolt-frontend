@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "rollup -c",
+    "build:clean": "rm -rf public/dist && npm run build",
+    "dev": "rollup -c -w"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-replace": "^6.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.54.0"
+  }
+}
