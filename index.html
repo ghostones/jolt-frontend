@@ -1,0 +1,3440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>A Safer Way to Meet Strangers on Video | JOLT - Random Video Chat</title>
+  <meta name="title" content="A Safer Way to Meet Strangers on Video | JOLT - Random Video Chat">
+  <meta name="description" content="JOLT is a browser-based random video chat designed for calm conversations, clear rules, and a safer experience without downloads or accounts. Connect with strangers safely through video chat.">
+  <meta name="keywords" content="random video chat, video chat, random chat, safe chat, moderated chat, video call, online chat, meet new people, video conversation, random video call, stranger chat, webcam chat, anonymous video chat, live video chat, free video chat, video chat app, chat with strangers, random video chat app">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="language" content="English">
+  <meta name="author" content="JOLT">
+  <meta name="revisit-after" content="7 days">
+  <meta name="rating" content="general">
+  <meta name="distribution" content="global">
+  <meta name="geo.region" content="US">
+  <meta name="geo.placename" content="United States">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://joltchat.org/">
+  
+  <!-- Additional SEO Tags -->
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Favicon and Theme -->
+  <link rel="icon" href="branding/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="branding/icon-192.png">
+  <meta name="theme-color" content="#2979ff">
+  
+  <!-- Permissions Policy for Camera/Microphone -->
+  <meta http-equiv="Permissions-Policy" content="camera=(self), microphone=(self), geolocation=()">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://joltchat.org/">
+  <meta property="og:title" content="A Safer Way to Meet Strangers on Video | JOLT - Random Video Chat">
+  <meta property="og:description" content="JOLT is a browser-based random video chat designed for calm conversations, clear rules, and a safer experience without downloads or accounts. Connect with strangers safely through video chat.">
+  <meta property="og:image" content="https://joltchat.org/branding/image.png">
+  <meta property="og:image:secure_url" content="https://joltchat.org/branding/image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="JOLT - Random Video Chat Platform">
+  <meta property="og:site_name" content="JOLT">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="en_GB">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://joltchat.org/">
+  <meta name="twitter:title" content="A Safer Way to Meet Strangers on Video | JOLT">
+  <meta name="twitter:description" content="JOLT is a browser-based random video chat designed for calm conversations, clear rules, and a safer experience without downloads or accounts.">
+  <meta name="twitter:image" content="https://joltchat.org/branding/image.png">
+  <meta name="twitter:image:alt" content="JOLT - Random Video Chat Platform">
+  <meta name="twitter:creator" content="@joltchat">
+  <meta name="twitter:site" content="@joltchat">
+  
+  <!-- Additional Meta Tags -->
+  <meta name="application-name" content="JOLT">
+  <meta name="apple-mobile-web-app-title" content="JOLT">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body { 
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+      background: #f5f7fb; 
+      text-align: center; 
+      margin: 0; 
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      color: #222;
+      line-height: 1.6;
+    }
+    /* Header Styles */
+    header a:hover {
+      color: #2979ff;
+    }
+
+    .container { 
+      margin-block-start: 30px; 
+      padding: 36px 32px; 
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); 
+      max-inline-size: 700px; 
+      width: 90%;
+      margin-inline-start: auto; 
+      margin-inline-end: auto; 
+      border-radius: 16px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    .container:hover {
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    h1 { 
+      color: #2979ff; 
+      margin-block-end: 8px; 
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .tagline { 
+      color: #ff9800; 
+      font-weight: 600; 
+      margin-block-end: 16px; 
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .container p {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-block-end: 24px;
+    }
+    img.logo { 
+      inline-size: 220px; 
+      max-width: 90%;
+      margin-block-start: 36px; 
+      margin-block-end: 28px; 
+      border-radius: 16px; 
+      box-shadow: 0 2px 18px rgba(41,121,255,0.13); 
+      background: #fff; 
+      object-fit: contain;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    img.logo[src=""], img.logo:not([src]) {
+      display: none;
+    }
+    p { font-size: 18px; color: #333; }
+    button { 
+      background: linear-gradient(135deg, #2979ff 0%, #1c66e5 100%); 
+      color: #fff; 
+      border: none; 
+      font-size: 16px; 
+      padding: 14px 28px; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      margin: 8px 4px; 
+      transition: all 0.3s ease; 
+      min-inline-size: 120px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(41,121,255,0.25);
+      letter-spacing: 0.3px;
+    }
+    button:hover { 
+      background: linear-gradient(135deg, #1c66e5 0%, #1565c0 100%); 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(41,121,255,0.4);
+    }
+    button:active { 
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(41,121,255,0.3);
+    }
+    button:focus-visible {
+      outline: 2px solid #2979ff;
+      outline-offset: 2px;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .form-card { 
+      margin: 28px 0 0 0; 
+      background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%); 
+      border-radius: 16px; 
+      padding: 32px 24px; 
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+      border: 1px solid rgba(255,255,255,0.8);
+      transition: all 0.3s ease;
+    }
+    .form-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+    .form-card h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .form-card h2::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-image: url('branding/icon-32.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    input[type=text], input[type=password], input[type=number], textarea, select {
+      margin: 8px 0; 
+      padding: 12px 16px; 
+      border-radius: 8px; 
+      border: 2px solid #e0e0e0; 
+      inline-size: 100%; 
+      font-size: 15px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      background: #fff;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #2979ff;
+      box-shadow: 0 0 0 4px rgba(41,121,255,0.1), 0 2px 8px rgba(41,121,255,0.15);
+      transform: translateY(-1px);
+    }
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232979ff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+    #result, #loginResult, #signupResult {margin-block-start: 12px; color: #2979ff; font-weight: bold; min-block-size: 24px;}
+    .link { color: #2979ff; text-decoration: underline; cursor: pointer; font-size: 15px;}
+    #profileSection { 
+      display: none; 
+      margin-block-start: 30px; 
+      padding: 32px 28px; 
+      border-radius: 16px; 
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      border: 1px solid rgba(255,255,255,0.8);
+      max-width: 700px;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #profileSection h3 {
+      font-size: 24px;
+      margin-block-end: 16px;
+      text-align: center;
+    }
+    #profileSection > div {
+      padding: 8px 0;
+      font-size: 15px;
+      color: #555;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    #profileSection > div:last-of-type {
+      border-bottom: none;
+    }
+    #profileSection > div span {
+      color: #2979ff;
+      font-weight: 600;
+    }
+    #profileSection img { inline-size: 90px; border-radius: 50%; margin:6px 0 8px; box-shadow: 0 2px 10px rgba(41,121,255,0.13); background: #fff; object-fit: cover;}
+    #profileSection h3 { color: #2979ff; margin-block-end: 8px;}
+    #editArea { display: none; margin-block-start: 10px; }
+    #editArea input, #editArea textarea {
+      inline-size: 90%; margin: 5px 0; padding: 8px; font-size: 14px; border-radius: 4px; border: 1px solid #ccc;
+    }
+    #editProfileBtn, #saveProfileBtn, #cancelEditBtn { margin: 8px 4px 0 0; font-size: 15px; background: #ffba08; color: #222; border-radius: 8px; padding: 8px 16px; border: none; }
+    #cancelEditBtn { background: #eee; color: #555;}
+    
+    #chatSection { 
+      display:none; 
+      margin-block-start: 28px; 
+      background: linear-gradient(135deg, #f8fafc 0%, #e8f0f8 100%); 
+      border-radius: 16px; 
+      padding:28px; 
+      max-inline-size:1200px;
+      width: 95%;
+      margin-inline-start:auto; 
+      margin-inline-end:auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    #chatHeader {
+      margin-block-end: 20px;
+      padding: 16px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    #chatUserBox { 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      gap:12px; 
+      margin-block-end:12px;
+    }
+    #chatUserBox img {
+      inline-size:40px; 
+      block-size:40px; 
+      border-radius:50%; 
+      border:3px solid #2979ff;
+      box-shadow: 0 2px 8px rgba(41,121,255,0.3);
+    }
+    #chatUserBox b {
+      font-size: 18px;
+      color: #2979ff;
+    }
+    
+    #videoContainer { 
+      position:relative; 
+      background:linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); 
+      border-radius:16px; 
+      margin-block-end:16px; 
+      overflow:hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    
+    #videosWrapper { 
+      display:flex; 
+      gap:10px; 
+      min-block-size:400px;
+      block-size:500px;
+      padding:10px;
+      align-items: stretch;
+    }
+    
+    .video-box { 
+      flex:1; 
+      position:relative; 
+      background:#0a0a0a; 
+      border-radius:12px; 
+      overflow:hidden;
+      min-width: 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #localVideo, #remoteVideo { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover;
+      display: block;
+      background: #000;
+      min-height: 100%;
+    }
+    
+    .video-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000;
+    }
+    
+    /* Ensure videos are always visible */
+    .video-box:not(:has(video[src])) {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    }
+    
+    .video-box:not(:has(video[src]))::after {
+      content: 'Waiting for video...';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 14px;
+      z-index: 2;
+    }
+    
+    .video-label { 
+      position:absolute; 
+      inset-block-end:12px; 
+      inset-inline-start:12px; 
+      background:rgba(0,0,0,0.75); 
+      color:#fff; 
+      padding:6px 12px; 
+      border-radius:6px; 
+      font-size:13px; 
+      font-weight:600;
+      z-index:10;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    
+    #fullscreenBtn { 
+      position:absolute; 
+      inset-block-start:12px; 
+      inset-inline-end:12px; 
+      background:rgba(0,0,0,0.75); 
+      color:#fff; 
+      border:none; 
+      padding:10px 16px; 
+      border-radius:8px; 
+      cursor:pointer; 
+      font-size:14px; 
+      font-weight:600;
+      z-index:1000; 
+      transition:all 0.3s ease;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    #fullscreenBtn:hover { 
+      background:rgba(41,121,255,0.9); 
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(41,121,255,0.5);
+    }
+    
+    #chatMessages { 
+      border:1px solid #e0e0e0; 
+      border-radius:16px; 
+      min-block-size:180px;
+      max-block-size:300px;
+      block-size:220px; 
+      padding:16px; 
+      margin-block-end:16px; 
+      background:#f9fafb; 
+      overflow-y:auto; 
+      text-align:start;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+      scrollbar-width: thin;
+      scrollbar-color: #2979ff #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    #chatMessages::-webkit-scrollbar {
+      width: 8px;
+    }
+    #chatMessages::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 4px;
+    }
+    #chatMessages::-webkit-scrollbar-thumb {
+      background: #2979ff;
+      border-radius: 4px;
+    }
+    #chatMessages::-webkit-scrollbar-thumb:hover {
+      background: #1c66e5;
+    }
+    
+    /* Chat Message Bubbles */
+    .chat-message {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .message-bubble {
+      padding: 10px 14px;
+      border-radius: 16px;
+      max-width: 75%;
+      word-wrap: break-word;
+      font-size: 14px;
+      line-height: 1.5;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .message-bubble.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #2979ff 0%, #1c66e5 100%);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+    
+    .message-bubble.partner {
+      align-self: flex-start;
+      background: #fff;
+      color: #222;
+      border: 1px solid #e0e0e0;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+    
+    .message-bubble.system {
+      align-self: center;
+      background: #fff4e5;
+      color: #b71c1c;
+      border: 1px solid #ffcc02;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      max-width: 90%;
+    }
+    
+    .message-bubble.warning {
+      align-self: center;
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ef5350;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      max-width: 90%;
+    }
+    
+    .message-time {
+      font-size: 11px;
+      color: #999;
+      margin-top: 4px;
+      padding: 0 4px;
+      align-self: flex-end;
+    }
+    
+    .message-bubble.partner + .message-time {
+      align-self: flex-start;
+    }
+    
+    #chatForm {
+      margin-block-end: 16px;
+      background: #fff;
+      padding: 12px;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    #chatInput { 
+      width: 100%;
+      padding: 14px 18px; 
+      border-radius: 12px; 
+      border: 2px solid #e0e0e0; 
+      font-size: 15px;
+      transition: all 0.3s ease;
+      background: #fff;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    
+    #chatFormButtons {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    
+    #chatFormButtons button {
+      flex: 1;
+      min-width: 100px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+    #chatFormButtons button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+    #chatFormButtons button:active {
+      transform: translateY(0);
+    }
+    #chatInput:focus {
+      outline: none;
+      border-color: #2979ff;
+      box-shadow: 0 0 0 4px rgba(41,121,255,0.1);
+      transform: translateY(-1px);
+    }
+    #chatInput::placeholder {
+      color: #999;
+    }
+    #chatPartner { 
+      color:#2979ff; 
+      font-weight:700; 
+      font-size:18px;
+    }
+    
+    #chatActions { 
+      margin-block-start: 16px; 
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 16px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    #chatActions button {
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #chatActions button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    #chatActions button:active {
+      transform: translateY(0);
+    }
+    
+    #reportBtn { background:#f44336; color:#fff; }
+    #blockBtn { background:#616161; color:#fff;}
+    #skipChatBtn { background: #ffba08; color: #222;}
+    #homeBtn { background:#fff; color:#2979ff; border:1px solid #2979ff;}
+    #logoutBtn, #logoutBtnChat { background:#d32f2f; color:#fff;}
+    
+    #videoContainer:fullscreen,
+    #videoContainer:-webkit-full-screen,
+    #videoContainer:-moz-full-screen {
+      inline-size:100vw !important; 
+      block-size:100vh !important; 
+      max-block-size:100vh !important; 
+      margin:0 !important; 
+      padding:0 !important; 
+      border-radius:0 !important;
+      position:relative !important;
+    }
+    
+    #videoContainer:fullscreen #videosWrapper,
+    #videoContainer:-webkit-full-screen #videosWrapper,
+    #videoContainer:-moz-full-screen #videosWrapper {
+      position:absolute !important;
+      inset-block-start:0 !important;
+      inset-inline-start:0 !important;
+      inset-inline-end:0 !important;
+      block-size:80vh !important;
+      inline-size:100vw !important;
+      padding:0 !important;
+      gap:0 !important;
+      margin:0 !important;
+      display:flex !important;
+    }
+    
+    #videoContainer:fullscreen .video-box,
+    #videoContainer:-webkit-full-screen .video-box,
+    #videoContainer:-moz-full-screen .video-box { 
+      flex:1 !important;
+      border-radius:0 !important;
+      block-size:100% !important;
+    }
+    
+    #videoContainer:fullscreen #localVideo,
+    #videoContainer:fullscreen #remoteVideo,
+    #videoContainer:-webkit-full-screen #localVideo,
+    #videoContainer:-webkit-full-screen #remoteVideo,
+    #videoContainer:-moz-full-screen #localVideo,
+    #videoContainer:-moz-full-screen #remoteVideo {
+      inline-size:100% !important; 
+      block-size:100% !important; 
+      object-fit:contain !important;
+      border-radius:0 !important;
+    }
+    
+    #videoContainer:fullscreen #chatMessages,
+    #videoContainer:-webkit-full-screen #chatMessages,
+    #videoContainer:-moz-full-screen #chatMessages {
+      position:absolute !important;
+      inset-block-start:80vh !important;
+      inset-inline-start:0 !important;
+      inset-inline-end:0 !important;
+      inset-block-end:80px !important;
+      block-size:auto !important;
+      max-block-size:none !important;
+      inline-size:100vw !important;
+      background:rgba(20,20,20,0.95) !important; 
+      color:#fff !important; 
+      border:none !important; 
+      border-radius:0 !important; 
+      margin:0 !important; 
+      padding:10px 20px !important; 
+      overflow-y:auto !important;
+      box-sizing:border-box !important;
+    }
+    
+    #videoContainer:fullscreen #chatForm,
+    #videoContainer:-webkit-full-screen #chatForm,
+    #videoContainer:-moz-full-screen #chatForm {
+      position:absolute !important;
+      inset-block-end:0 !important;
+      inset-inline-start:0 !important;
+      inset-inline-end:0 !important;
+      block-size:80px !important;
+      inline-size:100vw !important;
+      background:rgba(10,10,10,0.98) !important; 
+      margin:0 !important; 
+      padding:15px 20px !important; 
+      border-radius:0 !important; 
+      display:flex !important; 
+      gap:10px !important;
+      align-items:center !important;
+      box-sizing:border-box !important;
+    }
+    
+    #videoContainer:fullscreen #chatInput,
+    #videoContainer:-webkit-full-screen #chatInput,
+    #videoContainer:-moz-full-screen #chatInput {
+      flex:1 !important; 
+      background:rgba(255,255,255,0.15) !important; 
+      color:#fff !important; 
+      border:1px solid rgba(255,255,255,0.3) !important; 
+      inline-size:auto !important;
+      block-size:45px !important;
+      padding:10px 15px !important;
+      font-size:16px !important;
+    }
+    
+    #videoContainer:fullscreen #chatForm button,
+    #videoContainer:-webkit-full-screen #chatForm button,
+    #videoContainer:-moz-full-screen #chatForm button { 
+      flex:0 0 auto !important; 
+      margin:0 !important;
+      block-size:45px !important;
+      padding:0 20px !important;
+    }
+    
+    #videoContainer:fullscreen #chatMessages div,
+    #videoContainer:-webkit-full-screen #chatMessages div,
+    #videoContainer:-moz-full-screen #chatMessages div { 
+      color:#fff !important; 
+      margin-block-end:6px !important;
+    }
+    
+    /* Tablet and smaller desktop */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+        max-inline-size: 650px;
+        width: 85%;
+      }
+      #chatSection {
+        max-inline-size: 1000px;
+        width: 92%;
+      }
+      #profileSection {
+        max-width: 650px;
+        width: 85%;
+      }
+    }
+
+    @media (max-inline-size: 768px) {
+      .container {
+        max-inline-size: 95vw;
+        width: 95vw;
+        padding: 24px 20px;
+        margin-block-start: 15px;
+      }
+      img.logo {
+        inline-size: 180px;
+        margin-block-start: 20px;
+        margin-block-end: 16px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      .tagline {
+        font-size: 14px;
+      }
+      button {
+        font-size: 15px;
+        min-inline-size: 100%;
+        padding: 12px 20px;
+        width: 100%;
+        margin: 8px 0;
+      }
+      .form-card {
+        padding: 24px 20px;
+      }
+      input[type=text], input[type=password], input[type=number], textarea, select {
+        inline-size: 100%;
+        max-width: 100%;
+        margin: 8px 0;
+      }
+      #chatSection {
+        width: 95vw;
+        padding: 20px 16px;
+        margin-block-start: 16px;
+        border-radius: 12px;
+      }
+      #profileSection {
+        width: 95vw;
+        max-width: 95vw;
+      }
+      #chatActions {
+        flex-direction: column;
+        gap: 8px;
+      }
+      #chatActions button {
+        width: 100%;
+        margin: 0;
+      }
+      #chatMessages {
+        min-block-size: 100px;
+        max-block-size: 150px;
+        block-size: 120px;
+        font-size: 14px;
+      }
+      #videosWrapper {
+        min-block-size: 300px;
+        block-size: 400px !important;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .video-box {
+        flex: 1;
+        min-height: 180px;
+      }
+      #videoContainer {
+        border-radius: 12px;
+      }
+      header {
+        padding: 10px 12px;
+      }
+      header > div {
+        flex-direction: column;
+        gap: 10px;
+      }
+      header nav {
+        font-size: 12px;
+        gap: 8px;
+        width: 100%;
+        justify-content: center;
+      }
+      header nav span {
+        display: none;
+      }
+      #profileSection {
+        padding: 16px;
+      }
+      #profileImgPreview {
+        width: 80px !important;
+        height: 80px !important;
+      }
+    }
+    
+    @media (max-inline-size: 440px) {
+      header nav {
+        font-size: 11px;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .container {
+        padding: 16px 12px;
+      }
+      img.logo {
+        inline-size: 150px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Header with Legal Links -->
+  <header style="background: #fff; border-bottom: 1px solid #e0e0e0; padding: 12px 16px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+          <img src="branding/icon-32.png" alt="JOLT" style="width: 32px; height: 32px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='branding/icon-128.png'; this.style.width='32px'; this.style.height='32px';" />
+          <span style="font-weight: bold; font-size: 20px; color: #2979ff;">JOLT</span>
+        </a>
+      </div>
+      <nav style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; font-size: 14px;">
+        <a href="legal/terms.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Terms & Conditions</a>
+        <span style="color: #ccc;">|</span>
+        <a href="legal/privacy-policy.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Privacy Policy</a>
+        <span style="color: #ccc;">|</span>
+        <a href="legal/refund-policy.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Refund Policy</a>
+        <span style="color: #ccc;">|</span>
+        <a href="legal/contact.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Contact Us</a>
+        <span style="color: #ccc;">|</span>
+        <a href="legal/community-rules.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Community Rules</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <img class="logo" src="branding/image.png" alt="JOLT Logo" onerror="this.onerror=null; this.src='branding/icon-256.png'; this.style.maxWidth='200px';">
+    <h1>JOLT</h1>
+    <div class="tagline">Future of Random Chat</div>
+    <p>Welcome to JOLT! Connect with new people instantly & safely.<br>The next-generation random video chat experience is here.</p>
+    
+    <!-- Online Users Count -->
+    <div id="onlineCount" style="margin: 20px 0; padding: 12px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; box-shadow: 0 2px 8px rgba(33,150,243,0.15);">
+      <div style="font-size: 14px; color: #555; margin-bottom: 5px;">👥 Users Online</div>
+      <div style="font-size: 24px; font-weight: 700; color: #2979ff;">
+        <span id="onlineCountNumber">-</span>
+      </div>
+      <div id="onlineCountDetails" style="font-size: 12px; color: #666; margin-top: 5px;">
+        <span id="inChatCount">0</span> chatting • <span id="queuedCount">0</span> looking for partner
+    </div>
+      </div>
+      
+    <button id="checkBtn">Test JOLT Connection</button>
+    <div id="result"></div>
+
+    <!-- Login Form -->
+    <form class="form-card" id="loginForm" autocomplete="off">
+      <h2 style="color:#2979ff;">Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username" required><br>
+        <input type="password" id="loginPassword" placeholder="Password" required><br>
+        <button type="submit">Login</button>
+      <div id="loginResult"></div>
+      <span class="link" onclick="switchToSignup()">No account? Signup!</span>
+      </form>
+
+    <!-- Signup Form -->
+    <form class="form-card" id="signupForm" autocomplete="off" style="display:none; overflow-x: hidden; position: relative;">
+      <h2 style="color:#2979ff; margin-top: 0;">Signup</h2>
+        <input type="text" id="signupUsername" placeholder="Choose Username" required><br>
+        <input type="password" id="signupPassword" placeholder="Choose Password" required><br>
+      <select id="signupAge" style="width: 100%; max-width: 100%; box-sizing: border-box;">
+        <option value="">Select Your Age</option>
+      </select><br>
+      <select id="signupGender" style="width: 100%; max-width: 100%; box-sizing: border-box;">
+          <option value="">Select Gender (optional)</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+          <option value="prefer-not-to-say">Prefer not to say</option>
+        </select><br>
+      <textarea id="signupBio" placeholder="A short bio (optional)" style="min-height: 80px; resize: vertical; width: 100%; max-width: 100%; box-sizing: border-box;"></textarea><br>
+      <button type="submit">Signup</button>
+        <div id="signupResult" style="margin-top: 10px;"></div>
+      <span class="link" onclick="switchToLogin()" style="margin-top: 12px; display: inline-block; cursor: pointer;">Already have an account? Login!</span>
+      </form>
+
+    <!-- Profile Section -->
+    <div id="profileSection">
+      <h3>Welcome, <span id="profileUsername"></span>!</h3>
+      <div>Age: <span id="profileAge"></span></div>
+      <div>Gender: <span id="profileGender"></span></div>
+      <div>Bio: <span id="profileBio"></span></div>
+      
+      <!-- Premium Status -->
+      <div style="margin: 20px 0; padding: 16px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 12px; box-shadow: 0 4px 12px rgba(33,150,243,0.15);">
+        <div id="premiumStatus" style="font-size: 15px; color: #555;">
+          <span id="premiumBadge" style="display: none; color: #ff9800; font-weight: 700; font-size: 16px;">⭐ Premium</span>
+          <span id="premiumExpiry" style="display: none; margin-left: 10px; color: #666;"></span>
+          </div>
+        </div>
+        
+      <button id="editProfileBtn" class="edit-btn" style="width: 100%; margin: 10px 0;">Edit Profile</button>
+      <div id="editArea">
+        <input type="number" id="editAge" placeholder="Edit Age" min="18" max="100">
+        <select id="editGender" style="margin: 8px 0; padding: 12px 16px; border-radius: 8px; border: 2px solid #e0e0e0; inline-size: 100%; font-size: 15px; font-family: inherit; background: #fff;">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+            <option value="prefer-not-to-say">Prefer not to say</option>
+          </select>
+        <textarea id="editBio" placeholder="Edit Bio"></textarea>
+        <button id="saveProfileBtn" class="edit-btn">Save</button>
+        <button id="cancelEditBtn" class="edit-btn">Cancel</button>
+          </div>
+      <input type="file" id="profileImgInput" accept="image/*"><br>
+      <img id="profileImgPreview" src="branding/image.png" alt="Profile Pic" onerror="this.onerror=null; this.src='branding/icon-128.png';" style="width: 90px; height: 90px; border-radius: 50%; margin: 6px 0 8px; box-shadow: 0 2px 10px rgba(41,121,255,0.13); background: #fff; object-fit: cover; display: block; margin-left: auto; margin-right: auto;">
+      <!-- Premium Filters (locked for non-premium users) -->
+      <div style="margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%); border-radius: 12px; border: 2px solid #e0e0e0;">
+        <h4 style="margin-top: 0; color: #2979ff; font-size: 18px; margin-bottom: 15px;">🎯 Match Filters</h4>
+          
+          <div style="margin-bottom: 12px;">
+          <label style="display: block; margin-bottom: 6px; font-size: 14px; color: #555; font-weight: 500;">Gender</label>
+            <select id="filterGender" disabled style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: #fff; cursor: not-allowed; opacity: 0.6;">
+              <option value="">Any Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 12px;">
+            <label style="display: block; margin-bottom: 6px; font-size: 14px; color: #555; font-weight: 500;">Age Range</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+            <select id="filterAgeMin" disabled style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: #fff; cursor: not-allowed; opacity: 0.6;">
+              <option value="">Min Age</option>
+            </select>
+              <span style="color: #999;">to</span>
+            <select id="filterAgeMax" disabled style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: #fff; cursor: not-allowed; opacity: 0.6;">
+              <option value="">Max Age</option>
+            </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 12px;">
+            <label style="display: block; margin-bottom: 6px; font-size: 14px; color: #555; font-weight: 500;">Location</label>
+            <select id="filterLocation" disabled style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: #fff; cursor: not-allowed; opacity: 0.6;">
+              <option value="">Any Location</option>
+              <option value="india">India</option>
+              <option value="usa">United States</option>
+              <option value="uk">United Kingdom</option>
+              <option value="canada">Canada</option>
+              <option value="australia">Australia</option>
+              <option value="germany">Germany</option>
+              <option value="france">France</option>
+              <option value="brazil">Brazil</option>
+              <option value="japan">Japan</option>
+              <option value="south-korea">South Korea</option>
+              <option value="singapore">Singapore</option>
+              <option value="uae">UAE</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div id="filterUnlockMessage" style="padding: 12px; background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-radius: 8px; border: 1px solid #ffb74d; text-align: center; margin-top: 12px; display: block;">
+            <p style="margin: 0; font-size: 13px; color: #e65100; font-weight: 500; margin-bottom: 8px;">
+              🔒 Filters are Premium Features
+            </p>
+            <p style="margin: 0; font-size: 12px; color: #666; margin-bottom: 10px;">
+              Upgrade to Premium to filter by age, gender, and location
+            </p>
+          <button onclick="document.getElementById('premiumBtn').click();" style="background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; width: 100%;">
+              ⭐ Upgrade to Premium
+            </button>
+          </div>
+          <div id="filterPremiumStatus" style="padding: 12px; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 8px; border: 1px solid #4caf50; text-align: center; margin-top: 12px; display: none;">
+            <p style="margin: 0; font-size: 13px; color: #2e7d32; font-weight: 600; margin-bottom: 8px;">
+              ⭐ You are Premium
+            </p>
+            <p id="filterPremiumExpiry" style="margin: 0; font-size: 12px; color: #555; margin-bottom: 10px;">
+              Expiry: Loading...
+            </p>
+        </div>
+          <button id="applyFilterBtn" style="width: 100%; margin-top: 12px; padding: 12px 20px; background: linear-gradient(135deg, #2979ff 0%, #1c66e5 100%); color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(41,121,255,0.25); transition: all 0.3s ease; display: none;">
+            Apply Filters
+          </button>
+          <div id="filterResult" style="margin-top: 10px; padding: 10px; border-radius: 6px; text-align: center; display: none; font-size: 14px; font-weight: 500;"></div>
+      </div>
+      
+      <div style="margin-block-start: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+        <button id="premiumBtn" style="background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); margin: 0; box-shadow: 0 4px 12px rgba(156,39,176,0.3); flex: 1; min-width: 140px;">⭐ Go Premium</button>
+        <button id="subscriptionHistoryBtn" style="background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); margin: 0; box-shadow: 0 4px 12px rgba(76,175,80,0.3); flex: 1; min-width: 140px;">📋 Subscription History</button>
+        </div>
+      <div style="margin-block-start: 16px;">
+        <button id="logoutBtn" style="width: 100%; background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);">Logout</button>
+      </div>
+      <div style="margin-block-start:16px;">
+        <button id="joinChatBtn" style="width: 100%; background: linear-gradient(135deg, #2979ff 0%, #1c66e5 100%); font-size: 17px; padding: 16px;">🚀 Join Random Chat</button>
+      </div>
+    </div>
+
+    <!-- Premium Plans Modal -->
+    <div id="premiumModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; overflow-y: auto; padding: 20px;">
+      <div style="background: white; max-width: 600px; margin: 50px auto; padding: 30px; border-radius: 12px; position: relative; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+        <button id="closePremiumModal" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 28px; cursor: pointer; color: #999; line-height: 1; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; border-radius: 50%;" onmouseover="this.style.color='#333'; this.style.background='#f0f0f0';" onmouseout="this.style.color='#999'; this.style.background='none';">&times;</button>
+        <h2 style="color: #9c27b0; margin-top: 0; margin-right: 30px;">⭐ Choose Premium Plan</h2>
+        <div id="premiumPlans" style="display: grid; gap: 15px; margin: 20px 0;">
+          <!-- Plans will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Gift Sending Modal (in chat) -->
+    <!-- ✅ MODERATION WARNING BANNER -->
+    <div id="moderationBanner" aria-live="polite"
+         style="display:none;
+                background:#fff4e5;
+                color:#b71c1c;
+                border:1.5px solid #f44336;
+                box-shadow:0 3px 12px #ed313123;
+                padding:14px 16px 14px 38px;
+                font-size:16px;
+                font-weight:600;
+                text-align:start;
+                border-radius:9px;
+                margin:0 0 22px 0;
+                position:relative;
+                min-inline-size:200px;max-inline-size:95%;">
+      <span style="position:absolute;inset-inline-start:10px;inset-block-start:15px;font-size:19px;">âš ï¸</span>
+      <span id="moderationBannerText"></span>
+      <button id="bannerCloseBtn"
+              style="position:absolute;inset-inline-end:8px;inset-block-start:13px;background:none;border:none;color:#b71c1c;font-size:17px;cursor:pointer;">âœ–</button>
+      <!-- âœ… Fix 2 - STRIKE COUNTER HTML ADDED -->
+      <div id="strikeCounter" style="position:absolute;inset-inline-end:38px;inset-block-start:15px;display:none;color:#b71c1c;font-weight:bold;">
+        Strikes: <span id="strikeCount">0</span>/3
+      </div>
+    </div>
+
+    <!-- Chat Section -->
+    <div id="chatSection">
+      <div id="chatHeader">
+        <div id="chatUserBox">
+          <img id="chatUserImg" src="" alt="You" title="You">
+          <b id="chatUserName"></b>
+          <span style="font-size:13px;color:#999;">(You)</span>
+          <span id="chatFilterIndicator" style="display: none; margin-left: 8px; background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">⭐ Premium Filters Active</span>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          Chatting with: <span id="chatPartner" style="color: #2979ff; font-weight: bold;">Unknown</span>
+        </div>
+        <!-- Applied Filters Display -->
+        <div id="appliedFiltersContainer" style="margin-top: 15px; padding: 12px; background: linear-gradient(135deg, #f8f9fa 0%, #e8f0f8 100%); border-radius: 8px; border: 1px solid #e0e0e0; display: none;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+            <div style="flex: 1; min-width: 200px;">
+              <div style="font-size: 12px; color: #666; margin-bottom: 6px; font-weight: 600;">🎯 Active Filters:</div>
+              <div id="appliedFiltersList" style="font-size: 13px; color: #333; line-height: 1.6; min-height: 18px;">
+                No filters applied
+              </div>
+            </div>
+            <button id="changeFiltersBtn" style="background: linear-gradient(135deg, #2979ff 0%, #1c66e5 100%); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 8px rgba(41,121,255,0.25); transition: all 0.2s ease;">
+              🔄 Change Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="videoContainer">
+        <div id="videosWrapper">
+          <div class="video-box">
+            <video id="localVideo" autoplay playsinline muted></video>
+            <div class="video-label">You</div>
+          </div>
+          <div class="video-box">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <div class="video-label"><span id="remoteVideoLabel">Partner</span></div>
+          </div>
+        </div>
+        <button id="fullscreenBtn">⛶ Fullscreen</button>
+        <div id="chatMessages">
+          <div style="text-align: center; color: #999; padding: 20px; font-size: 14px;">
+            Start chatting! Messages will appear here.
+          </div>
+        </div>
+        <form id="chatForm" autocomplete="off">
+          <input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off" required>
+          <div id="chatFormButtons">
+            <button type="submit" style="background: linear-gradient(135deg, #2979ff 0%, #1c66e5 100%); color: #fff; box-shadow: 0 4px 12px rgba(41,121,255,0.25);">Send</button>
+            <button type="button" id="endChatBtn" style="background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); color: #fff; box-shadow: 0 4px 12px rgba(244,67,54,0.25);">End Chat</button>
+            <button type="button" id="skipChatBtn" style="background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); color: #fff; box-shadow: 0 4px 12px rgba(255,152,0,0.25);">Skip Chat</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="chatActions">
+        <button type="button" id="reportBtn">Report User</button>
+        <button type="button" id="blockBtn">Block User</button>
+        <button type="button" id="homeBtn">Home</button>
+        <button type="button" id="logoutBtnChat">Logout</button>
+      </div>
+
+      <div id="chatStatus"></div>
+    </div>
+
+    <!-- GOOGLE ADSENSE BANNER AD -->
+    <div id="adsContainer" style="margin:22px 0;">
+      <ins class="adsbygoogle"
+           style="display:block; text-align:center;"
+           data-ad-client="ca-pub-3289856543483173"
+           data-ad-slot="REPLACE_WITH_YOUR_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+    </div>
+
+  <!-- Payment Plans Modal -->
+  <div id="paymentModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:10000; overflow-y:auto;">
+    <div style="max-width:600px; margin:50px auto; background:#fff; border-radius:12px; padding:30px; position:relative;">
+      <button id="closePaymentModal" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:28px; cursor:pointer; color:#999;">&times;</button>
+      <h2 style="color:#2979ff; margin-bottom:20px;">⭐ Premium Plans</h2>
+      <div id="paymentPlans" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:15px; margin-bottom:20px;">
+        <!-- Plans will be inserted here -->
+      </div>
+      <div style="text-align:center; margin-top:20px; padding-top:20px; border-top:1px solid #ddd;">
+        <p style="color:#666; font-size:14px;">Choose payment method:</p>
+        <button id="payWithRazorpay" style="background:#2979ff; color:#fff; padding:10px 20px; border:none; border-radius:8px; margin:5px; cursor:pointer;">Pay with Razorpay (INR)</button>
+        <button id="payWithPayPal" style="background:#0070ba; color:#fff; padding:10px 20px; border:none; border-radius:8px; margin:5px; cursor:pointer;">Pay with PayPal (USD)</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Gift Modal -->
+  <div id="giftModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:10000;">
+    <div style="max-width:500px; margin:100px auto; background:#fff; border-radius:12px; padding:30px; position:relative;">
+      <button id="closeGiftModal" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:28px; cursor:pointer; color:#999;">&times;</button>
+      <h2 style="color:#4caf50; margin-bottom:20px;">🎁 Send Gift</h2>
+      <p style="color:#666; margin-bottom:15px;">Send a gift to: <strong id="giftToUser"></strong></p>
+      <div id="giftOptions" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-bottom:20px;">
+        <button class="giftOption" data-gift="rose" data-cost="10" style="padding:15px; border:2px solid #ddd; border-radius:8px; cursor:pointer; background:#fff;">🌹 Rose (10 coins)</button>
+        <button class="giftOption" data-gift="heart" data-cost="20" style="padding:15px; border:2px solid #ddd; border-radius:8px; cursor:pointer; background:#fff;">❤️ Heart (20 coins)</button>
+        <button class="giftOption" data-gift="diamond" data-cost="50" style="padding:15px; border:2px solid #ddd; border-radius:8px; cursor:pointer; background:#fff;">💎 Diamond (50 coins)</button>
+        <button class="giftOption" data-gift="star" data-cost="100" style="padding:15px; border:2px solid #ddd; border-radius:8px; cursor:pointer; background:#fff;">⭐ Star (100 coins)</button>
+        <button class="giftOption" data-gift="crown" data-cost="200" style="padding:15px; border:2px solid #ddd; border-radius:8px; cursor:pointer; background:#fff;">👑 Crown (200 coins)</button>
+        <button class="giftOption" data-gift="trophy" data-cost="500" style="padding:15px; border:2px solid #ddd; border-radius:8px; cursor:pointer; background:#fff;">🏆 Trophy (500 coins)</button>
+      </div>
+      <div id="selectedGift" style="margin-bottom:15px; padding:10px; background:#f5f5f5; border-radius:6px; display:none;">
+        <strong>Selected:</strong> <span id="selectedGiftName"></span> - <span id="selectedGiftCost"></span> coins
+      </div>
+      <button id="sendGiftConfirm" style="width:100%; background:#4caf50; color:#fff; padding:12px; border:none; border-radius:8px; font-size:16px; cursor:pointer; font-weight:bold; display:none;">Send Gift</button>
+      <div id="giftResult" style="margin-top:15px; color:#2979ff; font-weight:bold; min-height:20px;"></div>
+    </div>
+  </div>
+
+  <!-- Subscription History Modal -->
+  <div id="subscriptionHistoryModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:10000; overflow-y:auto; padding: 20px;">
+    <div style="max-width:600px; margin:30px auto; background:#fff; border-radius:12px; padding:30px; position:relative; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <button id="closeSubscriptionHistoryModal" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:28px; cursor:pointer; color:#999; line-height:1;">&times;</button>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <img src="branding/icon-64.png" alt="JOLT" style="width: 48px; height: 48px; margin-bottom: 10px; object-fit: contain;" onerror="this.style.display='none';">
+        <h2 style="color:#4caf50; margin-bottom:20px; display: inline-flex; align-items: center; gap: 8px;">📋 Subscription History</h2>
+      </div>
+      <div id="subscriptionHistoryList" style="max-height:400px; overflow-y:auto;">
+        <!-- Subscriptions will be listed here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Change Filters Modal (shown during chat) -->
+  <div id="changeFiltersModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:10001; overflow-y:auto; padding: 20px;">
+    <div style="max-width:500px; margin:30px auto; background:#fff; border-radius:12px; padding:30px; position:relative; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <button id="closeChangeFiltersModal" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:28px; cursor:pointer; color:#999; line-height:1;">&times;</button>
+      <h2 style="color:#2979ff; margin-bottom:20px; display: inline-flex; align-items: center; gap: 8px;">🎯 Change Match Filters</h2>
+      <p style="color:#666; font-size:14px; margin-bottom:20px;">Update your filters. Changes will apply to your next match.</p>
+      
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 6px; font-size: 14px; color: #555; font-weight: 500;">Gender</label>
+        <select id="chatFilterGender" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: #fff;">
+          <option value="">Any Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 6px; font-size: 14px; color: #555; font-weight: 500;">Age Range</label>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <select id="chatFilterAgeMin" style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: #fff;">
+            <option value="">Min Age</option>
+          </select>
+          <span style="color: #999;">to</span>
+          <select id="chatFilterAgeMax" style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: #fff;">
+            <option value="">Max Age</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 6px; font-size: 14px; color: #555; font-weight: 500;">Location</label>
+        <select id="chatFilterLocation" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: #fff;">
+          <option value="">Any Location</option>
+          <option value="india">India</option>
+          <option value="usa">United States</option>
+          <option value="uk">United Kingdom</option>
+          <option value="canada">Canada</option>
+          <option value="australia">Australia</option>
+          <option value="germany">Germany</option>
+          <option value="france">France</option>
+          <option value="brazil">Brazil</option>
+          <option value="japan">Japan</option>
+          <option value="south-korea">South Korea</option>
+          <option value="singapore">Singapore</option>
+          <option value="uae">UAE</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 10px;">
+        <button id="saveChatFiltersBtn" style="flex: 1; background: linear-gradient(135deg, #2979ff 0%, #1c66e5 100%); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(41,121,255,0.25);">
+          Save Filters
+        </button>
+        <button id="clearChatFiltersBtn" style="flex: 1; background: #f5f5f5; color: #666; border: 1px solid #ddd; padding: 12px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;">
+          Clear All
+        </button>
+      </div>
+      <div id="chatFilterResult" style="margin-top: 15px; padding: 10px; border-radius: 6px; text-align: center; display: none; font-size: 14px; font-weight: 500;"></div>
+    </div>
+  </div>
+
+  <!-- LEGAL FOOTER -->
+  <footer style="text-align:center;margin:32px auto;padding:24px;max-width:720px;font-size:13px;color:#555;border-top:1px solid #e0e0e0;">
+    <p style="margin-bottom:12px;line-height:1.8;">
+      By using JOLT you agree to our
+      <a href="legal/terms.html" style="color:#2979ff;text-decoration:none;margin:0 4px;">Terms & Conditions</a>,
+      <a href="legal/privacy-policy.html" style="color:#2979ff;text-decoration:none;margin:0 4px;">Privacy Policy</a>,
+      <a href="legal/refund-policy.html" style="color:#2979ff;text-decoration:none;margin:0 4px;">Refund Policy</a>,
+      <a href="legal/contact.html" style="color:#2979ff;text-decoration:none;margin:0 4px;">Contact Us</a>,
+      and
+      <a href="legal/community-rules.html" style="color:#2979ff;text-decoration:none;margin:0 4px;">Community Rules</a>.
+    </p>
+    <p style="margin:0;font-size:12px;color:#888;">
+      © 2026 JOLT. All rights reserved.
+    </p>
+  </footer>
+  
+  <!-- COOKIE/CONSENT POPUP for privacy/ad compliance -->
+  <div id="cookieConsent" style="display:none; position:fixed;inset-block-end:0;inset-inline-start:0;inline-size:100%;background:#222;color:#fff;text-align:center;padding:12px 0;z-index:9000;font-size:15px;">
+    We use cookies and Google ad services to show ads and improve your experience.
+    <button style="margin-inline-start:25px;padding:6px 20px;border-radius:7px;font-size:14px;" onclick="acceptCookies()">Accept</button>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <!-- Load centralized base URL configuration first -->
+  <script src="base-url-config.js"></script>
+  <script src="api-config.js"></script>
+  <script>
+    // Use centralized API configuration
+    function getApiBase() {
+      // Priority 1: Use centralized config function
+      if (window.getApiBaseUrl) {
+        return window.getApiBaseUrl();
+      }
+      // Priority 2: Check for backend URL from api-config.js
+      if (window.__API && window.__API.base) {
+        return window.__API.base;
+      }
+      // Priority 3: Explicit window config
+      if (window.JOLT_BACKEND_URL) {
+        return window.JOLT_BACKEND_URL;
+      }
+      // Fallback (should not reach here if base-url-config.js is loaded)
+      return 'https://jolt-backendnew.onrender.com';
+    }
+    
+    const API_BASE = getApiBase();
+    
+    // Use secure API in production, regular fetch in development
+    const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    
+    // Helper function to get user from localStorage
+    function getUserData() {
+      const stored = localStorage.getItem('joltUser');
+      return stored ? JSON.parse(stored) : null;
+    }
+    
+    // Secure fetch wrapper with session support
+    async function secureFetch(endpoint, options = {}) {
+      const user = getUserData();
+      const currentSessionId = user?.sessionId || sessionId;
+      const method = options.method || 'POST';
+      const isGetRequest = method === 'GET';
+      
+      // Merge headers - ensure X-Session-Id is included if session exists
+      const headers = {
+        ...(isGetRequest ? {} : { 'Content-Type': 'application/json' }),
+        ...options.headers
+      };
+      
+      if (currentSessionId && !headers['X-Session-Id']) {
+        headers['X-Session-Id'] = currentSessionId;
+      }
+      
+      // Use secure signed requests in production
+      if (window.__API && window.__API.fetch && isProduction) {
+        // For production, use secure API which handles signing
+        const secureOptions = {
+          ...options,
+          method: method,
+          headers: headers,
+          body: isGetRequest ? undefined : options.body
+        };
+        return window.__API.fetch(endpoint, secureOptions);
+      }
+      
+      // Fallback to regular fetch in development
+      const fetchOptions = {
+        ...options,
+        method: method,
+        headers: headers
+      };
+      
+      // Only include body for non-GET requests
+      if (!isGetRequest && options.body) {
+        fetchOptions.body = JSON.stringify(options.body);
+      }
+      
+      return fetch(`${API_BASE}${endpoint}`, fetchOptions);
+    }
+
+    let socket = null;
+    let myUsername = '';
+    let myAge = '';
+    let myBio = '';
+    let myImage = 'branding/image.png';
+    let lastPartner = '';
+    let webcamStream = null;
+    let skipLock = false;
+    let peerConnection = null;
+    let sessionId = null;
+    let execToken = null;
+    let isPremium = false;
+    let premiumUntil = null;
+
+    // ✅ STRIKE SYSTEM VAR
+    let userStrikes = 0;
+
+    const iceServers = {
+      iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+        { urls: 'stun:stun1.l.google.com:19302' }
+      ]
+    };
+
+    // ========================================
+    // INITIALIZATION & SESSION RESTORE
+    // ========================================
+    window.onload = async function() {
+      // Initialize online count display
+      updateOnlineCount();
+      
+      const user = getUserData();
+      if (user) {
+        sessionId = user.sessionId || null;
+        execToken = user.execToken || null;
+        try {
+          const res = await secureFetch('/login', {
+            method: 'POST',
+            body: { username: user.username, password: user.password || '' }
+          });
+          const data = await res.json();
+          if (data.message && data.message.startsWith('Login successful')) {
+            sessionId = data.sessionId;
+            execToken = data.execToken;
+            const profile = data.profile || {};
+            showProfile(
+              profile.username || data.username || user.username, 
+              profile.age || data.age || user.age, 
+              profile.gender || data.gender || user.gender || '', 
+              profile.bio || data.bio || user.bio, 
+              profile.image || data.image || user.image,
+              profile.isPremium || data.isPremium || user.isPremium || false,
+              profile.premiumUntil || data.premiumUntil || user.premiumUntil || null
+            );
+            localStorage.setItem('joltUser', JSON.stringify({
+              username: profile.username || data.username || user.username, 
+              age: profile.age || data.age || user.age, 
+              gender: profile.gender || data.gender || user.gender || '', 
+              bio: profile.bio || data.bio || user.bio, 
+              image: profile.image || data.image || user.image,
+              isPremium: profile.isPremium || data.isPremium || user.isPremium || false,
+              premiumUntil: profile.premiumUntil || data.premiumUntil || user.premiumUntil || null,
+              password: user.password || '',
+              sessionId: data.sessionId,
+              execToken: data.execToken
+            }));
+          }
+        } catch {
+          showProfile(user.username, user.age, user.gender || '', user.bio, user.image, user.isPremium || false, user.premiumUntil || null);
+        }
+      }
+    };
+
+    function showProfile(username, age, gender = '', bio, image, premium = false, premiumExpiry = null) {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('signupForm').style.display = 'none';
+      document.getElementById('profileSection').style.display = 'block';
+      document.getElementById('chatSection').style.display = 'none';
+      document.getElementById('profileUsername').innerText = username;
+      document.getElementById('profileAge').innerText = age || '';
+      document.getElementById('profileGender').innerText = gender || 'Not specified';
+      document.getElementById('profileBio').innerText = bio || '';
+      myUsername = username;
+      myAge = age || '';
+      myGender = gender || '';
+      myBio = bio || '';
+      myImage = image || 'branding/image.png';
+      isPremium = premium || false;
+      premiumUntil = premiumExpiry || null;
+      
+      document.getElementById('profileImgPreview').src = myImage;
+      document.getElementById('profileImgPreview').style.display = 'inline-block';
+      document.getElementById('chatUserName').innerText = username;
+      document.getElementById('chatUserImg').src = myImage;
+      document.getElementById('editArea').style.display = 'none';
+      
+      // Update filter access based on premium status
+      const hasActivePremium = premium && premiumExpiry && premiumExpiry > Date.now();
+      updateFilterAccess(hasActivePremium);
+      
+      // Update applied filters display if chat section is visible
+      if (document.getElementById('chatSection') && document.getElementById('chatSection').style.display !== 'none') {
+        // Update current filters from form if they exist
+        currentFilters = getCurrentFilterValues();
+        updateAppliedFiltersDisplay();
+      }
+      
+      // Update premium status
+      const premiumBadge = document.getElementById('premiumBadge');
+      const premiumExpiryDiv = document.getElementById('premiumExpiry');
+      if (premiumBadge && premiumExpiryDiv) {
+        if (isPremium && premiumUntil && premiumUntil > Date.now()) {
+          premiumBadge.style.display = 'inline';
+          premiumExpiryDiv.style.display = 'inline';
+          const expiryDate = new Date(premiumUntil);
+          premiumExpiryDiv.innerText = `Until: ${expiryDate.toLocaleDateString()}`;
+      } else {
+          premiumBadge.style.display = 'none';
+          premiumExpiryDiv.style.display = 'none';
+          isPremium = false;
+        }
+      }
+      
+      localStorage.setItem('joltUser', JSON.stringify({
+        username, age, gender, bio, image: myImage, 
+        isPremium: isPremium,
+        premiumUntil: premiumUntil,
+          password: getUserData()?.password || ''
+      }));
+    }
+
+    // ========================================
+    // PROFILE EDITING
+    // ========================================
+    document.getElementById('editProfileBtn').onclick = function() {
+      document.getElementById('editArea').style.display = 'block';
+      document.getElementById('editAge').value = myAge;
+      const myGender = profile.gender || data.gender || '';
+      document.getElementById('editGender').value = myGender;
+      document.getElementById('editBio').value = myBio;
+    };
+
+    document.getElementById('saveProfileBtn').onclick = async function() {
+      myAge = document.getElementById('editAge').value;
+      const myGender = document.getElementById('editGender').value;
+      myBio = document.getElementById('editBio').value;
+      
+      // Age validation - must be 18 or above
+      if (myAge) {
+        const ageNum = parseInt(myAge);
+        if (isNaN(ageNum) || ageNum < 18) {
+          alert('You must be 18 years or older. Age must be 18 or above.');
+          return;
+        }
+      }
+      
+      let updateData = { username: myUsername, age: myAge, gender: myGender, bio: myBio, image: myImage };
+      
+      // Get session ID from localStorage or current session
+      const user = getUserData();
+      const currentSessionId = user?.sessionId || sessionId;
+      
+      try {
+        const res = await secureFetch('/profile/update', {
+          method: 'POST',
+          headers: { 'X-Session-Id': currentSessionId || '' },
+          body: updateData
+        });
+        const data = await res.json();
+        if (data.message && data.message.includes('Unauthorized')) {
+          alert('Session expired. Please login again.');
+          logout();
+          return;
+        }
+        const premium = data.profile?.isPremium || data.isPremium || false;
+        const premiumExp = data.profile?.premiumUntil || data.premiumUntil || null;
+        showProfile(myUsername, data.profile?.age || data.age, data.profile?.gender || data.gender || '', data.profile?.bio || data.bio, data.profile?.image || data.image, premium, premiumExp);
+        
+        // Update localStorage with new values
+        const user = getUserData() || {};
+        user.isPremium = premium;
+        user.premiumUntil = premiumExp;
+        localStorage.setItem('joltUser', JSON.stringify(user));
+      } catch (error) {
+        console.error('Profile update error:', error);
+        showProfile(myUsername, myAge, myGender || '', myBio, myImage);
+      }
+    };
+
+    document.getElementById('cancelEditBtn').onclick = function() {
+      document.getElementById('editArea').style.display = 'none';
+    };
+
+    // ========================================
+    // AUTH FORM SWITCHING
+    // ========================================
+    function switchToSignup() {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('signupForm').style.display = 'block';
+      document.getElementById('signupResult').innerText = '';
+      // Populate age dropdown when showing signup form
+      populateSignupAgeDropdown();
+    }
+
+    function switchToLogin() {
+      document.getElementById('signupForm').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('loginResult').innerText = '';
+    }
+
+    function logout() {
+      stopWebcamModeration();
+      if (socket) { socket.disconnect(); socket = null; }
+      document.getElementById('profileSection').style.display = 'none';
+      document.getElementById('chatSection').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('loginUsername').value = '';
+      document.getElementById('loginPassword').value = '';
+      document.getElementById('loginResult').innerText = '';
+      localStorage.removeItem('joltUser');
+      userStrikes = 0;
+      document.getElementById('strikeCount').innerText = userStrikes;
+      document.getElementById('strikeCounter').style.display = 'none';
+    }
+
+    // ========================================
+    // ✅ MODERATION BANNER - Fix 3
+    // ========================================
+    function showModerationBanner(msg, strike = null, level = null) {
+      const banner = document.getElementById('moderationBanner');
+      const text = document.getElementById('moderationBannerText');
+      const counterDiv = document.getElementById('strikeCounter');
+      const countSpan = document.getElementById('strikeCount');
+
+      if (!banner || !text) return;
+      text.innerText = msg;
+
+      // ✅ Strike Tracking Logic
+      if (strike !== null) {
+        userStrikes += strike ? 1 : 0;
+        countSpan.innerText = userStrikes;
+        counterDiv.style.display = 'inline-block';
+
+        // ✅ Banner Color by Severity Level
+        if (level === 'warning' || userStrikes === 1) {
+          banner.style.background = '#fffde7';
+          banner.style.color = '#bfa710';
+          banner.style.border = '1.5px solid #ffc107';
+        } else if (level === 'kick' || userStrikes === 2) {
+          banner.style.background = '#ffe0b2';
+          banner.style.color = '#c25c00';
+          banner.style.border = '1.5px solid #ff9800';
+        } else if (level === 'ban' || userStrikes >= 3) {
+          banner.style.background = '#ffebee';
+          banner.style.color = '#b71c1c';
+          banner.style.border = '1.5px solid #f44336';
+        }
+      } else {
+        counterDiv.style.display = 'none';
+        banner.style.background = '#fff4e5';
+        banner.style.color = '#b71c1c';
+        banner.style.border = '1.5px solid #f44336';
+      }
+
+      banner.style.opacity = 0;
+      banner.style.display = 'block';
+
+      setTimeout(() => { banner.style.transition = 'opacity 0.33s'; banner.style.opacity = 1; }, 10);
+
+      if (window.bannerTimer) clearTimeout(window.bannerTimer);
+
+      window.bannerTimer = setTimeout(() => {
+        banner.style.opacity = 0;
+        setTimeout(() => { banner.style.display = 'none'; text.innerText = ''; counterDiv.style.display = 'none'; }, 350);
+      }, 4000);
+    }
+
+    // Banner manual close
+    document.addEventListener('DOMContentLoaded', () => {
+      const closeBtn = document.getElementById('bannerCloseBtn');
+      if (closeBtn) {
+        closeBtn.onclick = function() {
+          const banner = document.getElementById('moderationBanner');
+          banner.style.opacity = 0;
+          setTimeout(() => {
+            banner.style.display = 'none';
+            document.getElementById('moderationBannerText').innerText = '';
+            document.getElementById('strikeCounter').style.display = 'none';
+          }, 350);
+        }
+      }
+    });
+
+    // ========================================
+    // WEBRTC PEER CONNECTION
+    // ========================================
+    function createPeerConnection() {
+      peerConnection = new RTCPeerConnection(iceServers);
+      
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(track => {
+          peerConnection.addTrack(track, webcamStream);
+        });
+      } else {
+        console.error('❌ No webcam stream available!');
+      }
+      
+      peerConnection.ontrack = (event) => {
+        const remoteVideo = document.getElementById('remoteVideo');
+        if (remoteVideo && event.streams[0]) {
+          remoteVideo.srcObject = event.streams[0];
+        }
+      };
+      
+      peerConnection.onicecandidate = (event) => {
+        if (event.candidate && socket) {
+          socket.emit('webrtc-ice-candidate', {
+            candidate: event.candidate,
+            from: myUsername
+          });
+        }
+      };
+      
+      peerConnection.onconnectionstatechange = () => {
+        if (peerConnection.connectionState === 'connected') {
+          // WebRTC connected successfully
+        }
+      };
+      
+      return peerConnection;
+    }
+
+    async function createOffer() {
+      try {
+        const offer = await peerConnection.createOffer();
+        await peerConnection.setLocalDescription(offer);
+        socket.emit('webrtc-offer', {
+          offer: offer,
+          from: myUsername
+        });
+      } catch (error) {
+        console.error('❌ Error creating offer:', error);
+      }
+    }
+
+    async function handleOffer(offer, from) {
+      try {
+        if (!peerConnection) createPeerConnection();
+        await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+        const answer = await peerConnection.createAnswer();
+        await peerConnection.setLocalDescription(answer);
+        socket.emit('webrtc-answer', {
+          answer: answer,
+          from: myUsername,
+          to: from
+        });
+      } catch (error) {
+        console.error('❌ Error handling offer:', error);
+      }
+    }
+
+    async function handleAnswer(answer) {
+      try {
+        await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+      } catch (error) {
+        console.error('❌ Error handling answer:', error);
+      }
+    }
+
+    async function handleIceCandidate(candidate) {
+      try {
+        if (peerConnection) {
+          await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+        }
+      } catch (error) {
+        console.error('❌ Error adding ICE candidate:', error);
+      }
+    }
+
+    function closePeerConnection() {
+      if (peerConnection) {
+        peerConnection.close();
+        peerConnection = null;
+      }
+      const remoteVideo = document.getElementById('remoteVideo');
+      if (remoteVideo) {
+        remoteVideo.srcObject = null;
+      }
+    }
+
+    // ========================================
+    // WEBCAM & AUDIO STREAMING
+    // ========================================
+    function startWebcamModeration() {
+      const video = document.getElementById('localVideo');
+      
+      return navigator.mediaDevices.getUserMedia({ 
+        video: true, 
+        audio: true
+      })
+        .then((stream) => {
+          webcamStream = stream;
+          video.srcObject = stream;
+          return stream;
+        })
+        .catch((err) => {
+          alert("Could not access webcam/microphone: " + err);
+          throw err;
+        });
+    }
+
+    function stopWebcamModeration() {
+      const video = document.getElementById('localVideo');
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(track => track.stop());
+        webcamStream = null;
+      }
+      if (window.webcamInterval) {
+        clearInterval(window.webcamInterval);
+        window.webcamInterval = null;
+      }
+    }
+
+    // ✅ Fix 5 - Frame Moderation Function
+    function startFrameModeration() {
+      if (window.webcamInterval) clearInterval(window.webcamInterval);
+      window.webcamInterval = setInterval(() => {
+        try {
+          const video = document.getElementById('localVideo');
+          if (video && webcamStream && socket) {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth || 320;
+            canvas.height = video.videoHeight || 240;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const frameData = canvas.toDataURL('image/jpeg', 0.4);
+            socket.emit('moderate-frame', { username: myUsername, frame: frameData });
+          }
+        } catch (err) { /* fail silently */ }
+      }, 2000);
+    }
+
+    // ========================================
+    // HEALTH CHECK
+    // ========================================
+    document.getElementById('checkBtn').onclick = async function() {
+      try {
+        const res = await fetch(`${API_BASE}/health`);
+        const data = await res.json();
+        document.getElementById('result').innerText = data.status;
+      } catch (e) {
+        document.getElementById('result').innerText = "Could not connect to backend. Is your server running?";
+      }
+    };
+
+    // ========================================
+    // ONLINE USER COUNT
+    // ========================================
+    async function updateOnlineCount() {
+      try {
+        const res = await fetch(`${API_BASE}/online-count`);
+        if (!res.ok) {
+          throw new Error('Failed to fetch online count');
+        }
+        const data = await res.json();
+        
+        const onlineCountEl = document.getElementById('onlineCountNumber');
+        const inChatEl = document.getElementById('inChatCount');
+        const queuedEl = document.getElementById('queuedCount');
+        
+        if (onlineCountEl) {
+          onlineCountEl.textContent = data.online || 0;
+        }
+        
+        if (inChatEl) {
+          inChatEl.textContent = data.inChat || 0;
+        }
+        
+        if (queuedEl) {
+          queuedEl.textContent = data.queued || 0;
+        }
+      } catch (err) {
+        console.error('Error fetching online count:', err);
+        const onlineCountEl = document.getElementById('onlineCountNumber');
+        if (onlineCountEl) {
+          onlineCountEl.textContent = '?';
+        }
+      }
+    }
+
+    // Update online count when page loads and then every 10 seconds
+    function initializeOnlineCount() {
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          updateOnlineCount();
+          setInterval(updateOnlineCount, 10000);
+        });
+      } else {
+        // DOM already loaded
+        updateOnlineCount();
+        setInterval(updateOnlineCount, 10000);
+      }
+    }
+    
+    // Initialize online count after a short delay to ensure API_BASE is set
+    setTimeout(initializeOnlineCount, 500);
+
+    // ========================================
+    // POPULATE AGE DROPDOWN
+    // ========================================
+    function populateSignupAgeDropdown() {
+      const signupAgeSelect = document.getElementById('signupAge');
+      if (!signupAgeSelect) return;
+      
+      // Clear existing options except the first one
+      while (signupAgeSelect.options.length > 1) {
+        signupAgeSelect.remove(1);
+      }
+      
+      // Populate options from 18 to 100
+      for (let age = 18; age <= 100; age++) {
+        const option = document.createElement('option');
+        option.value = age;
+        option.textContent = age;
+        signupAgeSelect.appendChild(option);
+      }
+    }
+    
+    // Initialize age dropdown when page loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', populateSignupAgeDropdown);
+    } else {
+      populateSignupAgeDropdown();
+    }
+    
+    // Also populate when switching to signup form - will be handled in switchToSignup function
+
+    // ========================================
+    // LOGIN & SIGNUP
+    // ========================================
+    document.getElementById('loginForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      try {
+        const res = await secureFetch('/login', {
+          method: 'POST',
+          body: { username, password }
+        });
+        const data = await res.json();
+        document.getElementById('loginResult').innerText = data.message;
+        if (data.message && data.message.startsWith('Login successful')) {
+          sessionId = data.sessionId;
+          execToken = data.execToken;
+          const profile = data.profile || {};
+          const premium = profile.isPremium || data.isPremium || false;
+          const premiumExp = profile.premiumUntil || data.premiumUntil || null;
+          localStorage.setItem('joltUser', JSON.stringify({ 
+            username, 
+            password, 
+            age: profile.age || '', 
+            gender: profile.gender || '',
+            bio: profile.bio || '', 
+            image: profile.image || '',
+            sessionId: data.sessionId,
+            execToken: data.execToken,
+            isPremium: premium,
+            premiumUntil: premiumExp
+          }));
+          showProfile(
+            profile.username || username, 
+            profile.age || '', 
+            profile.gender || '', 
+            profile.bio || '', 
+            profile.image || '',
+            premium,
+            premiumExp
+          );
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        document.getElementById('loginResult').innerText = 'Could not reach backend. Try again.';
+      }
+    };
+
+    document.getElementById('signupForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const username = document.getElementById('signupUsername').value;
+      const password = document.getElementById('signupPassword').value;
+      const age = document.getElementById('signupAge').value;
+      const gender = document.getElementById('signupGender').value;
+      const bio = document.getElementById('signupBio').value;
+      
+      // Age validation - must be 18 or above
+      if (!age || age === '') {
+        document.getElementById('signupResult').innerText = 'Please select your age.';
+        return;
+      }
+      const ageNum = parseInt(age);
+      if (isNaN(ageNum) || ageNum < 18) {
+        document.getElementById('signupResult').innerText = 'You must be 18 years or older to sign up.';
+        return;
+      }
+      
+      try {
+        const res = await secureFetch('/signup', {
+          method: 'POST',
+          body: { username, password, age, gender, bio }
+        });
+        const data = await res.json();
+        document.getElementById('signupResult').innerText = data.message;
+        if (data.message && data.message.startsWith('Signup successful')) setTimeout(() => switchToLogin(), 1300);
+      } catch (error) {
+        console.error('Signup error:', error);
+        document.getElementById('signupResult').innerText = 'Could not reach backend. Try again.';
+      }
+    };
+
+    // ========================================
+    // PROFILE IMAGE UPLOAD
+    // ========================================
+    document.getElementById('profileImgInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async function(evt) {
+        myImage = evt.target.result;
+        document.getElementById('profileImgPreview').src = myImage;
+        document.getElementById('profileImgPreview').style.display = 'inline-block';
+        document.getElementById('chatUserImg').src = myImage;
+        const userData = getUserData() || {};
+        userData.image = myImage;
+        localStorage.setItem('joltUser', JSON.stringify(userData));
+        try {
+          const currentSessionId = userData.sessionId || sessionId;
+          
+          await secureFetch('/profile/update', {
+            method: 'POST',
+            headers: { 'X-Session-Id': currentSessionId || '' },
+            body: { username: myUsername, image: myImage }
+          });
+        } catch (error) {
+          console.error('Image update error:', error);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // ========================================
+    // ✅ JOIN CHAT - Fix 4 & Full Socket Setup
+    // ========================================
+    document.getElementById('joinChatBtn').onclick = async function() {
+      // Restore session if available
+      const storedUser = localStorage.getItem('joltUser');
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        sessionId = user.sessionId || sessionId;
+        execToken = user.execToken || execToken;
+      }
+      
+      if (!socket) {
+        socket = io(API_BASE, {
+          auth: {
+            sessionId: sessionId,
+            execToken: execToken
+          },
+          transports: ['websocket', 'polling'],
+          upgrade: true,
+          rememberUpgrade: true,
+          withCredentials: true,
+          reconnection: true,
+          reconnectionDelay: 1000,
+          reconnectionDelayMax: 5000,
+          reconnectionAttempts: Infinity,
+          timeout: 20000
+        });
+      }
+
+      // ✅ Fix 4 - Moderation handlers with correct data format
+      socket.on('imageRejected', function(data) {
+        showModerationBanner(data.message || "Unsafe image!", data.strike, data.level);
+        addChatMessage('⚠️ Image blocked for safety', 'system', 'warning');
+      });
+
+      socket.on('audioRejected', function(data) {
+        showModerationBanner(data.message || "Unsafe audio!", data.strike, 'warning');
+        addChatMessage('⚠️ Audio blocked for safety', 'system', 'warning');
+      });
+
+      socket.on('content-warning', function(data) {
+        showModerationBanner(data.message || "Content warning issued.", 0, 'warning');
+        addChatMessage('⚠️ Please follow community guidelines', 'system', 'warning');
+      });
+
+      socket.on('kicked', function(data) {
+        showModerationBanner(data.message || "You have been kicked.", 1, 'kick');
+        userStrikes = 0;
+        document.getElementById('strikeCount').innerText = userStrikes;
+        document.getElementById('strikeCounter').style.display = 'none';
+        stopWebcamModeration();
+        closePeerConnection();
+        if (socket) { socket.disconnect(); socket = null; }
+      });
+
+      socket.on('ai-banned', (data) => {
+        showModerationBanner(data.message || "You were banned.", 3, 'ban');
+        alert(data.reason || data.message || "Account banned due to unsafe content.");
+        stopWebcamModeration();
+        closePeerConnection();
+        document.getElementById('chatStatus').innerText = 'Account banned due to unsafe content.';
+        addChatMessage('⛔ You have been banned due to unsafe content', 'system', 'warning');
+        if (socket) { socket.disconnect(); socket = null; }
+      });
+
+      socket.on('waiting', () => {
+        document.getElementById('chatStatus').innerText = 'Waiting for someone to join...';
+      });
+      
+      socket.on('matched', partnerName => {
+        document.getElementById('chatPartner').innerText = partnerName;
+        document.getElementById('chatStatus').innerText = 'Chat started! Say hi or Skip.';
+        lastPartner = partnerName;
+      });
+      
+      socket.on('chatMsg', msg => {
+        if (!msg) return;
+        // Remove username prefix if present (e.g., "username: message")
+        const cleanMsg = msg.includes(': ') ? msg.split(': ').slice(1).join(': ') : msg;
+        addChatMessage(cleanMsg, 'partner');
+      });
+      
+      socket.on('chatEnded', () => {
+        document.getElementById('chatStatus').innerText = 'Chat ended by partner.';
+        addChatMessage('Your partner ended the chat.', 'partner', 'system');
+        stopWebcamModeration();
+        closePeerConnection();
+        if (socket) { socket.disconnect(); socket = null; }
+      });
+
+      socket.on('start-webrtc', (data) => {
+        if (webcamStream) {
+          createPeerConnection();
+          if (data.initiator) {
+            setTimeout(() => createOffer(), 1500);
+          }
+        } else {
+          console.error('❌ Webcam not ready for WebRTC!');
+        }
+      });
+      
+      socket.on('webrtc-offer', (data) => {
+        handleOffer(data.offer, data.from);
+      });
+      
+      socket.on('webrtc-answer', (data) => {
+        handleAnswer(data.answer);
+      });
+      
+      socket.on('webrtc-ice-candidate', (data) => {
+        handleIceCandidate(data.candidate);
+      });
+
+      // Handle gift received notification
+      socket.on('gift-received', (data) => {
+        if (data.giftType) {
+          addChatMessage(`🎁 You received a ${data.giftType} from ${data.from}!`, 'partner', 'system');
+        }
+      });
+
+      document.getElementById('profileSection').style.display = 'none';
+      document.getElementById('chatSection').style.display = 'block';
+      const chatMessages = document.getElementById('chatMessages');
+      if (chatMessages) chatMessages.innerHTML = '';
+      document.getElementById('chatPartner').innerText = 'Waiting...';
+      document.getElementById('chatStatus').innerText = 'Starting webcam...';
+      
+      userStrikes = 0;
+      document.getElementById('strikeCount').innerText = userStrikes;
+      document.getElementById('strikeCounter').style.display = 'none';
+
+      try {
+        await startWebcamModeration();
+        document.getElementById('chatStatus').innerText = 'Connecting...';
+        
+        // Get current filter values and update display
+        currentFilters = getCurrentFilterValues();
+        
+        // Always update filter display when entering chat (checks premium status)
+        setTimeout(() => {
+          updateAppliedFiltersDisplay();
+        }, 100);
+        
+        // Send filters if premium
+        const hasActivePremium = isPremium && premiumUntil && premiumUntil > Date.now();
+        if (hasActivePremium && (currentFilters.gender || currentFilters.ageMin || currentFilters.ageMax || currentFilters.location)) {
+          const filterData = {
+            genderFilter: currentFilters.gender || '',
+            interestFilter: [],
+            ageFilter: (currentFilters.ageMin || currentFilters.ageMax) ? {
+              min: currentFilters.ageMin ? parseInt(currentFilters.ageMin) : 18,
+              max: currentFilters.ageMax ? parseInt(currentFilters.ageMax) : 100
+            } : null,
+            locationFilter: currentFilters.location || ''
+          };
+          socket.emit('joinChat', filterData);
+        } else {
+          socket.emit('joinChat', myUsername);
+        }
+        
+        startFrameModeration(); // ✅ Fix 5
+      } catch (error) {
+        document.getElementById('chatStatus').innerText = 'Webcam error. Please refresh.';
+        console.error('Webcam error:', error);
+      }
+    };
+
+    // ========================================
+    // CHAT MESSAGING
+    // ========================================
+    
+    // Helper function to add chat messages with bubbles
+    function addChatMessage(text, sender = 'partner', type = 'normal') {
+      const chatMessages = document.getElementById('chatMessages');
+      if (!chatMessages) return;
+      
+      // Remove initial placeholder message if exists
+      const placeholder = chatMessages.querySelector('div[style*="text-align: center"][style*="color: #999"]');
+      if (placeholder) {
+        placeholder.remove();
+      }
+      
+      // Skip if message is empty
+      if (!text || !text.trim()) return;
+      
+      const messageWrapper = document.createElement('div');
+      messageWrapper.className = 'chat-message';
+      
+      const bubble = document.createElement('div');
+      if (type === 'system' || type === 'warning') {
+        bubble.className = `message-bubble ${type}`;
+      } else {
+        bubble.className = `message-bubble ${sender}`;
+      }
+      bubble.innerText = text;
+      
+      const time = document.createElement('div');
+      time.className = 'message-time';
+      const now = new Date();
+      time.innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      messageWrapper.appendChild(bubble);
+      if (type === 'normal') {
+        messageWrapper.appendChild(time);
+      }
+      chatMessages.appendChild(messageWrapper);
+      
+      // Auto-scroll to bottom with smooth scrolling
+      setTimeout(() => {
+        chatMessages.scrollTo({
+          top: chatMessages.scrollHeight,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
+    
+    document.getElementById('chatForm').onsubmit = function(e) {
+      e.preventDefault();
+      if (!socket) return;
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      
+      // Add user's message to chat (without username prefix, just the message)
+      addChatMessage(msg, 'user');
+      
+      // Send message to server
+      socket.emit('chatMsg', msg);
+      input.value = '';
+      
+      // Focus back on input
+      input.focus();
+    };
+
+    // ========================================
+    // ✅ CHAT ACTIONS - All with Strike Reset (Fix 6)
+    // ========================================
+    document.getElementById('endChatBtn').onclick = function() {
+      userStrikes = 0; // ✅ Fix 6
+      document.getElementById('strikeCount').innerText = userStrikes;
+      document.getElementById('strikeCounter').style.display = 'none';
+      if (socket) socket.emit('endChat');
+        addChatMessage('You ended the chat.', 'user', 'system');
+      document.getElementById('chatStatus').innerText = 'Chat ended.';
+      stopWebcamModeration();
+      closePeerConnection();
+      if (socket) { socket.disconnect(); socket = null; }
+    };
+
+    document.getElementById('homeBtn').onclick = function() {
+      userStrikes = 0; // ✅ Fix 6
+      document.getElementById('strikeCount').innerText = userStrikes;
+      document.getElementById('strikeCounter').style.display = 'none';
+      stopWebcamModeration();
+      closePeerConnection();
+      if (socket) { socket.disconnect(); socket = null; }
+      document.getElementById('chatSection').style.display = 'none';
+      document.getElementById('profileSection').style.display = 'block';
+      document.getElementById('chatStatus').innerText = '';
+      const chatMessages = document.getElementById('chatMessages');
+      if (chatMessages) chatMessages.innerHTML = '';
+    };
+
+    document.getElementById('skipChatBtn').onclick = function() {
+      userStrikes = 0; // ✅ Fix 6
+      document.getElementById('strikeCount').innerText = userStrikes;
+      document.getElementById('strikeCounter').style.display = 'none';
+      if (skipLock) return;
+      skipLock = true;
+      stopWebcamModeration();
+      closePeerConnection();
+      if (socket) socket.emit('endChat');
+      document.getElementById('chatStatus').innerText = 'Skipping chat...';
+        addChatMessage('You skipped this chat.', 'user', 'system');
+      setTimeout(async () => {
+        skipLock = false;
+        if (!socket) {
+          socket = io(API_BASE, {
+            auth: {
+              sessionId: sessionId,
+              execToken: execToken
+            },
+            transports: ['websocket', 'polling']
+          });
+        }
+        
+        // Use current filters if premium
+        const hasActivePremium = isPremium && premiumUntil && premiumUntil > Date.now();
+        if (hasActivePremium && (currentFilters.gender || currentFilters.ageMin || currentFilters.ageMax || currentFilters.location)) {
+          const filterData = {
+            genderFilter: currentFilters.gender || '',
+            interestFilter: [],
+            ageFilter: (currentFilters.ageMin || currentFilters.ageMax) ? {
+              min: currentFilters.ageMin ? parseInt(currentFilters.ageMin) : 18,
+              max: currentFilters.ageMax ? parseInt(currentFilters.ageMax) : 100
+            } : null,
+            locationFilter: currentFilters.location || ''
+          };
+          socket.emit('joinChat', filterData);
+        } else {
+          socket.emit('joinChat', myUsername);
+        }
+        
+        await startWebcamModeration();
+        startFrameModeration();
+        document.getElementById('chatStatus').innerText = 'Looking for new partner...';
+        addChatMessage('Finding new partner...', 'system', 'system');
+      }, 600);
+    };
+
+    document.getElementById('logoutBtn').onclick = logout;
+
+    // ========================================
+    // ✅ Fix 7 - logoutBtnChat Handler
+    // ========================================
+    document.getElementById('logoutBtnChat').onclick = function() {
+      logout();
+      document.getElementById('chatSection').style.display = 'none';
+      document.getElementById('profileSection').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+      userStrikes = 0;
+      document.getElementById('strikeCount').innerText = userStrikes;
+      document.getElementById('strikeCounter').style.display = 'none';
+      stopWebcamModeration();
+      closePeerConnection();
+      if (socket) { socket.disconnect(); socket = null; }
+    };
+
+    // ========================================
+    // REPORT & BLOCK
+    // ========================================
+    document.getElementById('reportBtn').onclick = async function() {
+      if (!lastPartner) return alert('No user to report.');
+      if (!confirm('Are you sure you want to report this user?')) return;
+      const reason = prompt('Reason for report? (optional)');
+      
+      const storedUser = localStorage.getItem('joltUser');
+      const currentSessionId = storedUser ? JSON.parse(storedUser).sessionId : sessionId;
+      
+      try {
+        const res = await secureFetch('/report', {
+          method: 'POST',
+          headers: { 'X-Session-Id': currentSessionId || '' },
+          body: { reported: lastPartner, reason: reason || '' }
+        });
+        const data = await res.json();
+        if (data.message && data.message.includes('Unauthorized')) {
+          alert('Session expired. Please login again.');
+          logout();
+          return;
+        }
+        alert('Report sent. Thank you for helping us improve JOLT!');
+      } catch (error) {
+        console.error('Report error:', error);
+        alert('Could not send report. Try again later.');
+      }
+    };
+
+    document.getElementById('blockBtn').onclick = async function() {
+      if (!lastPartner) return alert('No user to block.');
+      if (!confirm('Block this user? You will never be matched again.')) return;
+      
+      const storedUser = localStorage.getItem('joltUser');
+      const currentSessionId = storedUser ? JSON.parse(storedUser).sessionId : sessionId;
+      
+      try {
+        const res = await secureFetch('/block', {
+          method: 'POST',
+          headers: { 'X-Session-Id': currentSessionId || '' },
+          body: { blocked: lastPartner }
+        });
+        const data = await res.json();
+        if (data.message && data.message.includes('Unauthorized')) {
+          alert('Session expired. Please login again.');
+          logout();
+          return;
+        }
+        alert('User blocked.');
+        if (socket) socket.emit('endChat');
+      } catch (error) {
+        console.error('Block error:', error);
+        alert('Could not block user. Try again later.');
+      }
+    };
+
+    // ========================================
+    // FULLSCREEN VIDEO
+    // ========================================
+    document.getElementById('fullscreenBtn').onclick = function() {
+      const container = document.getElementById('videoContainer');
+      if (!document.fullscreenElement) {
+        if (container.requestFullscreen) {
+          container.requestFullscreen();
+        } else if (container.webkitRequestFullscreen) {
+          container.webkitRequestFullscreen();
+        } else if (container.msRequestFullscreen) {
+          container.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+    };
+
+    // ========================================
+    // COOKIE CONSENT
+    // ========================================
+    function acceptCookies() {
+      localStorage.setItem('cookieConsent', 'true');
+      document.getElementById('cookieConsent').style.display = 'none';
+    }
+
+    if (!localStorage.getItem('cookieConsent')) {
+      document.getElementById('cookieConsent').style.display = 'block';
+    }
+
+    // Google AdSense
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
+    // ========================================
+    // PAYMENT PLANS
+    // ========================================
+    const paymentPlans = {
+      premium_weekly: { label: 'Weekly', inr: '₹100', usd: '$1.99', durationDays: 7 },
+      premium_monthly: { label: 'Monthly', inr: '₹249', usd: '$4.99', durationDays: 30 },
+      premium_quarterly: { label: 'Quarterly', inr: '₹649', usd: '$12.99', durationDays: 90 },
+      premium_half_yearly: { label: 'Half-Yearly', inr: '₹1,099', usd: '$21.99', durationDays: 180 },
+      premium_yearly: { label: 'Yearly', inr: '₹1,799', usd: '$34.99', durationDays: 365 }
+    };
+
+    // ========================================
+    // PREMIUM / PAYMENT MODAL
+    // ========================================
+    let selectedPlan = null;
+    
+    document.getElementById('premiumBtn').onclick = function() {
+      if (!myUsername) {
+        alert('Please login first to purchase premium.');
+        return;
+      }
+      
+      // Close premium modal if open, open payment modal instead
+      document.getElementById('premiumModal').style.display = 'none';
+      
+      const modal = document.getElementById('paymentModal');
+      const plansContainer = document.getElementById('paymentPlans');
+      plansContainer.innerHTML = '';
+      selectedPlan = null;
+      
+      Object.entries(paymentPlans).forEach(([planId, plan]) => {
+        const planCard = document.createElement('div');
+          planCard.style.cssText = 'padding:20px; border:2px solid #ddd; border-radius:10px; cursor:pointer; text-align:center; transition:all 0.3s; background:#fff;';
+          planCard.onmouseover = function() { 
+            if (!this.classList.contains('selected')) {
+              this.style.borderColor = '#2979ff'; 
+              this.style.transform = 'translateY(-5px)'; 
+            }
+          };
+          planCard.onmouseout = function() { 
+            if (!this.classList.contains('selected')) {
+              this.style.borderColor = '#ddd'; 
+              this.style.transform = 'translateY(0)'; 
+            }
+          };
+          planCard.onclick = function() {
+            selectedPlan = planId;
+            document.querySelectorAll('#paymentPlans > div').forEach(c => {
+              c.classList.remove('selected');
+                c.style.borderColor = '#ddd';
+                c.style.background = '#fff';
+            });
+            this.classList.add('selected');
+            this.style.borderColor = '#2979ff';
+            this.style.background = '#e3f2fd';
+          };
+          planCard.innerHTML = `
+            <div style="font-size:20px; font-weight:bold; color:#2979ff; margin-bottom:10px;">${plan.label}</div>
+            <div style="font-size:24px; font-weight:bold; color:#333; margin-bottom:5px;">${plan.inr}</div>
+            <div style="font-size:14px; color:#666;">${plan.usd}</div>
+            <div style="font-size:12px; color:#999; margin-top:10px;">${plan.durationDays} days</div>
+          `;
+        plansContainer.appendChild(planCard);
+      });
+      
+      modal.style.display = 'block';
+    };
+
+    document.getElementById('closePaymentModal').onclick = function() {
+      document.getElementById('paymentModal').style.display = 'none';
+      selectedPlan = null;
+    };
+
+    // Close premium modal handler
+    document.getElementById('closePremiumModal').onclick = function() {
+      document.getElementById('premiumModal').style.display = 'none';
+    };
+    
+    // Close premium modal when clicking outside
+    document.getElementById('premiumModal').onclick = function(e) {
+      if (e.target.id === 'premiumModal') {
+        document.getElementById('premiumModal').style.display = 'none';
+      }
+    };
+
+    // ========================================
+    // RAZORPAY PAYMENT
+    // ========================================
+    document.getElementById('payWithRazorpay').onclick = async function() {
+      if (!selectedPlan) {
+        alert('Please select a plan first.');
+        return;
+      }
+
+      if (!window.Razorpay) {
+        alert('Razorpay is not loaded. Please refresh the page.');
+        return;
+      }
+
+      try {
+        // Ensure we have a valid session before proceeding
+        const storedUser = localStorage.getItem('joltUser');
+        if (!storedUser) {
+          alert('Session expired. Please login again.');
+          logout();
+          return;
+        }
+        
+            const user = JSON.parse(storedUser);
+        if (!user.sessionId) {
+          alert('Session expired. Please login again.');
+          logout();
+          return;
+        }
+        
+        if (!window.Razorpay) {
+          alert('Razorpay SDK not loaded. Please refresh the page.');
+          return;
+        }
+        
+        const res = await secureFetch('/payments/razorpay/create-order', {
+          method: 'POST',
+          headers: {
+            'X-Session-Id': user.sessionId
+          },
+          body: { plan: selectedPlan }
+        });
+
+        if (!res.ok) {
+          const error = await res.json();
+          if (error.message && error.message.includes('Unauthorized')) {
+            alert('Session expired. Please login again.');
+            logout();
+            return;
+          }
+          throw new Error(error.message || error.error || 'Failed to create Razorpay order');
+        }
+
+        const data = await res.json();
+        
+        if (!data.orderId || !data.keyId) {
+          throw new Error('Invalid response from server. Please try again.');
+        }
+        
+        console.log('Razorpay order created:', data.orderId);
+
+        const razorpayOptions = {
+          key: data.keyId,
+          amount: data.amount,
+          currency: 'INR',
+          name: 'JOLT Premium',
+          description: `${paymentPlans[selectedPlan].label} Premium Plan`,
+          order_id: data.orderId,
+          handler: async function(response) {
+            try {
+              // Ensure session is still valid for verification
+              const storedUser = localStorage.getItem('joltUser');
+              if (!storedUser) {
+                alert('Session expired. Please login again.');
+                logout();
+                return;
+              }
+              const user = JSON.parse(storedUser);
+              
+              const verifyRes = await secureFetch('/payments/razorpay/verify', {
+                method: 'POST',
+                headers: {
+                  'X-Session-Id': user.sessionId
+                },
+                body: {
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  plan: selectedPlan
+                }
+              });
+
+              const verifyData = await verifyRes.json();
+              if (verifyRes.ok) {
+                document.getElementById('paymentModal').style.display = 'none';
+                // Update user data
+                const updatedUser = JSON.parse(localStorage.getItem('joltUser') || '{}');
+                updatedUser.isPremium = true;
+                updatedUser.premiumUntil = verifyData.premiumUntil || (Date.now() + (paymentPlans[selectedPlan].durationDays * 24 * 60 * 60 * 1000));
+                localStorage.setItem('joltUser', JSON.stringify(updatedUser));
+                
+                // Refresh profile to show premium status
+                const user = JSON.parse(localStorage.getItem('joltUser') || '{}');
+                isPremium = true;
+                premiumUntil = updatedUser.premiumUntil;
+                showProfile(
+                  user.username, 
+                  user.age, 
+                  user.gender || '', 
+                  user.bio, 
+                  user.image, 
+                  true,
+                  updatedUser.premiumUntil
+                );
+                
+                alert('🎉 Premium activated successfully! Your premium status and expiry date are now displayed.');
+              } else {
+                alert('Payment verification failed: ' + (verifyData.message || verifyData.error || 'Unknown error') + '\n\nIf payment was deducted, please contact support.');
+              }
+            } catch (error) {
+              console.error('Payment verification error:', error);
+              alert('Payment verification failed: ' + error.message + '\n\nIf payment was deducted, please contact support with your payment ID.');
+            }
+          },
+          modal: {
+            ondismiss: function() {
+              // Payment cancelled by user
+            }
+          },
+          theme: {
+            color: '#2979ff'
+          },
+          prefill: {
+            name: myUsername,
+            email: '',
+            contact: ''
+          }
+        };
+
+        const razorpay = new window.Razorpay(razorpayOptions);
+        razorpay.on('payment.failed', function(response) {
+          alert('Payment failed: ' + (response.error.description || 'Unknown error'));
+        });
+        razorpay.open();
+      } catch (error) {
+        console.error('Razorpay payment error:', error);
+        alert('Failed to start payment: ' + error.message);
+      }
+    };
+
+    // ========================================
+    // PAYPAL PAYMENT
+    // ========================================
+    document.getElementById('payWithPayPal').onclick = async function() {
+      if (!selectedPlan) {
+        alert('Please select a plan first.');
+        return;
+      }
+
+      try {
+        // Ensure we have a valid session before proceeding
+        const storedUser = localStorage.getItem('joltUser');
+        if (!storedUser) {
+          alert('Session expired. Please login again.');
+          logout();
+          return;
+        }
+        
+        const user = JSON.parse(storedUser);
+        if (!user.sessionId) {
+          alert('Session expired. Please login again.');
+          logout();
+          return;
+        }
+        
+        // Create PayPal order
+        const res = await secureFetch('/payments/paypal/create-order', {
+          method: 'POST',
+          headers: {
+            'X-Session-Id': user.sessionId
+          },
+          body: { plan: selectedPlan }
+        });
+
+        if (!res.ok) {
+          const error = await res.json();
+          if (error.message && error.message.includes('Unauthorized')) {
+            alert('Session expired. Please login again.');
+            logout();
+            return;
+          }
+          if (error.error === 'PAYPAL_NOT_CONFIGURED' || error.message?.includes('not configured')) {
+            throw new Error('PayPal is not configured on the server. Please add PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET to the server\'s .env file.');
+          }
+          throw new Error(error.message || error.error || 'Failed to create PayPal order.');
+        }
+
+        const data = await res.json();
+
+        if (!data.orderId) {
+          throw new Error('Invalid response from PayPal server. Please try again.');
+        }
+        
+        console.log('PayPal order created:', data.orderId);
+
+        // For now, show manual PayPal integration message
+        // In production, you would integrate PayPal SDK here
+        const confirmCapture = confirm(
+          `PayPal Order Created: ${data.orderId}\n\n` +
+          `To complete payment:\n` +
+          `1. Go to PayPal and approve the payment\n` +
+          `2. Return here and click OK to verify\n\n` +
+          `Or click Cancel to abort.`
+        );
+
+        if (confirmCapture) {
+          // Ensure session is still valid for capture
+            const storedUser = localStorage.getItem('joltUser');
+          if (!storedUser) {
+              alert('Session expired. Please login again.');
+              logout();
+              return;
+            }
+          const user = JSON.parse(storedUser);
+            
+              // Capture payment after user confirms
+              const captureRes = await secureFetch('/payments/paypal/capture', {
+                method: 'POST',
+            headers: {
+              'X-Session-Id': user.sessionId
+            },
+                body: { orderId: data.orderId, plan: selectedPlan }
+              });
+
+              const captureData = await captureRes.json();
+              if (captureRes.ok) {
+                document.getElementById('paymentModal').style.display = 'none';
+                // Update user data
+                const updatedUser = JSON.parse(localStorage.getItem('joltUser') || '{}');
+                updatedUser.isPremium = true;
+                updatedUser.premiumUntil = captureData.premiumUntil || (Date.now() + (paymentPlans[selectedPlan].durationDays * 24 * 60 * 60 * 1000));
+                localStorage.setItem('joltUser', JSON.stringify(updatedUser));
+                
+                // Refresh profile to show premium status
+                const user = JSON.parse(localStorage.getItem('joltUser') || '{}');
+                isPremium = true;
+                premiumUntil = updatedUser.premiumUntil;
+                showProfile(
+                  user.username, 
+                  user.age, 
+                  user.gender || '', 
+                  user.bio, 
+                  user.image, 
+                  true,
+                  updatedUser.premiumUntil
+                );
+                
+                alert('🎉 Premium activated successfully! Your premium status and expiry date are now displayed.');
+                } else {
+            alert('Payment capture failed: ' + (captureData.message || 'Payment not approved or expired'));
+          }
+        }
+        
+      } catch (error) {
+        console.error('PayPal payment error:', error);
+        let errorMsg = 'PayPal payment failed: ' + error.message;
+        
+        if (error.message.includes('not configured')) {
+          errorMsg += '\n\nTo fix this:\n';
+          errorMsg += '1. Create a .env file in jolt-backend directory\n';
+          errorMsg += '2. Add your PayPal credentials:\n';
+          errorMsg += '   PAYPAL_CLIENT_ID=your_client_id\n';
+          errorMsg += '   PAYPAL_CLIENT_SECRET=your_client_secret\n';
+          errorMsg += '   PAYPAL_MODE=sandbox (or live for production)\n';
+          errorMsg += '3. Restart the server';
+        }
+        
+        alert(errorMsg);
+      }
+    };
+
+    // ========================================
+    // CURRENT FILTER STATE (stored globally)
+    // ========================================
+    let currentFilters = {
+      gender: '',
+      ageMin: '',
+      ageMax: '',
+      location: ''
+    };
+
+    // ========================================
+    // POPULATE FILTER AGE DROPDOWNS
+    // ========================================
+    function populateFilterAgeDropdowns() {
+      const filterAgeMin = document.getElementById('filterAgeMin');
+      const filterAgeMax = document.getElementById('filterAgeMax');
+      const chatFilterAgeMin = document.getElementById('chatFilterAgeMin');
+      const chatFilterAgeMax = document.getElementById('chatFilterAgeMax');
+      
+      // Helper to populate dropdown
+      const populateDropdown = (select) => {
+        if (!select) return;
+        while (select.options.length > 1) select.remove(1);
+        for (let age = 18; age <= 100; age++) {
+          const option = document.createElement('option');
+          option.value = age;
+          option.textContent = age;
+          select.appendChild(option);
+        }
+      };
+      
+      populateDropdown(filterAgeMin);
+      populateDropdown(filterAgeMax);
+      populateDropdown(chatFilterAgeMin);
+      populateDropdown(chatFilterAgeMax);
+    }
+    
+    // ========================================
+    // UPDATE APPLIED FILTERS DISPLAY
+    // ========================================
+    function updateAppliedFiltersDisplay() {
+      const container = document.getElementById('appliedFiltersContainer');
+      const listElement = document.getElementById('appliedFiltersList');
+      
+      if (!container || !listElement) return;
+      
+      // Check if user is premium
+      const hasActivePremium = isPremium && premiumUntil && premiumUntil > Date.now();
+      
+      if (!hasActivePremium) {
+        container.style.display = 'none';
+        return;
+      }
+      
+      // Always show for premium users
+      container.style.display = 'block';
+      
+      const filters = [];
+      if (currentFilters.gender) {
+        filters.push(`Gender: ${currentFilters.gender.charAt(0).toUpperCase() + currentFilters.gender.slice(1)}`);
+      }
+      if (currentFilters.ageMin || currentFilters.ageMax) {
+        const ageRange = currentFilters.ageMin && currentFilters.ageMax 
+          ? `${currentFilters.ageMin}-${currentFilters.ageMax}`
+          : currentFilters.ageMin 
+            ? `${currentFilters.ageMin}+`
+            : `up to ${currentFilters.ageMax}`;
+        filters.push(`Age: ${ageRange}`);
+      }
+      if (currentFilters.location) {
+        const locationLabels = {
+          'india': 'India',
+          'usa': 'United States',
+          'uk': 'United Kingdom',
+          'canada': 'Canada',
+          'australia': 'Australia',
+          'germany': 'Germany',
+          'france': 'France',
+          'brazil': 'Brazil',
+          'japan': 'Japan',
+          'south-korea': 'South Korea',
+          'singapore': 'Singapore',
+          'uae': 'UAE',
+          'other': 'Other'
+        };
+        filters.push(`Location: ${locationLabels[currentFilters.location] || currentFilters.location}`);
+      }
+      
+      if (filters.length === 0) {
+        listElement.innerHTML = '<span style="color: #999; font-style: italic;">No filters applied - matching with anyone</span>';
+      } else {
+        listElement.innerHTML = filters.join(' • ');
+      }
+    }
+
+    // ========================================
+    // GET CURRENT FILTER VALUES FROM FORM
+    // ========================================
+    function getCurrentFilterValues() {
+      return {
+        gender: document.getElementById('filterGender')?.value || '',
+        ageMin: document.getElementById('filterAgeMin')?.value || '',
+        ageMax: document.getElementById('filterAgeMax')?.value || '',
+        location: document.getElementById('filterLocation')?.value || ''
+      };
+    }
+    
+    // Initialize filter age dropdowns when page loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', populateFilterAgeDropdowns);
+    } else {
+      populateFilterAgeDropdowns();
+    }
+    
+    // Helper function to toggle filter element state
+    function toggleFilterElement(element, enabled) {
+      if (!element) return;
+      element.disabled = !enabled;
+      element.style.cursor = enabled ? 'pointer' : 'not-allowed';
+      element.style.opacity = enabled ? '1' : '0.6';
+    }
+    
+    // Function to update filter access based on premium status
+    function updateFilterAccess(hasPremium) {
+      const elements = {
+        filterGender: document.getElementById('filterGender'),
+        filterAgeMin: document.getElementById('filterAgeMin'),
+        filterAgeMax: document.getElementById('filterAgeMax'),
+        filterLocation: document.getElementById('filterLocation'),
+        filterUnlockMessage: document.getElementById('filterUnlockMessage'),
+        filterPremiumStatus: document.getElementById('filterPremiumStatus'),
+        filterPremiumExpiry: document.getElementById('filterPremiumExpiry'),
+        chatFilterIndicator: document.getElementById('chatFilterIndicator'),
+        applyFilterBtn: document.getElementById('applyFilterBtn')
+      };
+      
+      // Toggle filter inputs
+      ['filterGender', 'filterAgeMin', 'filterAgeMax', 'filterLocation'].forEach(id => {
+        toggleFilterElement(elements[id], hasPremium);
+      });
+      
+      // Toggle messages and indicators
+      if (elements.filterUnlockMessage) {
+        elements.filterUnlockMessage.style.display = hasPremium ? 'none' : 'block';
+      }
+      if (elements.filterPremiumStatus) {
+        elements.filterPremiumStatus.style.display = hasPremium ? 'block' : 'none';
+      }
+      if (elements.chatFilterIndicator) {
+        elements.chatFilterIndicator.style.display = hasPremium ? 'inline-block' : 'none';
+      }
+      // Hide/show Apply Filters button based on premium status
+      if (elements.applyFilterBtn) {
+        elements.applyFilterBtn.style.display = hasPremium ? 'block' : 'none';
+      }
+      if (hasPremium && elements.filterPremiumExpiry && premiumUntil) {
+        elements.filterPremiumExpiry.innerText = `Expiry Date: ${new Date(premiumUntil).toLocaleDateString()}`;
+      }
+    }
+
+    // ========================================
+    // APPLY FILTER BUTTON HANDLER
+    // ========================================
+    document.getElementById('applyFilterBtn').onclick = async function() {
+      const hasActivePremium = isPremium && premiumUntil && premiumUntil > Date.now();
+      
+      if (!hasActivePremium) {
+        // Show premium modal if not premium
+        document.getElementById('premiumModal').style.display = 'block';
+        return;
+      }
+      
+      // User is premium - apply filters
+      const filterGender = document.getElementById('filterGender').value;
+      const filterAgeMin = document.getElementById('filterAgeMin').value;
+      const filterAgeMax = document.getElementById('filterAgeMax').value;
+      const filterLocation = document.getElementById('filterLocation').value;
+      const filterResult = document.getElementById('filterResult');
+      
+      try {
+        const user = getUserData();
+        if (!user) {
+          alert('Session expired. Please login again.');
+          return;
+        }
+        
+        // Save filters to API (if endpoint exists) or just show success
+        const res = await secureFetch('/filters', {
+          method: 'POST',
+          headers: {
+            'X-Session-Id': user.sessionId || ''
+          },
+          body: {
+            gender: filterGender || null,
+            ageMin: filterAgeMin ? parseInt(filterAgeMin) : null,
+            ageMax: filterAgeMax ? parseInt(filterAgeMax) : null,
+            location: filterLocation || null
+          }
+        });
+        
+        const data = res.ok ? await res.json() : null;
+        const message = res.ok ? '✅ Filters applied successfully!' : '✅ Filters saved!';
+        showFilterResult(filterResult, message);
+      } catch (error) {
+        console.error('Filter save error:', error);
+        showFilterResult(filterResult, '✅ Filters applied!');
+      }
+    };
+    
+    // Helper function to show filter result message
+    function showFilterResult(element, message) {
+      if (!element) return;
+      element.style.display = 'block';
+      element.style.background = '#e8f5e9';
+      element.style.color = '#2e7d32';
+      element.style.border = '1px solid #4caf50';
+      element.innerText = message;
+      setTimeout(() => {
+        element.style.display = 'none';
+      }, 3000);
+    };
+
+    // ========================================
+    // SEND GIFT (from chat) - REMOVED: Send Gift button removed from chat screen
+    // ========================================
+
+    document.getElementById('closeGiftModal').onclick = function() {
+      document.getElementById('giftModal').style.display = 'none';
+    };
+
+    // Gift option selection
+    document.querySelectorAll('.giftOption').forEach(btn => {
+      btn.onclick = function() {
+        document.querySelectorAll('.giftOption').forEach(b => b.style.borderColor = '#ddd');
+        this.style.borderColor = '#4caf50';
+        this.style.background = '#e8f5e9';
+        
+        const giftType = this.dataset.gift;
+        const cost = parseInt(this.dataset.cost);
+        
+        document.getElementById('selectedGiftName').innerText = this.textContent.split('(')[0].trim();
+        document.getElementById('selectedGiftCost').innerText = cost;
+        document.getElementById('selectedGift').style.display = 'block';
+        document.getElementById('sendGiftConfirm').style.display = 'block';
+        
+        // Gift functionality disabled - coins no longer used
+        document.getElementById('sendGiftConfirm').onclick = async function() {
+          document.getElementById('giftResult').innerText = '❌ Gift feature is not available.';
+        };
+      };
+    });
+
+    // ========================================
+    // ========================================
+    // SUBSCRIPTION HISTORY
+    // ========================================
+    document.getElementById('subscriptionHistoryBtn').onclick = async function() {
+      if (!myUsername) {
+        alert('Please login first.');
+        return;
+      }
+      
+      const user = getUserData();
+      if (!user) {
+        alert('Please login first.');
+        return;
+      }
+      
+      // Refresh session ID from localStorage before making the call
+      if (user.sessionId) {
+        sessionId = user.sessionId;
+      }
+      
+      const modal = document.getElementById('subscriptionHistoryModal');
+      const listContainer = document.getElementById('subscriptionHistoryList');
+      listContainer.innerHTML = '<p style="text-align:center; color:#999;">Loading...</p>';
+      modal.style.display = 'block';
+
+      try {
+        // secureFetch will automatically add the session ID from user.sessionId or global sessionId
+        const res = await secureFetch('/subscriptions/history', {
+          method: 'GET'
+        });
+        
+        // Handle unauthorized/forbidden responses
+        if (res.status === 401 || res.status === 403) {
+          const errorData = await res.json().catch(() => ({ message: 'Unauthorized session' }));
+          alert('Session expired. Please login again.');
+          logout();
+          return;
+        }
+        
+        // Handle 404 - no subscriptions found
+        if (res.status === 404) {
+          listContainer.innerHTML = '<p style="text-align:center; color:#999; padding:20px;">No subscription history yet. Purchase a premium plan to see it here!</p>';
+          return;
+        }
+        
+        // Handle 500 - server error (still show empty state, not an error)
+        if (res.status === 500) {
+          listContainer.innerHTML = '<p style="text-align:center; color:#999; padding:20px;">No subscription history yet. Purchase a premium plan to see it here!</p>';
+          return;
+        }
+        
+        // Handle other errors
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => ({ message: 'Failed to load subscription history' }));
+          throw new Error(errorData.message || `Server error: ${res.status}`);
+        }
+        
+        const data = await res.json().catch(() => ({ subscriptions: [] }));
+
+        if (data && data.subscriptions && Array.isArray(data.subscriptions) && data.subscriptions.length > 0) {
+          listContainer.innerHTML = '';
+          data.subscriptions.forEach(sub => {
+            const subItem = document.createElement('div');
+            const purchaseDate = new Date(sub.purchaseDate || sub.timestamp);
+            const expiryDate = sub.expiryDate ? new Date(sub.expiryDate) : null;
+            const now = new Date();
+            const isExpired = expiryDate && expiryDate < now;
+            const status = sub.status || (isExpired ? 'expired' : 'active');
+            
+            // Border color based on status
+            const borderColor = status === 'expired' ? '#999' : '#4caf50';
+            const bgColor = status === 'expired' ? '#fafafa' : '#f5f5f5';
+            
+            subItem.style.cssText = `padding:15px; margin-bottom:10px; background:${bgColor}; border-radius:8px; border-left:4px solid ${borderColor};`;
+            
+            const planName = paymentPlans[sub.plan] ? paymentPlans[sub.plan].label : (sub.planLabel || sub.plan);
+            const amount = sub.amount || sub.price || 0;
+            const currency = sub.currency || 'INR';
+            const priceDisplay = currency === 'USD' ? `$${amount}` : `₹${amount}`;
+            const gateway = sub.paymentGateway || sub.gateway || 'Unknown';
+            const durationDays = sub.durationDays || (expiryDate && purchaseDate ? Math.round((expiryDate - purchaseDate) / (1000 * 60 * 60 * 24)) : null);
+            
+            let statusBadge = '';
+            if (status === 'active') {
+              statusBadge = '<span style="background:#4caf50; color:#fff; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; margin-left:8px;">ACTIVE</span>';
+            } else if (status === 'expired') {
+              statusBadge = '<span style="background:#999; color:#fff; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; margin-left:8px;">EXPIRED</span>';
+            }
+            
+            subItem.innerHTML = `
+              <div style="font-weight:bold; margin-bottom:5px; color:#2979ff; font-size:16px; display:flex; align-items:center;">
+                ${planName} Plan ${statusBadge}
+              </div>
+              <div style="color:#666; font-size:14px; margin-bottom:5px;">
+                <strong>Price:</strong> ${priceDisplay}
+                ${durationDays ? ` <span style="color:#999;">(${durationDays} days)</span>` : ''}
+              </div>
+              <div style="color:#666; font-size:14px; margin-bottom:5px;">
+                <strong>Payment Gateway:</strong> ${gateway}
+              </div>
+              <div style="color:#666; font-size:14px; margin-bottom:5px;">
+                <strong>Purchased:</strong> <span style="color:#999;">${purchaseDate.toLocaleString()}</span>
+              </div>
+              ${expiryDate ? `
+              <div style="color:#666; font-size:14px; margin-bottom:5px;">
+                <strong>Expires:</strong> <span style="color:${isExpired ? '#f44336' : '#4caf50'}; font-weight:600;">${expiryDate.toLocaleString()}</span>
+              </div>
+              ` : ''}
+              ${sub.paymentId ? `
+              <div style="color:#999; font-size:11px; margin-top:5px; font-family:monospace;">
+                Payment ID: ${sub.paymentId.substring(0, 20)}...
+              </div>
+              ` : ''}
+            `;
+            listContainer.appendChild(subItem);
+          });
+        } else {
+          // Check if user is premium - if so, they might have purchased before subscription tracking was added
+          const user = getUserData();
+          const isUserPremium = user && user.isPremium && user.premiumUntil && user.premiumUntil > Date.now();
+          if (isUserPremium) {
+            listContainer.innerHTML = `
+              <p style="text-align:center; color:#ff9800; padding:20px; font-weight:600;">
+                ⭐ You are a Premium member, but subscription history is not available.
+              </p>
+              <p style="text-align:center; color:#666; padding:10px 20px; font-size:14px;">
+                Your premium status is active until: ${new Date(user.premiumUntil).toLocaleDateString()}
+              </p>
+              <p style="text-align:center; color:#999; padding:0 20px 20px; font-size:13px;">
+                If you purchased recently and don't see your purchase here, please contact support.
+              </p>
+            `;
+          } else {
+            listContainer.innerHTML = '<p style="text-align:center; color:#999; padding:20px;">No subscription history yet. Purchase a premium plan to see it here!</p>';
+          }
+        }
+      } catch (error) {
+        console.error('Load subscription history error:', error);
+        const errorMsg = error.message || 'Unknown error occurred';
+        listContainer.innerHTML = `<p style="text-align:center; color:#f44336; padding:20px;">Failed to load subscription history.<br><small style="color:#999; font-size:12px;">${errorMsg}</small></p>`;
+      }
+
+      modal.style.display = 'block';
+    };
+
+    document.getElementById('closeSubscriptionHistoryModal').onclick = function() {
+      document.getElementById('subscriptionHistoryModal').style.display = 'none';
+    };
+
+    // ========================================
+    // CHANGE FILTERS MODAL (during chat)
+    // ========================================
+    document.getElementById('changeFiltersBtn').onclick = function() {
+      const hasActivePremium = isPremium && premiumUntil && premiumUntil > Date.now();
+      
+      if (!hasActivePremium) {
+        alert('Premium filters are only available for premium members. Upgrade to premium to use filters.');
+        return;
+      }
+      
+      const modal = document.getElementById('changeFiltersModal');
+      
+      // Populate modal with current filter values
+      if (document.getElementById('chatFilterGender')) {
+        document.getElementById('chatFilterGender').value = currentFilters.gender || '';
+      }
+      if (document.getElementById('chatFilterAgeMin')) {
+        document.getElementById('chatFilterAgeMin').value = currentFilters.ageMin || '';
+      }
+      if (document.getElementById('chatFilterAgeMax')) {
+        document.getElementById('chatFilterAgeMax').value = currentFilters.ageMax || '';
+      }
+      if (document.getElementById('chatFilterLocation')) {
+        document.getElementById('chatFilterLocation').value = currentFilters.location || '';
+      }
+      
+      modal.style.display = 'block';
+    };
+
+    document.getElementById('closeChangeFiltersModal').onclick = function() {
+      document.getElementById('changeFiltersModal').style.display = 'none';
+      document.getElementById('chatFilterResult').style.display = 'none';
+    };
+
+    // Save chat filters button
+    document.getElementById('saveChatFiltersBtn').onclick = function() {
+      const gender = document.getElementById('chatFilterGender')?.value || '';
+      const ageMin = document.getElementById('chatFilterAgeMin')?.value || '';
+      const ageMax = document.getElementById('chatFilterAgeMax')?.value || '';
+      const location = document.getElementById('chatFilterLocation')?.value || '';
+      
+      // Update current filters
+      currentFilters = {
+        gender: gender,
+        ageMin: ageMin,
+        ageMax: ageMax,
+        location: location
+      };
+      
+      // Update display
+      updateAppliedFiltersDisplay();
+      
+      // Show success message
+      const resultElement = document.getElementById('chatFilterResult');
+      resultElement.style.display = 'block';
+      resultElement.style.background = '#e8f5e9';
+      resultElement.style.color = '#2e7d32';
+      resultElement.style.border = '1px solid #4caf50';
+      resultElement.innerText = '✅ Filters updated! Changes will apply to your next match.';
+      
+      // Close modal after 2 seconds
+      setTimeout(() => {
+        document.getElementById('changeFiltersModal').style.display = 'none';
+        resultElement.style.display = 'none';
+      }, 2000);
+    };
+
+    // Clear chat filters button
+    document.getElementById('clearChatFiltersBtn').onclick = function() {
+      if (confirm('Clear all filters? This will remove all active filters.')) {
+        document.getElementById('chatFilterGender').value = '';
+        document.getElementById('chatFilterAgeMin').value = '';
+        document.getElementById('chatFilterAgeMax').value = '';
+        document.getElementById('chatFilterLocation').value = '';
+        
+        currentFilters = {
+          gender: '',
+          ageMin: '',
+          ageMax: '',
+          location: ''
+        };
+        
+        updateAppliedFiltersDisplay();
+        
+        const resultElement = document.getElementById('chatFilterResult');
+        resultElement.style.display = 'block';
+        resultElement.style.background = '#fff3e0';
+        resultElement.style.color = '#e65100';
+        resultElement.style.border = '1px solid #ffb74d';
+        resultElement.innerText = '✅ All filters cleared!';
+        
+        setTimeout(() => {
+          document.getElementById('changeFiltersModal').style.display = 'none';
+          resultElement.style.display = 'none';
+        }, 2000);
+      }
+    };
+
+    function getGiftEmoji(type) {
+      const emojis = {
+        rose: '🌹',
+        heart: '❤️',
+        diamond: '💎',
+        star: '⭐',
+        crown: '👑',
+        trophy: '🏆'
+      };
+      return emojis[type] || '🎁';
+    }
+
+
+  </script>
+
+  <!-- FAQ Schema (JSON-LD) for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is JOLT safe to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JOLT is designed with safety-first principles, including clear rules, visible reporting, and active moderation signals."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to download an app to use JOLT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. JOLT works directly in the browser without downloads or account creation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why was JOLT created?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JOLT was created to offer a calmer, safety-first alternative to traditional random video chat platforms that often prioritize speed and shock over user comfort."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is JOLT different from other random video chat websites?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JOLT focuses on clear community standards, visible expectations, and design choices that discourage abusive behavior, rather than maximizing unpredictability."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is JOLT an OmeTV or Monkey alternative?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JOLT offers a safety-focused alternative for users who want random video chat without the chaos commonly associated with similar platforms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is JOLT an adult or dating platform?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. JOLT is not an adult platform, dating app, or shock-based chat site. It is designed for respectful, one-on-one random conversations."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Organization Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "JOLT",
+    "description": "Safe random video chat platform with AI-powered moderation",
+    "url": "https://joltchat.org",
+    "logo": "https://joltchat.org/branding/image.png",
+    "sameAs": [
+      "https://joltchat.org"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "joltchat@outlook.com",
+      "contactType": "Customer Support"
+    }
+  }
+  </script>
+
+  <!-- WebSite Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "JOLT",
+    "url": "https://joltchat.org",
+    "description": "A safer way to meet strangers on video - Random video chat with moderation",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://joltchat.org/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</body>
+</html>

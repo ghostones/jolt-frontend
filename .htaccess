@@ -1,0 +1,31 @@
+# Security Headers for Apache
+# Add this if using Apache server
+
+<IfModule mod_headers.c>
+  # Prevent MIME sniffing
+  Header set X-Content-Type-Options "nosniff"
+  
+  # Prevent clickjacking
+  Header set X-Frame-Options "DENY"
+  
+  # XSS protection
+  Header set X-XSS-Protection "1; mode=block"
+  
+  # Hide server info
+  Header unset Server
+  Header unset X-Powered-By
+  
+  # Disable source map access (if using minified code)
+  <FilesMatch "\.map$">
+    Header set X-Content-Type-Options "nosniff"
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Prevent access to sensitive files
+<FilesMatch "^(api-config\.js|\.env|\.git)">
+  Require all denied
+</FilesMatch>

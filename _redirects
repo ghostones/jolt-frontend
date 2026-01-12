@@ -1,0 +1,7 @@
+# Netlify redirects file
+
+# SPA fallback - serve index.html for all routes
+/*    /index.html   200
+
+# API proxy (if needed)
+# /api/*    https://your-backend-url.com/api/:splat    200
