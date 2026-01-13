@@ -15,8 +15,67 @@
       background: #f5f7fb;
       color: #222;
       line-height: 1.6;
-      padding: 24px;
+      padding: 0;
+      margin: 0;
       -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 12px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    header nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    header a:hover {
+      color: #2979ff;
+    }
+    header nav > div:first-child a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    header nav > div:last-child {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 14px;
+    }
+    header .nav-links span {
+      color: #ccc;
+    }
+    footer {
+      text-align: center;
+      margin: 32px auto;
+      padding: 24px;
+      max-width: 1200px;
+      font-size: 13px;
+      color: #555;
+      border-top: 1px solid #e0e0e0;
+    }
+    footer a {
+      color: #2979ff;
+      text-decoration: none;
+      margin: 0 4px;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
     .container {
       max-width: 720px;
@@ -59,9 +118,36 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="../index.html" class="back-link">← Back to JOLT</a>
+  <!-- Top Header with Navigation -->
+  <header>
+    <nav>
+      <div>
+        <a href="../index.html">
+          <img src="../branding/icon-32.png" alt="JOLT" style="width: 32px; height: 32px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='../branding/icon-128.png'; this.style.width='32px'; this.style.height='32px';" />
+          <span style="font-weight: bold; font-size: 20px; color: #2979ff;">JOLT</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="../how-it-works.html">How It Works</a>
+        <span>|</span>
+        <a href="../why-jolt.html">Why JOLT</a>
+        <span>|</span>
+        <a href="../safety.html">Safety</a>
+        <span>|</span>
+        <a href="terms.html">Terms & Conditions</a>
+        <span>|</span>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>|</span>
+        <a href="refund-policy.html">Refund Policy</a>
+        <span>|</span>
+        <a href="contact.html">Contact Us</a>
+        <span>|</span>
+        <a href="community-rules.html">Community Rules</a>
+      </div>
+    </nav>
+  </header>
 
+  <div class="container" style="margin-top: 24px; margin-bottom: 24px;">
     <h1>Contact Us</h1>
 
     <p>
@@ -93,5 +179,21 @@
       JOLT operates as an online digital service.
     </p>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <p style="margin-bottom:12px;line-height:1.8;">
+      By using JOLT you agree to our
+      <a href="terms.html">Terms & Conditions</a>,
+      <a href="privacy-policy.html">Privacy Policy</a>,
+      <a href="refund-policy.html">Refund Policy</a>,
+      <a href="contact.html">Contact Us</a>,
+      and
+      <a href="community-rules.html">Community Rules</a>.
+    </p>
+    <p style="margin:0;font-size:12px;color:#888;">
+      © 2026 JOLT. All rights reserved.
+    </p>
+  </footer>
 </body>
 </html>

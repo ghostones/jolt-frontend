@@ -13,8 +13,8 @@
   // 👇 CHANGE URL HERE - JUST COMMENT/UNCOMMENT 👇
   // ============================================
   
- //   const API_BASE_URL = 'http://localhost:1234';  // 👈 LOCAL - Uncomment this for localhost
- const API_BASE_URL = 'https://jolt-backendnew.onrender.com';  // 👈 PRODUCTION - Uncomment this for production
+  // const API_BASE_URL = 'http://localhost:1234';  // 👈 LOCAL - Uncomment this for localhost
+  const API_BASE_URL = 'https://jolt-backendnew.onrender.com';  // 👈 PRODUCTION - Uncomment this for production
   
   // ============================================
   // AUTO-SETUP (Don't change below)

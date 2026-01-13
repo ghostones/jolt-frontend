@@ -878,6 +878,12 @@
         </a>
       </div>
       <nav style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; font-size: 14px;">
+        <a href="how-it-works.html" style="color: #555; text-decoration: none; transition: color 0.2s;">How It Works</a>
+        <span style="color: #ccc;">|</span>
+        <a href="why-jolt.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Why JOLT</a>
+        <span style="color: #ccc;">|</span>
+        <a href="safety.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Safety</a>
+        <span style="color: #ccc;">|</span>
         <a href="legal/terms.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Terms & Conditions</a>
         <span style="color: #ccc;">|</span>
         <a href="legal/privacy-policy.html" style="color: #555; text-decoration: none; transition: color 0.2s;">Privacy Policy</a>
@@ -2596,7 +2602,14 @@
             logout();
             return;
           }
-          throw new Error(error.message || error.error || 'Failed to create Razorpay order');
+          
+          // Better error message for authentication failures
+          let errorMsg = error.message || error.error || 'Failed to create Razorpay order';
+          if (error.message && (error.message.includes('authentication') || error.message.includes('credentials'))) {
+            errorMsg = 'Payment gateway is not properly configured on the server. Please contact support.';
+          }
+          
+          throw new Error(errorMsg);
         }
 
         const data = await res.json();
@@ -2737,10 +2750,16 @@
             logout();
             return;
           }
+          
+          // Better error message for authentication failures
+          let errorMsg = error.message || error.error || 'Failed to create PayPal order';
           if (error.error === 'PAYPAL_NOT_CONFIGURED' || error.message?.includes('not configured')) {
-            throw new Error('PayPal is not configured on the server. Please add PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET to the server\'s .env file.');
+            errorMsg = 'PayPal payment gateway is not properly configured on the server. Please contact support.';
+          } else if (error.message && (error.message.includes('authentication') || error.message.includes('credentials') || error.message.includes('Invalid'))) {
+            errorMsg = 'PayPal payment gateway is not properly configured on the server. Please contact support.';
           }
-          throw new Error(error.message || error.error || 'Failed to create PayPal order.');
+          
+          throw new Error(errorMsg);
         }
 
         const data = await res.json();
@@ -2813,7 +2832,10 @@
         console.error('PayPal payment error:', error);
         let errorMsg = 'PayPal payment failed: ' + error.message;
         
-        if (error.message.includes('not configured')) {
+        // Better error message for authentication failures
+        if (error.message.includes('authentication') || error.message.includes('credentials') || error.message.includes('Invalid')) {
+          errorMsg = 'PayPal payment gateway is not properly configured on the server. Please contact support.';
+        } else if (error.message.includes('not configured')) {
           errorMsg += '\n\nTo fix this:\n';
           errorMsg += '1. Create a .env file in jolt-backend directory\n';
           errorMsg += '2. Add your PayPal credentials:\n';

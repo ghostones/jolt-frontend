@@ -15,8 +15,50 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.6;
       color: #333;
-      background: #f5f5f5;
-      padding: 20px;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 12px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    header nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    header a:hover {
+      color: #2979ff;
+    }
+    header nav > div:first-child a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    header nav > div:last-child {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 14px;
+    }
+    header .nav-links span {
+      color: #ccc;
     }
     main {
       max-width: 800px;
@@ -63,35 +105,57 @@
     a:hover {
       text-decoration: underline;
     }
-    nav {
-      text-align: center;
-      margin-bottom: 32px;
-    }
-    nav a {
-      margin: 0 12px;
-      color: #666;
-      font-size: 14px;
-    }
     footer {
       text-align: center;
-      margin-top: 48px;
-      padding-top: 24px;
+      margin: 32px auto;
+      padding: 24px;
+      max-width: 1200px;
+      font-size: 13px;
+      color: #555;
       border-top: 1px solid #e0e0e0;
-      color: #666;
-      font-size: 14px;
+    }
+    footer a {
+      color: #2979ff;
+      text-decoration: none;
+      margin: 0 4px;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="safety.html">Safety</a>
-    <a href="how-it-works.html">How It Works</a>
-    <a href="legal/contact.html">Contact</a>
-  </nav>
+  <!-- Top Header with Navigation -->
+  <header>
+    <nav>
+      <div>
+        <a href="index.html">
+          <img src="branding/icon-32.png" alt="JOLT" style="width: 32px; height: 32px; object-fit: contain; display: block;" onerror="this.onerror=null; this.src='branding/icon-128.png'; this.style.width='32px'; this.style.height='32px';" />
+          <span style="font-weight: bold; font-size: 20px; color: #2979ff;">JOLT</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="how-it-works.html">How It Works</a>
+        <span>|</span>
+        <a href="why-jolt.html">Why JOLT</a>
+        <span>|</span>
+        <a href="safety.html">Safety</a>
+        <span>|</span>
+        <a href="legal/terms.html">Terms & Conditions</a>
+        <span>|</span>
+        <a href="legal/privacy-policy.html">Privacy Policy</a>
+        <span>|</span>
+        <a href="legal/refund-policy.html">Refund Policy</a>
+        <span>|</span>
+        <a href="legal/contact.html">Contact Us</a>
+        <span>|</span>
+        <a href="legal/community-rules.html">Community Rules</a>
+      </div>
+    </nav>
+  </header>
 
-  <main>
+  <main style="margin-top: 20px;">
     <h1>Why JOLT Exists</h1>
 
     <p>
@@ -208,9 +272,20 @@
 
   </main>
 
+  <!-- Footer -->
   <footer>
-    <p><a href="index.html">← Back to Home</a></p>
-    <p style="margin-top: 16px;">© 2026 JOLT. All rights reserved.</p>
+    <p style="margin-bottom:12px;line-height:1.8;">
+      By using JOLT you agree to our
+      <a href="legal/terms.html">Terms & Conditions</a>,
+      <a href="legal/privacy-policy.html">Privacy Policy</a>,
+      <a href="legal/refund-policy.html">Refund Policy</a>,
+      <a href="legal/contact.html">Contact Us</a>,
+      and
+      <a href="legal/community-rules.html">Community Rules</a>.
+    </p>
+    <p style="margin:0;font-size:12px;color:#888;">
+      © 2026 JOLT. All rights reserved.
+    </p>
   </footer>
 </body>
 </html>
